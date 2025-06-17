@@ -88,11 +88,6 @@
   <h1 id="title">🎨 靈魂色彩測驗</h1>
 
   <form id="quizForm">
-    <div class="question" id="q1">
-      <h2 id="q1text">你的星座是？</h2>
-      <select id="zodiac" required></select>
-    </div>
-
     <div class="question" id="q2">
       <h2 id="q2text">看到以下圖片，哪一張讓你有靈魂被召喚的感覺？</h2>
       <div class="options" id="imageOptions">
@@ -114,11 +109,6 @@
   </div>
 
   <script>
-    const zodiacOptions = {
-      zh: ["請選擇", "牡羊座", "金牛座", "雙子座", "巨蟹座", "獅子座", "處女座", "天秤座", "天蠍座", "射手座", "魔羯座", "水瓶座", "雙魚座"],
-      en: ["Please choose", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
-    };
-
     const imageLabels = {
       zh: ["風", "水", "火", "土"],
       en: ["Wind", "Water", "Fire", "Earth"]
@@ -174,33 +164,21 @@
       const lang = isEnglish ? "en" : "zh";
 
       document.getElementById("title").innerText = isEnglish ? "🎨 Soul Color Test" : "🎨 靈魂色彩測驗";
-      document.getElementById("q1text").innerText = isEnglish ? "What’s your zodiac sign?" : "你的星座是？";
       document.getElementById("q2text").innerText = isEnglish ? "Which image feels like it calls to your soul?" : "看到以下圖片，哪一張讓你有靈魂被召喚的感覺？";
       document.getElementById("submitBtn").innerText = isEnglish ? "✨ Show Result" : "✨ 查看結果";
 
-      // Update zodiac options
-      const select = document.getElementById("zodiac");
-      select.innerHTML = "";
-      zodiacOptions[lang].forEach(option => {
-        const opt = document.createElement("option");
-        opt.value = option;
-        opt.textContent = option;
-        select.appendChild(opt);
-      });
-
-      // Update image labels
+      // 更新圖片選項文字
       const labels = document.querySelectorAll(".option-label");
       labels.forEach((el, idx) => {
         el.textContent = imageLabels[lang][idx];
       });
 
-      // Update nav buttons
+      // 導覽按鈕
       document.querySelectorAll(".nav-buttons button")[0].innerText = isEnglish ? "🔙 Back to Menu" : "🔙 返回選單";
       document.querySelectorAll(".nav-buttons button")[1].innerText = isEnglish ? "💅 Book Now" : "💅 立即預約";
     }
 
-    // 預設載入中文選項
-    window.onload = () => toggleLang();  // 預設英文，若想預設中文請刪除這行
+    window.onload = () => toggleLang();  // 預設載入英文，可改為中文
 
     document.getElementById("quizForm").addEventListener("submit", function(e) {
       e.preventDefault();
