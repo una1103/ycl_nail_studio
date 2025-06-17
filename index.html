@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YC Nail Studio</title>
+  <title>YCL Nail Studio</title>
   <style>
     body {
       margin: 0;
@@ -14,13 +14,29 @@
 
     header {
       text-align: center;
-      padding: 80px 20px 40px;
+      padding: 60px 20px 30px;
       background-color: #fff8f0;
     }
 
     header h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
+    }
+
+    .lang-toggle {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .lang-toggle button {
+      background-color: #c89f6d;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 0 5px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
     }
 
     .book-btn {
@@ -55,25 +71,14 @@
 
     .section {
       flex: 1 1 300px;
-      max-width: 500px;
+      max-width: 400px;
       margin: 20px;
       padding: 20px;
-      background-color: #fffaf4;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
     .section h2 {
       font-size: 1.5rem;
       margin-bottom: 10px;
-      color: #c89f6d;
-    }
-
-    .section h3 {
-      margin-top: 20px;
-      margin-bottom: 8px;
-      font-size: 1.2rem;
-      color: #b88b55;
     }
 
     ul {
@@ -106,21 +111,17 @@
       background-color: #f3e9dd;
     }
 
-    .contact-info {
-      background-color: #fff8f0;
-      color: #704c1f;
-      max-width: 500px;
-      margin: 40px auto 20px;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(200, 159, 109, 0.3);
-      font-size: 1.1rem;
-      line-height: 1.6;
+    .contact {
       text-align: center;
+      padding: 20px;
+      font-size: 1rem;
+      background-color: #fefefe;
+      line-height: 1.6;
     }
 
-    .contact-info strong {
-      color: #c89f6d;
+    .map {
+      text-align: center;
+      margin: 20px;
     }
 
     footer {
@@ -140,84 +141,125 @@
 <body>
 
   <header>
-    <h1>Enhance Your Beauty<br>with Exquisite Nail Art</h1>
-    <a href="https://lin.ee/166kslla" class="book-btn" target="_blank" rel="noopener">BOOK NOW</a>
+    <h1 id="title">YCL Nail Studio<br>Enhance Your Beauty with Exquisite Nail Art</h1>
+    <div class="lang-toggle">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="tel:0922828611" class="book-btn" id="bookBtn">BOOK NOW</a>
   </header>
 
   <div class="image-block">
     <img src="https://i.imgur.com/4ZJHc8e.jpg" alt="Nail Design Sample">
-    <!-- ⚠️請將上面這張圖片替換為你自己的圖片網址 -->
   </div>
 
   <div class="sections">
     <div class="section">
-      <h2>關於我們｜About YC Nail Studio</h2>
-      <p>
-        YC 美甲工作室位於台中北區，採一人工作室預約制。<br>
-        我們擅長自然系暈染、氣質風格設計，重視每一次指尖細節。<br>
-        在溫柔安靜的空間中，好好寵愛自己。
-      </p>
-      <p>
-        Located in North District of Taichung, YC Nail Studio offers private nail appointments with a cozy, gentle touch.<br>
-        Specializing in natural blends and elegant designs, we care about every detail at your fingertips.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>價目表｜Price List</h2>
-
-      <h3>💅 手部｜Hands</h3>
-      <ul>
-        <li>純基礎保養 Basic Care - NT$500</li>
-        <li>深層保養 Deep Care - NT$1299</li>
-        <li>一般甲油 Regular Polish (incl. care) - NT$800</li>
-        <li>單色凝膠 Gel Color (incl. care) - NT$1000</li>
-        <li>設計款 Design Gel - from NT$1250</li>
-      </ul>
-
-      <h3>🦶 足部｜Feet</h3>
-      <ul>
-        <li>純基礎保養 Basic Foot Care - NT$800</li>
-        <li>一般甲油 Regular Polish (incl. care) - NT$1000</li>
-        <li>單色凝膠 Gel Color (incl. care, 1 accent color) - NT$1200</li>
-        <li>設計凝膠 Design Gel - from NT$1400</li>
-      </ul>
-
-      <h3>🎨 設計加購｜Design Add-ons</h3>
-      <ul>
-        <li>延甲 Extension (per finger) - NT$100</li>
-        <li>單指彩繪 Nail Art (per finger) - from NT$30</li>
-        <li>飾品 / 貼紙 Accessories/Stickers - from NT$10 per finger</li>
-        <li>鑽 Stone Art (per finger) - from NT$30</li>
-      </ul>
-
-      <h3>🔄 卸甲｜Removal</h3>
-      <ul>
-        <li>本店卸甲 Self Removal - NT$200（續作免費）</li>
-        <li>他店卸甲 Other Salon Removal - NT$300</li>
-        <li>水晶卸甲 Acrylic Removal - NT$600</li>
+      <h2 id="serviceTitle">Our Services</h2>
+      <ul id="serviceList">
+        <li>Gradient</li>
+        <li>Cat-Eye</li>
+        <li>Hand-Painted</li>
       </ul>
     </div>
-
     <div class="section">
-      <h2>互動測驗｜Interactive Quizzes</h2>
-      <a href="https://una1103.github.io/yclnailstudio/soulcolor.html" class="quiz-btn" target="_blank" rel="noopener">靈魂色彩測驗｜Soul Color Quiz</a>
-      <a href="https://una1103.github.io/yclnailstudio/subconscious.html" class="quiz-btn" target="_blank" rel="noopener">潛意識測色測驗｜Subconscious Color Exam</a>
-      <a href="https://una1103.github.io/yclnailstudio/zodiacgoddess.html" class="quiz-btn" target="_blank" rel="noopener">守護星座女神測驗｜Zodiac Goddess Quiz</a>
+      <h2 id="quizTitle">Interactive Tests</h2>
+      <a href="soulcolor.html" class="quiz-btn" id="quiz1">Soul Color Quiz</a>
+      <a href="subconscious.html" class="quiz-btn" id="quiz2">Subconscious Color Exam</a>
+      <a href="zodiacgoddess.html" class="quiz-btn" id="quiz3">Guardian Zodiac Goddess Quiz</a>
+    </div>
+    <div class="section">
+      <h2 id="priceTitle">Price List</h2>
+      <ul id="priceList">
+        <li><b>Hands:</b></li>
+        <li>Basic Care: 500</li>
+        <li>Deep Care: 1299</li>
+        <li>Regular Polish: 800 (incl. care)</li>
+        <li>Gel One Color: 1000 (incl. care)</li>
+        <li>Design: from 1250</li>
+        <li><b>Feet:</b></li>
+        <li>Basic Care: 800</li>
+        <li>Regular Polish: 1000 (incl. care)</li>
+        <li>Gel One Color: 1200 (incl. care, 2 colors)</li>
+        <li>Gel Design: from 1400</li>
+        <li><b>Design Add-ons:</b></li>
+        <li>Extension (per finger): 100</li>
+        <li>Art (per finger): from 30</li>
+        <li>Sticker/Decor: from 10</li>
+        <li>Rhinestones: from 30</li>
+        <li><b>Removal:</b></li>
+        <li>Our Store: 200 (Free if reapplying)</li>
+        <li>Other Store: 300</li>
+        <li>Acrylic Removal: 600</li>
+      </ul>
     </div>
   </div>
 
-  <div class="contact-info">
-    <p><strong>聯絡資訊｜Contact Info</strong></p>
-    <p>Line：<a href="https://line.me/R/ti/p/%40166kslla" target="_blank" rel="noopener">@166kslla</a></p>
-    <p>IG：<a href="https://instagram.com/ycl_nail.studio" target="_blank" rel="noopener">ycl_nail.studio</a></p>
-    <p>手機 Mobile：<a href="tel:0922828611">0922-828-611</a></p>
-    <p>營業時間 Business Hours：10:00 ～ 20:00</p>
+  <div class="contact">
+    <p>Line：@166kslla<br>
+    IG: ycl_nail.studio<br>
+    Phone: 0922828611<br>
+    Hours: 10:00～20:00</p>
+  </div>
+
+  <div class="map">
+    <iframe
+      src="https://www.google.com/maps?q=404台中市北區精武路266-7號&output=embed"
+      width="300"
+      height="250"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
   </div>
 
   <footer>
-    © 2025 YC Nail Studio｜Taichung, Taiwan
+    © 2025 YCL Nail Studio｜404台中市北區精武路266-7號
   </footer>
+
+  <script>
+    function setLang(lang) {
+      if (lang === 'zh') {
+        document.getElementById('title').innerHTML = 'YCL Nail Studio<br>用指尖勾勒你的美麗世界';
+        document.getElementById('bookBtn').innerText = '立即預約';
+        document.getElementById('serviceTitle').innerText = '服務項目';
+        document.getElementById('serviceList').innerHTML = `
+          <li>漸層</li>
+          <li>貓眼</li>
+          <li>手繪</li>
+        `;
+        document.getElementById('quizTitle').innerText = '心理測驗';
+        document.getElementById('quiz1').innerText = '靈魂色彩測驗';
+        document.getElementById('quiz2').innerText = '潛意識測色測驗';
+        document.getElementById('quiz3').innerText = '守護星座女神測驗';
+        document.getElementById('priceTitle').innerText = '價目表';
+        document.getElementById('priceList').innerHTML = `
+          <li><b>手部：</b></li>
+          <li>純基礎保養：500</li>
+          <li>深層保養：1299</li>
+          <li>一般甲油：800（含保養）</li>
+          <li>單色凝膠：1000（含保養）</li>
+          <li>設計款：1250起</li>
+          <li><b>足部：</b></li>
+          <li>純基礎保養：800</li>
+          <li>一般甲油：1000（含保養）</li>
+          <li>單色凝膠：1200（含保養，可跳色）</li>
+          <li>設計凝膠：1400起</li>
+          <li><b>設計加購：</b></li>
+          <li>延甲（單指）：100</li>
+          <li>單指彩繪：30起</li>
+          <li>貼紙/飾品：10起</li>
+          <li>鑽：30起</li>
+          <li><b>卸甲：</b></li>
+          <li>本店卸甲：200（續作免費）</li>
+          <li>他店卸甲：300</li>
+          <li>水晶卸甲：600</li>
+        `;
+      } else {
+        location.reload();
+      }
+    }
+  </script>
 
 </body>
 </html>
