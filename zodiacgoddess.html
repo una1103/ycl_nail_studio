@@ -41,6 +41,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: transform 0.2s, border-color 0.3s;
+      user-select: none;
     }
 
     .option-card:hover {
@@ -49,6 +50,7 @@
 
     .option-card.selected {
       border-color: #c89f6d;
+      box-shadow: 0 0 15px #c89f6d;
     }
 
     .option-card img {
@@ -61,6 +63,7 @@
       padding: 10px;
       font-weight: bold;
       background-color: #fff8ee;
+      user-select: none;
     }
 
     .submit-btn {
@@ -72,6 +75,11 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
+      user-select: none;
+    }
+
+    .submit-btn:hover {
+      background-color: #b57e41;
     }
 
     .result {
@@ -79,6 +87,7 @@
       font-size: 1.2rem;
       color: #444;
       padding: 0 20px;
+      min-height: 60px;
     }
 
     .buttons {
@@ -95,6 +104,7 @@
       color: #c89f6d;
       font-weight: bold;
       transition: background-color 0.3s;
+      user-select: none;
     }
 
     .buttons a:hover {
@@ -103,6 +113,7 @@
 
     .lang-switch {
       margin-top: 20px;
+      user-select: none;
     }
 
     .lang-switch button {
@@ -175,6 +186,12 @@
       document.querySelectorAll(".label").forEach(el => {
         el.innerText = lang === "zh" ? el.dataset.labelZh : el.dataset.labelEn;
       });
+
+      // 顯示結果區也跟著切換語言 (如果已經有結果的話)
+      const resultDiv = document.getElementById("result");
+      if (resultDiv.style.display === "block" && selectedCard) {
+        showResult();
+      }
     }
 
     const cards = document.querySelectorAll(".option-card");
@@ -185,19 +202,28 @@
         cards.forEach(c => c.classList.remove("selected"));
         card.classList.add("selected");
         selectedCard = card;
+
+        // 清除之前結果與按鈕
+        document.getElementById("result").style.display = "none";
+        document.getElementById("actions").style.display = "none";
       });
     });
 
     document.getElementById("submit").addEventListener("click", () => {
-      const resultDiv = document.getElementById("result");
-      const actions = document.getElementById("actions");
-
       if (!selectedCard) {
-        resultDiv.innerHTML = lang === "zh" ? "請選擇一個選項喔～" : "Please choose one option.";
+        const resultDiv = document.getElementById("result");
+        const actions = document.getElementById("actions");
+        resultDiv.innerText = lang === "zh" ? "請選擇一個選項喔～" : "Please choose one option.";
         resultDiv.style.display = "block";
         actions.style.display = "none";
         return;
       }
+      showResult();
+    });
+
+    function showResult() {
+      const resultDiv = document.getElementById("result");
+      const actions = document.getElementById("actions");
 
       let resultText = selectedCard.dataset.result;
       let resultTextEn = selectedCard.dataset.resultEn;
@@ -214,7 +240,7 @@
           suggestionEn = "Go for soft pink or nude tones with a pearly finish for comforting vibes ♡";
           break;
         case "天秤女神：優雅平衡":
-          suggestion = "來個法式邊緣線或是優雅暈染，讓妳擁有氣質與風格兼具的美感！";
+          suggestion = "來個法式邊緣線或是優雅暈染，讓妳輕鬆擁有氣質與風格兼具的美感！";
           suggestionEn = "Try French tips or soft gradients for a classy, balanced look.";
           break;
         case "雙魚女神：夢幻直覺":
@@ -223,13 +249,15 @@
           break;
       }
 
-      resultDiv.innerHTML = lang === "zh"
-        ? <strong>${resultText}</strong><br>${suggestion}
-        : `<strong>${resultTextEn}</strong><br>${suggestionEn}`;
+      if (lang === "zh") {
+        resultDiv.innerHTML = `<strong>${resultText}</strong><br>${suggestion}`;
+      } else {
+        resultDiv.innerHTML = `<strong>${resultTextEn}</strong><br>${suggestionEn}`;
+      }
 
       resultDiv.style.display = "block";
       actions.style.display = "block";
-    });
+    }
   </script>
 
 </body>
