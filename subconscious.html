@@ -1,176 +1,157 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>潛意識色彩測驗 | YC Nail Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>潛意識色彩測驗 | Subconscious Color Exam</title>
   <style>
-    body {
-      background-color: #fff8f0;
-      font-family: 'Georgia', serif;
-      color: #333;
-      padding: 20px;
-      margin: 0;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .lang-switch {
-      font-size: 0.9rem;
-    }
-
-    h1 {
-      text-align: center;
-      color: #c89f6d;
-    }
-
-    .question {
-      text-align: center;
-      font-size: 1.2rem;
-      margin: 30px 0;
-    }
-
-    .images {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .images img {
-      width: 120px;
-      height: 120px;
-      border-radius: 10px;
-      cursor: pointer;
-      border: 3px solid transparent;
-      transition: 0.3s;
-    }
-
-    .images img:hover {
-      border-color: #c89f6d;
-    }
-
-    #submitBtn {
-      display: block;
-      margin: 30px auto;
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background:#fdfaf6; color:#333; }
+    #lang-switch { position: fixed; top: 10px; right: 10px; }
+    button {
       background-color: #c89f6d;
       color: white;
       border: none;
-      padding: 12px 28px;
-      font-size: 1rem;
-      border-radius: 30px;
+      border-radius: 15px;
+      padding: 8px 16px;
       cursor: pointer;
+      margin-left: 5px;
+      font-weight: bold;
     }
-
-    #result {
-      text-align: center;
-      padding: 30px;
-      background-color: #fff8f0;
-      border-radius: 10px;
-      margin-top: 30px;
-    }
-
-    a.button-link {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
+    .hidden { display: none; }
     .book-btn {
       background-color: #c89f6d;
       color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
     }
-
-    .back-btn {
-      border: 2px solid #c89f6d;
-      color: #c89f6d;
-    }
+    .quiz img { max-width: 200px; margin: 10px; cursor: pointer; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
+    .quiz img.selected { border: 3px solid #c89f6d; }
+    .result, .quiz { margin-top: 20px; }
   </style>
 </head>
 <body>
 
-<header>
-  <div></div>
-  <div class="lang-switch">
-    <a href="#" onclick="switchLanguage('zh')">中文</a> |
-    <a href="#" onclick="switchLanguage('en')">EN</a>
+<div id="lang-switch">
+  <button onclick="showLang('zh')">中文</button>
+  <button onclick="showLang('en')">English</button>
+</div>
+
+<!-- 中文內容 -->
+<div id="content-zh">
+  <h1>潛意識色彩測驗</h1>
+  <p>請點選你最有感覺的一張圖片：</p>
+  <div class="quiz" id="quizImagesZh">
+    <img src="images/color1.jpg" alt="圖片1" data-value="紅色" onclick="selectImage(this, 'zh')" />
+    <img src="images/color2.jpg" alt="圖片2" data-value="藍色" onclick="selectImage(this, 'zh')" />
+    <img src="images/color3.jpg" alt="圖片3" data-value="綠色" onclick="selectImage(this, 'zh')" />
+    <img src="images/color4.jpg" alt="圖片4" data-value="紫色" onclick="selectImage(this, 'zh')" />
   </div>
-</header>
+  <button onclick="submitQuiz('zh')">提交答案</button>
 
-<h1 id="title">潛意識色彩測驗</h1>
-
-<div class="question" id="question">
-  Q1. 請憑直覺選擇一張圖片<br>
-  Q1. Choose an image based on your intuition.
+  <div id="result-zh" class="result" style="display:none;">
+    <p id="resultTextZh"></p>
+    <a href="https://line.me/R/ti/p/@166kslla" target="_blank" class="book-btn">立即預約</a><br/>
+    <a href="index.html">返回主頁</a>
+  </div>
 </div>
 
-<div class="images" id="imageOptions">
-  <img src="images/red.jpg" alt="紅色" onclick="selectImage('red')">
-  <img src="images/blue.jpg" alt="藍色" onclick="selectImage('blue')">
-  <img src="images/green.jpg" alt="綠色" onclick="selectImage('green')">
-  <img src="images/purple.jpg" alt="紫色" onclick="selectImage('purple')">
+<!-- English content -->
+<div id="content-en" class="hidden">
+  <h1>Subconscious Color Exam</h1>
+  <p>Please click the image you feel most connected to:</p>
+  <div class="quiz" id="quizImagesEn">
+    <img src="images/color1.jpg" alt="Image 1" data-value="Red" onclick="selectImage(this, 'en')" />
+    <img src="images/color2.jpg" alt="Image 2" data-value="Blue" onclick="selectImage(this, 'en')" />
+    <img src="images/color3.jpg" alt="Image 3" data-value="Green" onclick="selectImage(this, 'en')" />
+    <img src="images/color4.jpg" alt="Image 4" data-value="Purple" onclick="selectImage(this, 'en')" />
+  </div>
+  <button onclick="submitQuiz('en')">Submit</button>
+
+  <div id="result-en" class="result" style="display:none;">
+    <p id="resultTextEn"></p>
+    <a href="https://line.me/R/ti/p/@166kslla" target="_blank" class="book-btn">Book Now</a><br/>
+    <a href="index.html">Back to Home</a>
+  </div>
 </div>
-
-<button id="submitBtn" onclick="showResult()">送出 Submit</button>
-
-<div id="result"></div>
 
 <script>
-  let selectedColor = null;
+  let selectedValueZh = null;
+  let selectedValueEn = null;
 
-  function selectImage(color) {
-    selectedColor = color;
-    const images = document.querySelectorAll(".images img");
-    images.forEach(img => img.style.borderColor = "transparent");
-    event.target.style.borderColor = "#c89f6d";
+  function showLang(lang) {
+    if(lang === 'zh'){
+      document.getElementById('content-zh').classList.remove('hidden');
+      document.getElementById('content-en').classList.add('hidden');
+    } else {
+      document.getElementById('content-en').classList.remove('hidden');
+      document.getElementById('content-zh').classList.add('hidden');
+    }
+    resetQuiz();
   }
 
-  function showResult() {
-    let resultText = '';
-    if (!selectedColor) {
-      resultText = "<p>請先選擇一張圖片！<br>Please select one image first!</p>";
-    } else {
-      switch (selectedColor) {
-        case 'red':
-          resultText = "紅色象徵熱情與自信，適合大膽的造型與設計款！";
-          break;
-        case 'blue':
-          resultText = "藍色代表冷靜與智慧，選擇簡約典雅風格最適合你！";
-          break;
-        case 'green':
-          resultText = "綠色象徵平衡與療癒，適合自然系美甲與大地色！";
-          break;
-        case 'purple':
-          resultText = "紫色富有神秘感，適合夢幻或星空系設計！";
-          break;
+  function selectImage(imgElem, lang) {
+    const container = lang === 'zh' ? document.getElementById('quizImagesZh') : document.getElementById('quizImagesEn');
+    // 取消先前選擇
+    Array.from(container.querySelectorAll('img')).forEach(img => img.classList.remove('selected'));
+    // 標記當前
+    imgElem.classList.add('selected');
+    // 儲存選擇值
+    if(lang === 'zh') selectedValueZh = imgElem.getAttribute('data-value');
+    else selectedValueEn = imgElem.getAttribute('data-value');
+  }
+
+  function submitQuiz(lang){
+    let val = lang === 'zh' ? selectedValueZh : selectedValueEn;
+    if(!val){
+      alert(lang==='zh' ? '請先選擇一張圖片' : 'Please select an image first');
+      return;
+    }
+    let msg = '';
+    if(lang === 'zh'){
+      switch(val){
+        case '紅色': msg = '你的潛意識熱情澎湃！'; break;
+        case '藍色': msg = '你內心平靜，渴望安穩。'; break;
+        case '綠色': msg = '你熱愛自然與生命力。'; break;
+        case '紫色': msg = '你神秘且具創造力。'; break;
+        default: msg = '謝謝你的選擇！';
       }
-      resultText += `
-        <div style="margin-top: 20px;">
-          <a href="https://lin.ee/166kslla" class="button-link book-btn">💅 立即預約 Book Now</a>
-          <a href="index.html" class="button-link back-btn">🔙 返回首頁 Home</a>
-        </div>`;
+      document.getElementById('resultTextZh').textContent = msg;
+      document.getElementById('result-zh').style.display = 'block';
+      document.querySelector('#quizImagesZh').style.display = 'none';
+    } else {
+      switch(val){
+        case 'Red': msg = 'Your subconscious is full of passion!'; break;
+        case 'Blue': msg = 'You feel calm and stable inside.'; break;
+        case 'Green': msg = 'You love nature and vitality.'; break;
+        case 'Purple': msg = 'You are mysterious and creative.'; break;
+        default: msg = 'Thank you for your choice!';
+      }
+      document.getElementById('resultTextEn').textContent = msg;
+      document.getElementById('result-en').style.display = 'block';
+      document.querySelector('#quizImagesEn').style.display = 'none';
     }
-    document.getElementById('result').innerHTML = resultText;
   }
 
-  function switchLanguage(lang) {
-    if (lang === 'en') {
-      document.getElementById('title').innerText = "Subconscious Color Quiz";
-      document.getElementById('question').innerHTML = "Q1. Choose an image based on your intuition.<br>Q1. 請憑直覺選擇一張圖片";
-      document.getElementById('submitBtn').innerText = "Submit";
-    } else {
-      document.getElementById('title').innerText = "潛意識色彩測驗";
-      document.getElementById('question').innerHTML = "Q1. 請憑直覺選擇一張圖片<br>Q1. Choose an image based on your intuition.";
-      document.getElementById('submitBtn').innerText = "送出 Submit";
-    }
+  function resetQuiz(){
+    selectedValueZh = null;
+    selectedValueEn = null;
+    document.getElementById('result-zh').style.display = 'none';
+    document.getElementById('result-en').style.display = 'none';
+    document.getElementById('quizImagesZh').style.display = 'block';
+    document.getElementById('quizImagesEn').style.display = 'block';
+
+    // 移除選擇框
+    Array.from(document.querySelectorAll('#quizImagesZh img')).forEach(img => img.classList.remove('selected'));
+    Array.from(document.querySelectorAll('#quizImagesEn img')).forEach(img => img.classList.remove('selected'));
   }
+
+  showLang('zh');
 </script>
 
 </body>
