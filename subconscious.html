@@ -1,125 +1,89 @@
 <!DOCTYPE html>
-<html lang='zh-TW'>
+<html lang="zh-Hant">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>YCL Nail Studio</title>
+  <meta charset="UTF-8">
+  <title>潛意識測色測驗</title>
+  <style>
+    body {
+      background-color: #fffaf4;
+      font-family: "微軟正黑體", sans-serif;
+      text-align: center;
+      color: #5a3e36;
+      padding: 20px;
+    }
+    h1 {
+      color: #c19774;
+    }
+    .img-option {
+      margin: 15px;
+      display: inline-block;
+    }
+    .img-option img {
+      width: 200px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .img-label {
+      margin-top: 8px;
+      font-size: 1em;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #8b5e3c;
+    }
+    .nav-btn {
+      margin-top: 30px;
+      display: inline-block;
+      background-color: #c89f6d;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    .nav-btn:hover {
+      background-color: #a67c52;
+    }
+  </style>
 </head>
 <body>
+  <h1>潛意識測色測驗</h1>
+  <p>請直覺選一張圖片：</p>
 
-<style>
-  .ycl-wrap {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: #fffdfa;
-    color: #4a4a4a;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-  }
-  .hero {
-    background: #fdf8f2;
-    border-radius: 12px;
-    padding: 40px 20px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  }
-  .hero h1 {
-    color: #bfa16a;
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  .hero p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  .hero a {
-    display: inline-block;
-    margin: 6px;
-    padding: 12px 24px;
-    background: #d4b07c;
-    color: #fff;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  .section {
-    margin: 40px 0;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
-  .section h2 {
-    color: #bfa16a;
-    border-bottom: 2px solid #f0e4d0;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  .services ul {
-    list-style: none;
-    padding: 0;
-  }
-  .services li {
-    font-size: 18px;
-    margin: 12px 0;
-  }
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-  }
-  .gallery img {
-    width: calc(33% - 8px);
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .contact p {
-    font-size: 16px;
-    margin: 8px 0;
-  }
-  .contact a {
-    color: #bfa16a;
-    text-decoration: none;
-  }
-</style>
+  <div class="img-option" onclick="showResult('A')">
+    <img src="https://i.imgur.com/S0Oq7gJ.jpg" alt="A">
+    <div class="img-label">夢境花海</div>
+  </div>
+  <div class="img-option" onclick="showResult('B')">
+    <img src="https://i.imgur.com/hV7ixYu.jpg" alt="B">
+    <div class="img-label">森林精靈</div>
+  </div>
+  <div class="img-option" onclick="showResult('C')">
+    <img src="https://i.imgur.com/fNLPgFz.jpg" alt="C">
+    <div class="img-label">星空銀河</div>
+  </div>
 
-<div class="ycl-wrap">
-  <div class="hero">
-    <h1>詠粸麗 美甲工作室</h1>
-    <p>YCL Nail Studio — 高雅細緻的指尖藝術</p>
-    <a href="https://lin.ee/166kslla" target="_blank">LINE 預約</a>
-    <a href="https://instagram.com/ycl_nail.studio" target="_blank">Instagram</a>
-    <a href="tel:0922828611">電話聯繫</a>
+  <div id="result"></div>
+  <div id="buttons" style="display: none;">
+    <a href="quizmenu.html" class="nav-btn">🔙 回到測驗選單</a>
+    <a href="https://lin.ee/xxxxxxx" class="nav-btn">💖 立即預約美甲</a>
   </div>
-  <div class="section services">
-    <h2>服務介紹</h2>
-    <ul>
-      <li>單色凝膠 ｜ NT$899 起</li>
-      <li>造型凝膠（含延甲）｜ NT$1599 起</li>
-      <li>卸甲／保養 ｜ NT$499 起</li>
-    </ul>
-  </div>
-  <div class="section gallery">
-    <h2>作品集</h2>
-    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=400&q=80" alt="Nail Sample 1">
-    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=400&q=80" alt="Nail Sample 2">
-    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Nail Sample 3">
-  </div>
-  <div class="section contact">
-    <h2>聯絡我們</h2>
-    <p>📍 地址：台中市北區精武路266-7號</p>
-    <p>📱 電話：<a href="tel:0922828611">0922-828-611</a></p>
-    <p>🕒 營業時間：每日 10:00～20:00</p>
-    <p>💬 LINE：<a href="https://lin.ee/166kslla" target="_blank">@166kslla</a></p>
-    <p>📸 Instagram：<a href="https://instagram.com/ycl_nail.studio" target="_blank">@ycl_nail.studio</a></p>
-    <div style="margin-top:20px;">
-      <iframe src="https://www.google.com/maps?q=台中市北區精武路266-7號&output=embed" width="100%" height="250" style="border:0;" allowfullscreen></iframe>
-    </div>
-  </div>
-</div>
 
+  <script>
+    function showResult(choice) {
+      let msg = '';
+      if (choice === 'A') {
+        msg = "你潛意識渴望 <b>療癒與被愛</b> 🌸<br>適合粉色、花卉、漸層系指彩。";
+      } else if (choice === 'B') {
+        msg = "你潛意識渴望 <b>安定與自然</b> 🌿<br>推薦大地色、霧面、植物系指彩。";
+      } else {
+        msg = "你潛意識渴望 <b>自由與創造</b> 🌌<br>適合金屬色、貓眼、鏡面指彩。";
+      }
+      document.getElementById("result").innerHTML = msg;
+      document.getElementById("buttons").style.display = "block";
+    }
+  </script>
 </body>
 </html>
