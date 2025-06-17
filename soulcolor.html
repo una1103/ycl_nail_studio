@@ -1,102 +1,76 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <title>靈魂色彩測驗</title>
-  <style>
-    body {
-      background-color: #fffaf4;
-      font-family: "微軟正黑體", sans-serif;
-      color: #5a3e36;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      color: #c19774;
-    }
-
-    .option {
-      display: inline-block;
-      margin: 15px;
-      cursor: pointer;
-    }
-
-    .option img {
-      width: 200px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-
-    .option img:hover {
-      transform: scale(1.05);
-    }
-
-    .label {
-      margin-top: 8px;
-      font-size: 1em;
-    }
-
-    #result {
-      margin-top: 30px;
-      font-size: 1.2em;
-      color: #8b5e3c;
-    }
-
-    .nav-btn {
-      margin-top: 30px;
-      display: inline-block;
-      background-color: #c89f6d;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 1em;
-    }
-
-    .nav-btn:hover {
-      background-color: #a67c52;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>靈魂色彩測驗 | Soul Color Quiz</title>
+<style>
+  body { font-family: Georgia, serif; background: #fdfaf6; color: #333; padding: 20px; max-width: 600px; margin: auto; }
+  h1, h2 { color: #c89f6d; }
+  label { display: block; margin: 15px 0; cursor: pointer; }
+  input[type="radio"] { margin-right: 10px; }
+  .btn-submit, .btn-book {
+    margin-top: 20px; padding: 12px 24px; font-size: 1.1rem; border-radius: 25px; border: 2px solid #c89f6d;
+    background: transparent; color: #c89f6d; cursor: pointer; transition: background-color 0.3s;
+  }
+  .btn-submit:hover, .btn-book:hover { background-color: #f3e9dd; }
+  .result { margin-top: 30px; font-size: 1.2rem; line-height: 1.5; }
+</style>
 </head>
 <body>
-  <h1>靈魂色彩測驗</h1>
-  <p>直覺選出一張你最有感覺的色彩圖片：</p>
 
-  <div class="option" onclick="showResult('A')">
-    <img src="https://i.imgur.com/9z1ZrWX.jpg" alt="星座圖 A">
-    <div class="label">A. 繽紛直覺</div>
-  </div>
-  <div class="option" onclick="showResult('B')">
-    <img src="https://i.imgur.com/CXKbI0r.jpg" alt="星座圖 B">
-    <div class="label">B. 溫柔沈穩</div>
-  </div>
-  <div class="option" onclick="showResult('C')">
-    <img src="https://i.imgur.com/7lJzltD.jpg" alt="星座圖 C">
-    <div class="label">C. 神秘靈性</div>
-  </div>
+<h1>靈魂色彩測驗<br>Soul Color Quiz</h1>
 
-  <div id="result"></div>
+<form id="quizForm">
+  <h2>1. 你喜歡的季節是？<br>What is your favorite season?</h2>
+  <label><input type="radio" name="q1" value="spring" required>春天 Spring</label>
+  <label><input type="radio" name="q1" value="summer">夏天 Summer</label>
+  <label><input type="radio" name="q1" value="autumn">秋天 Autumn</label>
+  <label><input type="radio" name="q1" value="winter">冬天 Winter</label>
 
-  <div id="buttons" style="display:none;">
-    <a href="quizmenu.html" class="nav-btn">🔙 回到測驗選單</a>
-    <a href="https://lin.ee/xxxxxxx" class="nav-btn">💖 立即預約美甲</a>
-  </div>
+  <h2>2. 你覺得自己像什麼顏色？<br>What color do you feel you resemble?</h2>
+  <label><input type="radio" name="q2" value="red" required>紅色 Red</label>
+  <label><input type="radio" name="q2" value="blue">藍色 Blue</label>
+  <label><input type="radio" name="q2" value="green">綠色 Green</label>
+  <label><input type="radio" name="q2" value="purple">紫色 Purple</label>
 
-  <script>
-    function showResult(choice) {
-      let resultText = "";
-      if (choice === 'A') {
-        resultText = "🌈 你的靈魂色彩是 <b>彩虹粉</b><br>你擁有豐富想像力與創造力，適合可愛跳色與手繪造型！";
-      } else if (choice === 'B') {
-        resultText = "🍂 你的靈魂色彩是 <b>奶茶棕</b><br>你追求穩定與溫柔氛圍，適合柔和漸層與經典法式。";
-      } else {
-        resultText = "🔮 你的靈魂色彩是 <b>神秘紫</b><br>你與直覺連結強烈，適合星空、貓眼或深色鏡面風格。";
-      }
-      document.getElementById("result").innerHTML = resultText;
-      document.getElementById("buttons").style.display = "block";
+  <button type="submit" class="btn-submit">提交結果 Submit</button>
+</form>
+
+<div id="result" class="result" style="display:none;"></div>
+
+<button onclick="location.href='https://line.me/R/ti/p/%40166kslla'" class="btn-book" style="display:none;" id="bookBtn">立即預約 Book Now</button>
+
+<script>
+  const form = document.getElementById('quizForm');
+  const resultDiv = document.getElementById('result');
+  const bookBtn = document.getElementById('bookBtn');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const q1 = form.q1.value;
+    const q2 = form.q2.value;
+
+    let message = '';
+
+    if (q1 === 'spring' && q2 === 'red') {
+      message = '你是充滿活力的火焰紅，熱情洋溢！<br>You are a vibrant Flame Red, full of passion!';
+    } else if (q1 === 'summer' && q2 === 'blue') {
+      message = '你是寧靜的海洋藍，沉穩冷靜。<br>You are a tranquil Ocean Blue, calm and composed.';
+    } else if (q1 === 'autumn' && q2 === 'green') {
+      message = '你是自然的森林綠，溫暖可靠。<br>You are a natural Forest Green, warm and dependable.';
+    } else if (q1 === 'winter' && q2 === 'purple') {
+      message = '你是神秘的午夜紫，深邃優雅。<br>You are a mysterious Midnight Purple, deep and elegant.';
+    } else {
+      message = '你有獨特的色彩組合，展現個人魅力！<br>You have a unique color combination, showing your charm!';
     }
-  </script>
+
+    resultDiv.innerHTML = message;
+    resultDiv.style.display = 'block';
+    bookBtn.style.display = 'inline-block';
+    form.style.display = 'none';
+  });
+</script>
+
 </body>
 </html>
