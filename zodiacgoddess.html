@@ -214,7 +214,7 @@
           suggestionEn = "Go for soft pink or nude tones with a pearly finish for comforting vibes ♡";
           break;
         case "天秤女神：優雅平衡":
-          suggestion = "來個法式邊緣線或是優雅暈染，讓妳輕鬆擁有氣質與風格兼具的美感！";
+          suggestion = "來個法式邊緣線或是優雅暈染，讓妳擁有氣質與風格兼具的美感！";
           suggestionEn = "Try French tips or soft gradients for a classy, balanced look.";
           break;
         case "雙魚女神：夢幻直覺":
@@ -226,6 +226,7 @@
       resultDiv.innerHTML = lang === "zh"
         ? <strong>${resultText}</strong><br>${suggestion}
         : `<strong>${resultTextEn}</strong><br>${suggestionEn}`;
+
       resultDiv.style.display = "block";
       actions.style.display = "block";
     });
