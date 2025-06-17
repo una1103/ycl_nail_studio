@@ -1,274 +1,163 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YCL Nail Studio</title>
+  <title>YCL Nail Studio｜詠粸麗 美甲工作室</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background-color: #fdfaf6;
+      font-family: 'Microsoft JhengHei', sans-serif;
+      background-color: #fffaf6;
       color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
 
     header {
-      position: relative;
-      text-align: center;
-      padding: 60px 20px 30px;
-      background-color: #fff8f0;
+      background-color: #f6ede4;
+      padding: 20px;
     }
 
-    .lang-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #c89f6d;
     }
 
-    .lang-toggle button {
-      background-color: #c89f6d;
-      color: white;
-      border: none;
-      padding: 6px 14px;
-      margin-left: 5px;
-      font-size: 0.9rem;
-      border-radius: 20px;
-      cursor: pointer;
+    nav {
+      margin-top: 10px;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    .book-btn {
-      background-color: #c89f6d;
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
+    nav a {
+      margin: 0 10px;
+      color: #c89f6d;
       text-decoration: none;
+      font-weight: bold;
     }
 
-    .image-block {
-      text-align: center;
-      padding: 40px 20px;
+    .hero {
+      padding: 30px 20px;
     }
 
-    .image-block img {
-      max-width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .hero img {
+      width: 90%;
+      max-width: 500px;
+      border-radius: 15px;
     }
 
-    .sections {
+    .description {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .book-now {
+      margin-top: 30px;
+    }
+
+    .book-now a {
+      display: inline-block;
+      padding: 14px 28px;
+      background-color: #c89f6d;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+    }
+
+    .contact-buttons {
+      margin: 40px auto 20px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 40px 20px;
+      gap: 10px;
+      max-width: 500px;
+    }
+
+    .contact-buttons a {
+      flex: 1 1 45%;
+      padding: 10px;
       background-color: #fff;
-    }
-
-    .section {
-      flex: 1 1 300px;
-      max-width: 400px;
-      margin: 20px;
-      padding: 20px;
-    }
-
-    .section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li::before {
-      content: '• ';
-      color: #c89f6d;
-    }
-
-    .quiz-btn {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 14px;
-      font-size: 1rem;
-      background-color: transparent;
       border: 2px solid #c89f6d;
-      color: #333;
-      border-radius: 8px;
-      text-align: center;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .quiz-btn:hover {
-      background-color: #f3e9dd;
-    }
-
-    .contact {
-      text-align: center;
-      padding: 20px;
-      font-size: 1rem;
-      background-color: #fefefe;
-      line-height: 1.8;
-    }
-
-    .contact a {
       color: #c89f6d;
+      border-radius: 24px;
       text-decoration: none;
+      transition: 0.3s;
+      font-size: 0.95rem;
     }
 
-    .map {
-      text-align: center;
-      margin: 20px;
+    .contact-buttons a:hover {
+      background-color: #fcefe4;
     }
 
     footer {
-      text-align: center;
       font-size: 0.9rem;
       padding: 20px;
-      color: #aaa;
+      color: #999;
     }
 
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
+    .lang-switch {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+    .lang-switch a {
+      color: #c89f6d;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .hero img {
+        width: 100%;
+      }
+
+      .contact-buttons a {
+        flex: 1 1 100%;
       }
     }
   </style>
 </head>
 <body>
 
+  <div class="lang-switch">
+    <a href="index.html">中</a> | <a href="en.html">EN</a>
+  </div>
+
   <header>
-    <div class="lang-toggle">
-      <button onclick="setLang('en')">EN</button>
-      <button onclick="setLang('zh')">中</button>
-    </div>
-    <h1 id="title">YCL Nail Studio<br>Enhance Your Beauty with Exquisite Nail Art</h1>
-    <a href="tel:0922828611" class="book-btn" id="bookBtn">BOOK NOW</a>
+    <h1>YCL Nail Studio</h1>
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="services.html">服務介紹</a>
+      <a href="soulcolor.html">心理測驗</a>
+      <a href="#contact">聯絡我們</a>
+    </nav>
   </header>
 
-  <div class="image-block">
-    <img src="images/logo.jpg" alt="Nail Design Sample">
-  </div>
+  <div class="hero">
+    <img src="images/top-banner.jpg" alt="YCL Nail Studio 主視覺" />
+    <div class="description">
+      台中市北區精武路266-7號<br/>
+      為妳打造專屬妝感與療癒時光 ♡
+    </div>
 
-  <div class="sections">
-    <div class="section">
-      <h2 id="serviceTitle">Our Services</h2>
-      <ul id="serviceList">
-        <li>Gradient</li>
-        <li>Cat-Eye</li>
-        <li>Hand-Painted</li>
-      </ul>
-    </div>
-    <div class="section">
-      <h2 id="quizTitle">Interactive Tests</h2>
-      <a href="soulcolor.html" class="quiz-btn" id="quiz1">Soul Color Quiz</a>
-      <a href="subconscious.html" class="quiz-btn" id="quiz2">Subconscious Color Exam</a>
-      <a href="zodiacgoddess.html" class="quiz-btn" id="quiz3">Guardian Zodiac Goddess Quiz</a>
-    </div>
-    <div class="section">
-      <h2 id="priceTitle">Price List</h2>
-      <ul id="priceList">
-        <li><b>Hands:</b></li>
-        <li>Basic Care: 500</li>
-        <li>Deep Care: 1299</li>
-        <li>Regular Polish: 800 (incl. care)</li>
-        <li>Gel One Color: 1000 (incl. care)</li>
-        <li>Design: from 1250</li>
-        <li><b>Feet:</b></li>
-        <li>Basic Care: 800</li>
-        <li>Regular Polish: 1000 (incl. care)</li>
-        <li>Gel One Color: 1200 (incl. care, 2 colors)</li>
-        <li>Gel Design: from 1400</li>
-        <li><b>Design Add-ons:</b></li>
-        <li>Extension (per finger): 100</li>
-        <li>Art (per finger): from 30</li>
-        <li>Sticker/Decor: from 10</li>
-        <li>Rhinestones: from 30</li>
-        <li><b>Removal:</b></li>
-        <li>Our Store: 200 (Free if reapplying)</li>
-        <li>Other Store: 300</li>
-        <li>Acrylic Removal: 600</li>
-      </ul>
+    <div class="book-now">
+      <a href="https://lin.ee/166kslla" target="_blank">立即預約</a>
     </div>
   </div>
 
-  <div class="contact">
-    <p>
-      <a href="https://lin.ee/166kslla" target="_blank">LINE：@166kslla</a><br>
-      <a href="https://www.instagram.com/ycl_nail.studio" target="_blank">IG: ycl_nail.studio</a><br>
-      <a href="tel:0922828611">Phone: 0922828611</a><br>
-      Hours: 10:00～20:00
-    </p>
-  </div>
-
-  <div class="map">
-    <iframe
-      src="https://www.google.com/maps?q=404台中市北區精武路266-7號&output=embed"
-      width="300"
-      height="250"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy">
-    </iframe>
+  <div id="contact" class="contact-buttons">
+    <a href="https://lin.ee/166kslla" target="_blank">LINE</a>
+    <a href="https://www.instagram.com/ycl_nail.studio" target="_blank">Instagram</a>
+    <a href="tel:0922828611">電話預約</a>
+    <a href="https://www.xiaohongshu.com/user/profile/5fd237d8000000000100bf64?xsec_token=YBUesDfwZKhU0LcwurN0KkQsMFSylxpp0e29vEbLiXDOs=&xsec_source=app_share&xhsshare=CopyLink&appuid=5fd237d8000000000100bf64&apptime=1750196575&share_id=0d3066438ad64fcba480f5c026d58d0f" target="_blank">小紅書</a>
+    <a href="https://www.tiktok.com/@ycl_nail.studio?_t=ZS-8xI7QkS5OOA&_r=1" target="_blank">TikTok</a>
   </div>
 
   <footer>
-    © 2025 YCL Nail Studio｜404台中市北區精武路266-7號
+    © 2025 YCL Nail Studio ｜詠粸麗美甲工作室
   </footer>
-
-  <script>
-    function setLang(lang) {
-      if (lang === 'zh') {
-        document.getElementById('title').innerHTML = 'YCL Nail Studio<br>用指尖勾勒你的美麗世界';
-        document.getElementById('bookBtn').innerText = '立即預約';
-        document.getElementById('serviceTitle').innerText = '服務項目';
-        document.getElementById('serviceList').innerHTML = `
-          <li>漸層</li>
-          <li>貓眼</li>
-          <li>手繪</li>
-        `;
-        document.getElementById('quizTitle').innerText = '心理測驗';
-        document.getElementById('quiz1').innerText = '靈魂色彩測驗';
-        document.getElementById('quiz2').innerText = '潛意識測色測驗';
-        document.getElementById('quiz3').innerText = '守護星座女神測驗';
-        document.getElementById('priceTitle').innerText = '價目表';
-        document.getElementById('priceList').innerHTML = `
-          <li><b>手部：</b></li>
-          <li>純基礎保養：500</li>
-          <li>深層保養：1299</li>
-          <li>一般甲油：800（含保養）</li>
-          <li>單色凝膠：1000（含保養）</li>
-          <li>設計款：1250起</li>
-          <li><b>足部：</b></li>
-          <li>純基礎保養：800</li>
-          <li>一般甲油：1000（含保養）</li>
-          <li>單色凝膠：1200（含保養，可跳色）</li>
-          <li>設計凝膠：1400起</li>
-          <li><b>設計加購：</b></li>
-          <li>延甲（單指）：100</li>
-          <li>單指彩繪：30起</li>
-          <li>貼紙/飾品：10起</li>
-          <li>鑽：30起</li>
-          <li><b>卸甲：</b></li>
-          <li>本店卸甲：200（續作免費）</li>
-          <li>他店卸甲：300</li>
-          <li>水晶卸甲：600</li>
-        `;
-      } else {
-        location.reload(); // reload back to English
-      }
-    }
-  </script>
 
 </body>
 </html>
