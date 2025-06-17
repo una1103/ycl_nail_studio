@@ -11,30 +11,39 @@
       text-align: center;
       padding: 20px;
     }
+
     h1 {
       color: #c19774;
     }
-    .question {
-      margin: 20px 0;
-      font-size: 1.2em;
-    }
-    .options button {
-      background-color: #f7e6d5;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 1em;
+
+    .option {
+      display: inline-block;
+      margin: 15px;
       cursor: pointer;
     }
-    .options button:hover {
-      background-color: #ffe5c1;
+
+    .option img {
+      width: 200px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
     }
+
+    .option img:hover {
+      transform: scale(1.05);
+    }
+
+    .label {
+      margin-top: 8px;
+      font-size: 1em;
+    }
+
     #result {
       margin-top: 30px;
       font-size: 1.2em;
       color: #8b5e3c;
     }
+
     .nav-btn {
       margin-top: 30px;
       display: inline-block;
@@ -45,6 +54,7 @@
       text-decoration: none;
       font-size: 1em;
     }
+
     .nav-btn:hover {
       background-color: #a67c52;
     }
@@ -52,35 +62,39 @@
 </head>
 <body>
   <h1>靈魂色彩測驗</h1>
-  <div id="quiz">
-    <div class="question">請選擇你的星座：</div>
-    <div class="options">
-      <button onclick="choose('火象')">牡羊、獅子、射手</button>
-      <button onclick="choose('水象')">巨蟹、天蠍、雙魚</button>
-      <button onclick="choose('風象')">雙子、天秤、水瓶</button>
-      <button onclick="choose('土象')">金牛、處女、魔羯</button>
-    </div>
+  <p>直覺選出一張你最有感覺的色彩圖片：</p>
+
+  <div class="option" onclick="showResult('A')">
+    <img src="https://i.imgur.com/9z1ZrWX.jpg" alt="星座圖 A">
+    <div class="label">A. 繽紛直覺</div>
   </div>
+  <div class="option" onclick="showResult('B')">
+    <img src="https://i.imgur.com/CXKbI0r.jpg" alt="星座圖 B">
+    <div class="label">B. 溫柔沈穩</div>
+  </div>
+  <div class="option" onclick="showResult('C')">
+    <img src="https://i.imgur.com/7lJzltD.jpg" alt="星座圖 C">
+    <div class="label">C. 神秘靈性</div>
+  </div>
+
   <div id="result"></div>
-  <div id="buttons" style="display: none;">
+
+  <div id="buttons" style="display:none;">
     <a href="quizmenu.html" class="nav-btn">🔙 回到測驗選單</a>
     <a href="https://lin.ee/xxxxxxx" class="nav-btn">💖 立即預約美甲</a>
   </div>
 
   <script>
-    function choose(type) {
-      let message = '';
-      if (type === '火象') {
-        message = "你的靈魂色彩是：<b>暖橘色</b> 🍊<br>熱情、自信、主動，適合充滿活力的跳色設計！";
-      } else if (type === '水象') {
-        message = "你的靈魂色彩是：<b>夢幻紫</b> 💜<br>溫柔、直覺強，適合暈染或星空設計！";
-      } else if (type === '風象') {
-        message = "你的靈魂色彩是：<b>薄荷藍</b> 💎<br>自由、創新，適合簡約幾何或透光感設計！";
+    function showResult(choice) {
+      let resultText = "";
+      if (choice === 'A') {
+        resultText = "🌈 你的靈魂色彩是 <b>彩虹粉</b><br>你擁有豐富想像力與創造力，適合可愛跳色與手繪造型！";
+      } else if (choice === 'B') {
+        resultText = "🍂 你的靈魂色彩是 <b>奶茶棕</b><br>你追求穩定與溫柔氛圍，適合柔和漸層與經典法式。";
       } else {
-        message = "你的靈魂色彩是：<b>奶茶米</b> 🤎<br>穩重、實在，適合溫柔自然的裸色系！";
+        resultText = "🔮 你的靈魂色彩是 <b>神秘紫</b><br>你與直覺連結強烈，適合星空、貓眼或深色鏡面風格。";
       }
-      document.getElementById("quiz").style.display = "none";
-      document.getElementById("result").innerHTML = message;
+      document.getElementById("result").innerHTML = resultText;
       document.getElementById("buttons").style.display = "block";
     }
   </script>
