@@ -13,30 +13,32 @@
     }
 
     header {
+      position: relative;
       text-align: center;
       padding: 60px 20px 30px;
       background-color: #fff8f0;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
     .lang-toggle {
-      text-align: center;
-      margin-bottom: 20px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
     }
 
     .lang-toggle button {
       background-color: #c89f6d;
       color: white;
       border: none;
-      padding: 8px 16px;
-      margin: 0 5px;
+      padding: 6px 14px;
+      margin-left: 5px;
       font-size: 0.9rem;
       border-radius: 20px;
       cursor: pointer;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
     }
 
     .book-btn {
@@ -116,7 +118,12 @@
       padding: 20px;
       font-size: 1rem;
       background-color: #fefefe;
-      line-height: 1.6;
+      line-height: 1.8;
+    }
+
+    .contact a {
+      color: #c89f6d;
+      text-decoration: none;
     }
 
     .map {
@@ -141,11 +148,11 @@
 <body>
 
   <header>
-    <h1 id="title">YCL Nail Studio<br>Enhance Your Beauty with Exquisite Nail Art</h1>
     <div class="lang-toggle">
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('zh')">中</button>
     </div>
+    <h1 id="title">YCL Nail Studio<br>Enhance Your Beauty with Exquisite Nail Art</h1>
     <a href="tel:0922828611" class="book-btn" id="bookBtn">BOOK NOW</a>
   </header>
 
@@ -196,10 +203,12 @@
   </div>
 
   <div class="contact">
-    <p>Line：@166kslla<br>
-    IG: ycl_nail.studio<br>
-    Phone: 0922828611<br>
-    Hours: 10:00～20:00</p>
+    <p>
+      <a href="https://lin.ee/166kslla" target="_blank">LINE：@166kslla</a><br>
+      <a href="https://www.instagram.com/ycl_nail.studio" target="_blank">IG: ycl_nail.studio</a><br>
+      <a href="tel:0922828611">Phone: 0922828611</a><br>
+      Hours: 10:00～20:00
+    </p>
   </div>
 
   <div class="map">
@@ -256,7 +265,7 @@
           <li>水晶卸甲：600</li>
         `;
       } else {
-        location.reload();
+        location.reload(); // reload back to English
       }
     }
   </script>
