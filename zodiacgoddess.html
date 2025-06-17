@@ -2,57 +2,141 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>守護星座女神測驗 | Guardian Zodiac Goddess Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>守護星座女神測驗｜YCL Nail Studio</title>
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background:#fdfaf6; color:#333; }
-    #lang-switch { position: fixed; top: 10px; right: 10px; }
-    button {
-      background-color: #c89f6d;
-      color: white;
-      border: none;
-      border-radius: 15px;
-      padding: 8px 16px;
-      cursor: pointer;
-      margin-left: 5px;
-      font-weight: bold;
+    body {
+      font-family: 'Microsoft JhengHei', sans-serif;
+      background-color: #fffaf7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
-    .hidden { display: none; }
-    .book-btn {
+
+    h1 {
+      font-size: 2rem;
+      color: #c89f6d;
+      padding: 30px 20px 10px;
+    }
+
+    .question {
+      margin: 20px auto;
+      font-size: 1.2rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+
+    label {
+      margin: 8px 0;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .submit-btn {
+      margin: 30px auto;
+      padding: 14px 28px;
       background-color: #c89f6d;
       color: white;
-      padding: 12px 24px;
-      border-radius: 30px;
       border: none;
-      cursor: pointer;
+      border-radius: 30px;
       font-size: 1rem;
-      text-decoration: none;
-      display: inline-block;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #555;
+      padding: 0 20px;
+    }
+
+    .buttons {
       margin-top: 20px;
     }
-    .quiz { margin-top: 20px; }
-    .quiz label { display: block; margin-bottom: 10px; }
+
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      border-radius: 24px;
+      border: 2px solid #c89f6d;
+      text-decoration: none;
+      color: #c89f6d;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #f8f1e8;
+    }
   </style>
 </head>
 <body>
 
-<div id="lang-switch">
-  <button onclick="showLang('zh')">中文</button>
-  <button onclick="showLang('en')">English</button>
-</div>
-
-<!-- 中文內容 -->
-<div id="content-zh">
   <h1>守護星座女神測驗</h1>
-  <p>請選擇你最近的情緒狀態：</p>
-  <form id="quizFormZh">
-    <label><input type="radio" name="emotion" value="快樂" /> 快樂</label>
-    <label><input type="radio" name="emotion" value="悲傷" /> 悲傷</label>
-    <label><input type="radio" name="emotion" value="焦慮" /> 焦慮</label>
-    <label><input type="radio" name="emotion" value="平靜" /> 平靜</label>
-    <button type="button" onclick="submitQuiz('zh')">提交答案</button>
+  <p>依照你的最近情緒，選出最貼近你的感覺：</p>
+
+  <form id="goddessForm">
+    <div class="options">
+      <label><input type="radio" name="emotion" value="堅強">覺得自己最近超堅強，撐過很多挑戰</label>
+      <label><input type="radio" name="emotion" value="脆弱">常常想哭，心裡很多壓力和煩惱</label>
+      <label><input type="radio" name="emotion" value="浪漫">最近總想談戀愛，好像特別需要被愛</label>
+      <label><input type="radio" name="emotion" value="自由">好想放空，想一個人去旅行、去看海</label>
+    </div>
+    <button type="submit" class="submit-btn">看結果</button>
   </form>
 
-  <div id="result-zh" class="result" style="display:none;">
-    <p id="resultTextZh"></p>
-    <a href="https://line.me/R/ti/p/@166kslla" target="_blank" class="book-btn">立即預約</a><br
+  <div id="result" class="result" style="display:none;"></div>
+
+  <div class="buttons" id="actions" style="display:none;">
+    <a href="index.html">返回首頁</a>
+    <a href="https://lin.ee/166kslla" target="_blank">立即預約</a>
+  </div>
+
+  <script>
+    document.getElementById('goddessForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const selected = document.querySelector('input[name="emotion"]:checked');
+      const result = document.getElementById('result');
+      const actions = document.getElementById('actions');
+
+      if (selected) {
+        let message = "";
+        switch (selected.value) {
+          case "堅強":
+            message = "你是代表力量的「牡羊女神」！推薦你試試【鎧甲金屬風設計】，帥氣又有氣場！";
+            break;
+          case "脆弱":
+            message = "你是溫柔的「巨蟹女神」～適合做【粉色法式設計】療癒妳的小情緒♡";
+            break;
+          case "浪漫":
+            message = "妳是迷人的「雙魚女神」～推薦【星星流沙款】讓愛的魔法圍繞著妳！";
+            break;
+          case "自由":
+            message = "你是自由奔放的「射手女神」！大推【暈染漸層設計】，像天空和海洋一樣自由～";
+            break;
+        }
+
+        result.innerHTML = message;
+        result.style.display = "block";
+        actions.style.display = "block";
+      } else {
+        result.innerHTML = "請選擇一個情緒喔！";
+        result.style.display = "block";
+        actions.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
