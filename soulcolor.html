@@ -1,125 +1,167 @@
 <!DOCTYPE html>
-<html lang='zh-TW'>
+<html lang="zh-Hant">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>YCL Nail Studio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>靈魂色彩測驗 | Soul Color Quiz</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fdfaf6;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options {
+      list-style: none;
+      padding: 0;
+    }
+    .options li {
+      margin: 8px 0;
+    }
+    label {
+      cursor: pointer;
+    }
+    button {
+      background-color: #c89f6d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      display: block;
+      margin: 30px auto 10px;
+    }
+    .result {
+      margin-top: 30px;
+      background-color: #fff8f0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    .color-swatch {
+      width: 100px;
+      height: 100px;
+      margin: 10px auto;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+    .lang-switch {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #c89f6d;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
 
-<style>
-  .ycl-wrap {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: #fffdfa;
-    color: #4a4a4a;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-  }
-  .hero {
-    background: #fdf8f2;
-    border-radius: 12px;
-    padding: 40px 20px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  }
-  .hero h1 {
-    color: #bfa16a;
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  .hero p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  .hero a {
-    display: inline-block;
-    margin: 6px;
-    padding: 12px 24px;
-    background: #d4b07c;
-    color: #fff;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  .section {
-    margin: 40px 0;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
-  .section h2 {
-    color: #bfa16a;
-    border-bottom: 2px solid #f0e4d0;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  .services ul {
-    list-style: none;
-    padding: 0;
-  }
-  .services li {
-    font-size: 18px;
-    margin: 12px 0;
-  }
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-  }
-  .gallery img {
-    width: calc(33% - 8px);
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .contact p {
-    font-size: 16px;
-    margin: 8px 0;
-  }
-  .contact a {
-    color: #bfa16a;
-    text-decoration: none;
-  }
-</style>
+<button class="lang-switch" id="langSwitchBtn">EN</button>
 
-<div class="ycl-wrap">
-  <div class="hero">
-    <h1>詠粸麗 美甲工作室</h1>
-    <p>YCL Nail Studio — 高雅細緻的指尖藝術</p>
-    <a href="https://lin.ee/166kslla" target="_blank">LINE 預約</a>
-    <a href="https://instagram.com/ycl_nail.studio" target="_blank">Instagram</a>
-    <a href="tel:0922828611">電話聯繫</a>
-  </div>
-  <div class="section services">
-    <h2>服務介紹</h2>
-    <ul>
-      <li>單色凝膠 ｜ NT$899 起</li>
-      <li>造型凝膠（含延甲）｜ NT$1599 起</li>
-      <li>卸甲／保養 ｜ NT$499 起</li>
-    </ul>
-  </div>
-  <div class="section gallery">
-    <h2>作品集</h2>
-    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=400&q=80" alt="Nail Sample 1">
-    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=400&q=80" alt="Nail Sample 2">
-    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Nail Sample 3">
-  </div>
-  <div class="section contact">
-    <h2>聯絡我們</h2>
-    <p>📍 地址：台中市北區精武路266-7號</p>
-    <p>📱 電話：<a href="tel:0922828611">0922-828-611</a></p>
-    <p>🕒 營業時間：每日 10:00～20:00</p>
-    <p>💬 LINE：<a href="https://lin.ee/166kslla" target="_blank">@166kslla</a></p>
-    <p>📸 Instagram：<a href="https://instagram.com/ycl_nail.studio" target="_blank">@ycl_nail.studio</a></p>
-    <div style="margin-top:20px;">
-      <iframe src="https://www.google.com/maps?q=台中市北區精武路266-7號&output=embed" width="100%" height="250" style="border:0;" allowfullscreen></iframe>
-    </div>
-  </div>
+<h1 data-lang-zh="靈魂色彩測驗" data-lang-en="Soul Color Quiz">靈魂色彩測驗</h1>
+
+<div class="question" data-lang-zh="選擇你最喜歡的顏色：" data-lang-en="Choose your favorite color:">
+  <ul class="options" id="colorOptions">
+    <li><label><input type="radio" name="color" value="red"> <span data-lang-zh="紅色" data-lang-en="Red">紅色</span></label></li>
+    <li><label><input type="radio" name="color" value="blue"> <span data-lang-zh="藍色" data-lang-en="Blue">藍色</span></label></li>
+    <li><label><input type="radio" name="color" value="green"> <span data-lang-zh="綠色" data-lang-en="Green">綠色</span></label></li>
+    <li><label><input type="radio" name="color" value="purple"> <span data-lang-zh="紫色" data-lang-en="Purple">紫色</span></label></li>
+    <li><label><input type="radio" name="color" value="yellow"> <span data-lang-zh="黃色" data-lang-en="Yellow">黃色</span></label></li>
+  </ul>
 </div>
+
+<button id="submitBtn" data-lang-zh="看結果" data-lang-en="See Result">看結果</button>
+
+<div id="result" class="result" style="display:none;"></div>
+
+<script>
+  const langSwitchBtn = document.getElementById('langSwitchBtn');
+  let currentLang = 'zh';
+
+  function switchLanguage() {
+    const elements = document.querySelectorAll('[data-lang-zh]');
+    if(currentLang === 'zh') {
+      elements.forEach(el => el.innerHTML = el.getAttribute('data-lang-en'));
+      langSwitchBtn.textContent = '中文';
+      currentLang = 'en';
+    } else {
+      elements.forEach(el => el.innerHTML = el.getAttribute('data-lang-zh'));
+      langSwitchBtn.textContent = 'EN';
+      currentLang = 'zh';
+    }
+  }
+  langSwitchBtn.addEventListener('click', switchLanguage);
+
+  const submitBtn = document.getElementById('submitBtn');
+  const resultDiv = document.getElementById('result');
+
+  const results = {
+    red: {
+      zh: "你是熱情如火的紅色靈魂，勇敢且充滿活力！建議嘗試鮮豔的紅色系美甲，展現自信魅力。",
+      en: "You are a passionate red soul, brave and full of energy! We suggest vibrant red nail art to showcase your confident charm.",
+      colorCode: "#E74C3C"
+    },
+    blue: {
+      zh: "你是冷靜沉穩的藍色靈魂，內心平和且理智。建議選擇優雅的藍色系美甲，帶來平靜氣息。",
+      en: "You are a calm and steady blue soul, peaceful and rational. We suggest elegant blue nail art to bring tranquility.",
+      colorCode: "#3498DB"
+    },
+    green: {
+      zh: "你是自然清新的綠色靈魂，喜歡和大自然連結。推薦自然系綠色美甲，帶來生機與活力。",
+      en: "You are a natural and fresh green soul, loving connection with nature. We recommend natural green nail art for vitality.",
+      colorCode: "#27AE60"
+    },
+    purple: {
+      zh: "你是神秘優雅的紫色靈魂，富有藝術氣息。適合神秘紫色系美甲，展現獨特品味。",
+      en: "You are a mysterious and elegant purple soul, artistic and refined. Perfect for mysterious purple nail art to show unique taste.",
+      colorCode: "#8E44AD"
+    },
+    yellow: {
+      zh: "你是陽光明媚的黃色靈魂，活潑開朗。推薦明亮的黃色美甲，帶來快樂能量。",
+      en: "You are a sunny yellow soul, lively and cheerful. Bright yellow nail art is recommended to bring joyful energy.",
+      colorCode: "#F1C40F"
+    }
+  };
+
+  submitBtn.addEventListener('click', () => {
+    const selected = document.querySelector('input[name="color"]:checked');
+    if (!selected) {
+      alert(currentLang === 'zh' ? '請先選擇一個顏色！' : 'Please select a color first!');
+      return;
+    }
+    const val = selected.value;
+    const r = results[val];
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `
+      <div style="font-weight:bold; margin-bottom:10px;">
+        ${currentLang === 'zh' ? '結果' : 'Result'}:
+      </div>
+      <div>${r[currentLang]}</div>
+      <div class="color-swatch" style="background-color: ${r.colorCode};"></div>
+    `;
+  });
+</script>
 
 </body>
 </html>
