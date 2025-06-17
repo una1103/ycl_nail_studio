@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YC Nail Studio | 詠粸麗 美甲工作室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YC Nail Studio</title>
   <style>
     body {
       margin: 0;
       font-family: 'Georgia', serif;
       background-color: #fdfaf6;
       color: #333;
-      transition: background-color 0.3s, color 0.3s;
     }
+
     header {
       text-align: center;
       padding: 80px 20px 40px;
       background-color: #fff8f0;
     }
+
     header h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
     }
+
     .book-btn {
       background-color: #c89f6d;
       color: white;
@@ -30,17 +32,19 @@
       border-radius: 30px;
       cursor: pointer;
       text-decoration: none;
-      display: inline-block;
     }
+
     .image-block {
       text-align: center;
       padding: 40px 20px;
     }
+
     .image-block img {
       max-width: 300px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+
     .sections {
       display: flex;
       flex-wrap: wrap;
@@ -48,24 +52,40 @@
       padding: 40px 20px;
       background-color: #fff;
     }
+
     .section {
       flex: 1 1 300px;
-      max-width: 400px;
+      max-width: 500px;
       margin: 20px;
       padding: 20px;
+      background-color: #fffaf4;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
+
     .section h2 {
       font-size: 1.5rem;
       margin-bottom: 10px;
+      color: #c89f6d;
     }
+
+    .section h3 {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+      color: #b88b55;
+    }
+
     ul {
       list-style: none;
       padding-left: 0;
     }
+
     ul li::before {
       content: '• ';
       color: #c89f6d;
     }
+
     .quiz-btn {
       display: block;
       width: 100%;
@@ -81,96 +101,123 @@
       text-decoration: none;
       transition: background-color 0.3s;
     }
+
     .quiz-btn:hover {
       background-color: #f3e9dd;
     }
+
+    .contact-info {
+      background-color: #fff8f0;
+      color: #704c1f;
+      max-width: 500px;
+      margin: 40px auto 20px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(200, 159, 109, 0.3);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .contact-info strong {
+      color: #c89f6d;
+    }
+
     footer {
       text-align: center;
       font-size: 0.9rem;
       padding: 20px;
       color: #aaa;
     }
-    .lang-switch {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #c89f6d;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      z-index: 1000;
-    }
+
     @media (max-width: 768px) {
       header h1 {
         font-size: 2rem;
-      }
-      .sections {
-        flex-direction: column;
-        align-items: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <button class="lang-switch" id="langSwitchBtn">EN</button>
-
   <header>
-    <h1 data-lang-zh="提升你的美麗<br>以精緻美甲藝術" data-lang-en="Enhance Your Beauty<br>with Exquisite Nail Art">提升你的美麗<br>以精緻美甲藝術</h1>
-    <a href="https://lin.ee/xxxxxxx" class="book-btn" target="_blank" rel="noopener" data-lang-zh="立即預約" data-lang-en="BOOK NOW">立即預約</a>
+    <h1>Enhance Your Beauty<br>with Exquisite Nail Art</h1>
+    <a href="https://lin.ee/166kslla" class="book-btn" target="_blank" rel="noopener">BOOK NOW</a>
   </header>
 
   <div class="image-block">
-    <img src="https://i.imgur.com/4ZJHc8e.jpg" alt="Nail Design Sample" />
+    <img src="https://i.imgur.com/4ZJHc8e.jpg" alt="Nail Design Sample">
+    <!-- ⚠️請將上面這張圖片替換為你自己的圖片網址 -->
   </div>
 
   <div class="sections">
     <div class="section">
-      <h2 data-lang-zh="服務項目" data-lang-en="Our Services">服務項目</h2>
+      <h2>關於我們｜About YC Nail Studio</h2>
+      <p>
+        YC 美甲工作室位於台中北區，採一人工作室預約制。<br>
+        我們擅長自然系暈染、氣質風格設計，重視每一次指尖細節。<br>
+        在溫柔安靜的空間中，好好寵愛自己。
+      </p>
+      <p>
+        Located in North District of Taichung, YC Nail Studio offers private nail appointments with a cozy, gentle touch.<br>
+        Specializing in natural blends and elegant designs, we care about every detail at your fingertips.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>價目表｜Price List</h2>
+
+      <h3>💅 手部｜Hands</h3>
       <ul>
-        <li data-lang-zh="漸層染色" data-lang-en="Gradient">漸層染色</li>
-        <li data-lang-zh="貓眼凝膠" data-lang-en="Cat-Eye">貓眼凝膠</li>
-        <li data-lang-zh="手繪藝術" data-lang-en="Hand-Painted">手繪藝術</li>
+        <li>純基礎保養 Basic Care - NT$500</li>
+        <li>深層保養 Deep Care - NT$1299</li>
+        <li>一般甲油 Regular Polish (incl. care) - NT$800</li>
+        <li>單色凝膠 Gel Color (incl. care) - NT$1000</li>
+        <li>設計款 Design Gel - from NT$1250</li>
+      </ul>
+
+      <h3>🦶 足部｜Feet</h3>
+      <ul>
+        <li>純基礎保養 Basic Foot Care - NT$800</li>
+        <li>一般甲油 Regular Polish (incl. care) - NT$1000</li>
+        <li>單色凝膠 Gel Color (incl. care, 1 accent color) - NT$1200</li>
+        <li>設計凝膠 Design Gel - from NT$1400</li>
+      </ul>
+
+      <h3>🎨 設計加購｜Design Add-ons</h3>
+      <ul>
+        <li>延甲 Extension (per finger) - NT$100</li>
+        <li>單指彩繪 Nail Art (per finger) - from NT$30</li>
+        <li>飾品 / 貼紙 Accessories/Stickers - from NT$10 per finger</li>
+        <li>鑽 Stone Art (per finger) - from NT$30</li>
+      </ul>
+
+      <h3>🔄 卸甲｜Removal</h3>
+      <ul>
+        <li>本店卸甲 Self Removal - NT$200（續作免費）</li>
+        <li>他店卸甲 Other Salon Removal - NT$300</li>
+        <li>水晶卸甲 Acrylic Removal - NT$600</li>
       </ul>
     </div>
+
     <div class="section">
-      <h2 data-lang-zh="互動心理測驗" data-lang-en="Interactive Tests">互動心理測驗</h2>
-      <a href="soulcolor.html" class="quiz-btn" data-lang-zh="靈魂色彩測驗" data-lang-en="Soul Color Quiz">靈魂色彩測驗</a>
-      <a href="subconscious.html" class="quiz-btn" data-lang-zh="潛意識測色測驗" data-lang-en="Subconscious Color Exam">潛意識測色測驗</a>
-      <a href="zodiacgoddess.html" class="quiz-btn" data-lang-zh="守護星座女神測驗" data-lang-en="Guardian Zodiac Goddess Quiz">守護星座女神測驗</a>
+      <h2>互動測驗｜Interactive Quizzes</h2>
+      <a href="https://una1103.github.io/yclnailstudio/soulcolor.html" class="quiz-btn" target="_blank" rel="noopener">靈魂色彩測驗｜Soul Color Quiz</a>
+      <a href="https://una1103.github.io/yclnailstudio/subconscious.html" class="quiz-btn" target="_blank" rel="noopener">潛意識測色測驗｜Subconscious Color Exam</a>
+      <a href="https://una1103.github.io/yclnailstudio/zodiacgoddess.html" class="quiz-btn" target="_blank" rel="noopener">守護星座女神測驗｜Zodiac Goddess Quiz</a>
     </div>
   </div>
 
+  <div class="contact-info">
+    <p><strong>聯絡資訊｜Contact Info</strong></p>
+    <p>Line：<a href="https://line.me/R/ti/p/%40166kslla" target="_blank" rel="noopener">@166kslla</a></p>
+    <p>IG：<a href="https://instagram.com/ycl_nail.studio" target="_blank" rel="noopener">ycl_nail.studio</a></p>
+    <p>手機 Mobile：<a href="tel:0922828611">0922-828-611</a></p>
+    <p>營業時間 Business Hours：10:00 ～ 20:00</p>
+  </div>
+
   <footer>
-    <div data-lang-zh="© 2025 詠粸麗 美甲工作室｜台中市" data-lang-en="© 2025 YC Nail Studio｜Taichung, Taiwan">© 2025 詠粸麗 美甲工作室｜台中市</div>
+    © 2025 YC Nail Studio｜Taichung, Taiwan
   </footer>
-
-<script>
-  const langSwitchBtn = document.getElementById('langSwitchBtn');
-  let currentLang = 'zh';
-
-  function switchLanguage() {
-    const elements = document.querySelectorAll('[data-lang-zh]');
-    if(currentLang === 'zh') {
-      elements.forEach(el => {
-        el.innerHTML = el.getAttribute('data-lang-en');
-      });
-      langSwitchBtn.textContent = '中文';
-      currentLang = 'en';
-    } else {
-      elements.forEach(el => {
-        el.innerHTML = el.getAttribute('data-lang-zh');
-      });
-      langSwitchBtn.textContent = 'EN';
-      currentLang = 'zh';
-    }
-  }
-
-  langSwitchBtn.addEventListener('click', switchLanguage);
-</script>
 
 </body>
 </html>
