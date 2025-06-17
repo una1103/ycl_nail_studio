@@ -7,63 +7,77 @@
   <style>
     body {
       font-family: 'Microsoft JhengHei', sans-serif;
-      background-color: #fffaf7;
+      background-color: #fffaf6;
       color: #333;
+      text-align: center;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
 
     h1 {
       font-size: 2rem;
       color: #c89f6d;
-      padding: 30px 20px 10px;
+      margin-top: 30px;
     }
 
-    .options {
+    p {
+      font-size: 1.1rem;
+      margin: 10px 20px 30px;
+    }
+
+    .images {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding: 20px;
+      padding: 0 20px;
     }
 
-    label {
+    .image-card {
+      width: 140px;
       cursor: pointer;
-      display: block;
-      width: 150px;
-    }
-
-    label img {
-      width: 100%;
+      border: 3px solid transparent;
       border-radius: 12px;
-      border: 2px solid transparent;
-      transition: border-color 0.3s;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s, border-color 0.3s;
     }
 
-    input[type="radio"]:checked + img {
+    .image-card:hover {
+      transform: scale(1.05);
+    }
+
+    .image-card.selected {
       border-color: #c89f6d;
     }
 
-    input[type="radio"] {
-      display: none;
+    .image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .label {
+      padding: 8px;
+      background-color: #fff8ee;
+      font-weight: bold;
     }
 
     .submit-btn {
-      margin: 30px auto;
-      padding: 14px 28px;
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
       background-color: #c89f6d;
       color: white;
       border: none;
       border-radius: 30px;
-      font-size: 1rem;
       cursor: pointer;
     }
 
     .result {
-      margin-top: 30px;
+      margin-top: 40px;
       font-size: 1.2rem;
-      color: #555;
+      color: #444;
       padding: 0 20px;
     }
 
@@ -74,7 +88,7 @@
     .buttons a {
       display: inline-block;
       margin: 10px;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 24px;
       border: 2px solid #c89f6d;
       text-decoration: none;
@@ -86,41 +100,33 @@
     .buttons a:hover {
       background-color: #f8f1e8;
     }
-
-    @media (max-width: 768px) {
-      .options {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
   </style>
 </head>
 <body>
 
   <h1>潛意識色彩測驗</h1>
-  <p>請依直覺選出你最有感覺的一張圖！</p>
+  <p>憑直覺選一張圖片，看看妳的內心正在呼喚什麼顏色～</p>
 
-  <form id="colorForm">
-    <div class="options">
-      <label>
-        <input type="radio" name="color" value="紅色">
-        <img src="images/red.jpg" alt="紅色"><div>火焰裡閃爍的金屬</div>
-      </label>
-      <label>
-        <input type="radio" name="color" value="藍色">
-        <img src="images/blue.jpg" alt="藍色"><div>深海裡的光點</div>
-      </label>
-      <label>
-        <input type="radio" name="color" value="綠色">
-        <img src="images/green.jpg" alt="綠色"><div>雨後濕潤的森林</div>
-      </label>
-      <label>
-        <input type="radio" name="color" value="紫色">
-        <img src="images/purple.jpg" alt="紫色"><div>紫水晶寶石</div>
-      </label>
+  <div class="images" id="image-options">
+    <div class="image-card" data-color="紅色">
+      <img src="images/red.jpg" alt="紅色選擇" />
+      <div class="label">火焰裡閃爍的金屬</div>
     </div>
-    <button type="submit" class="submit-btn">看結果</button>
-  </form>
+    <div class="image-card" data-color="藍色">
+      <img src="images/blue.jpg" alt="藍色選擇" />
+      <div class="label">深海裡的光點</div>
+    </div>
+    <div class="image-card" data-color="綠色">
+      <img src="images/green.jpg" alt="綠色選擇" />
+      <div class="label">雨後濕潤的森林</div>
+    </div>
+    <div class="image-card" data-color="紫色">
+      <img src="images/purple.jpg" alt="紫色選擇" />
+      <div class="label">紫水晶寶石</div>
+    </div>
+  </div>
+
+  <button class="submit-btn" id="submit">看結果</button>
 
   <div id="result" class="result" style="display:none;"></div>
 
@@ -130,37 +136,47 @@
   </div>
 
   <script>
-    document.getElementById('colorForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const color = document.querySelector('input[name="color"]:checked');
-      const result = document.getElementById('result');
-      const actions = document.getElementById('actions');
+    const cards = document.querySelectorAll(".image-card");
+    let selectedCard = null;
 
-      if (color) {
-        let message = "";
-        switch (color.value) {
-          case "紅色":
-            message = "你的潛意識渴望熱情與行動力！推薦你試試【紅系鏡面設計】讓妳魅力四射！";
-            break;
-          case "藍色":
-            message = "你潛藏著冷靜與智慧～適合【湖水藍暈染風】，優雅又不失個性！";
-            break;
-          case "綠色":
-            message = "你內在其實很重視療癒與自然感，推薦【乾燥花系設計】最適合妳的 vibe。";
-            break;
-          case "紫色":
-            message = "你追求神秘與魅力！可以試試【紫光貓眼設計】，閃耀中帶點迷幻感～";
-            break;
-        }
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        cards.forEach(c => c.classList.remove("selected"));
+        card.classList.add("selected");
+        selectedCard = card.getAttribute("data-color");
+      });
+    });
 
-        result.innerHTML = message;
-        result.style.display = "block";
-        actions.style.display = "block";
-      } else {
-        result.innerHTML = "請先選擇一張圖片喔！";
-        result.style.display = "block";
+    document.getElementById("submit").addEventListener("click", () => {
+      const resultDiv = document.getElementById("result");
+      const actions = document.getElementById("actions");
+
+      if (!selectedCard) {
+        resultDiv.innerHTML = "請選擇一張圖片喔～";
+        resultDiv.style.display = "block";
         actions.style.display = "none";
+        return;
       }
+
+      let message = "";
+      switch (selectedCard) {
+        case "紅色":
+          message = "妳內心渴望熱情與力量！推薦【紅色貓眼設計】，展現妳的自信與魅力♡";
+          break;
+        case "藍色":
+          message = "妳需要的是安定與沉靜，試試【深海藍暈染款】，讓心平靜又優雅～";
+          break;
+        case "綠色":
+          message = "妳想要自然療癒的能量，【抹茶綠簡約風】就是妳的心靈spa！";
+          break;
+        case "紫色":
+          message = "妳現在正處於轉換期，【紫光璀璨設計】能為妳帶來靈感與守護！";
+          break;
+      }
+
+      resultDiv.innerHTML = message;
+      resultDiv.style.display = "block";
+      actions.style.display = "block";
     });
   </script>
 
