@@ -1,180 +1,58 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>守護星座女神測驗 | YC Nail Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>守護星座女神測驗 | Guardian Zodiac Goddess Quiz</title>
   <style>
-    body {
-      background-color: #fff8f0;
-      font-family: 'Georgia', serif;
-      color: #333;
-      padding: 20px;
-      margin: 0;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .lang-switch {
-      font-size: 0.9rem;
-    }
-
-    h1 {
-      text-align: center;
-      color: #c89f6d;
-    }
-
-    .question {
-      text-align: center;
-      font-size: 1.2rem;
-      margin: 30px 0;
-    }
-
-    .options {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .option-btn {
-      padding: 12px 20px;
-      border: 2px solid #c89f6d;
-      background-color: #fff;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .option-btn:hover {
-      background-color: #f3e9dd;
-    }
-
-    #submitBtn {
-      display: block;
-      margin: 30px auto;
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background:#fdfaf6; color:#333; }
+    #lang-switch { position: fixed; top: 10px; right: 10px; }
+    button {
       background-color: #c89f6d;
       color: white;
       border: none;
-      padding: 12px 28px;
-      font-size: 1rem;
-      border-radius: 30px;
+      border-radius: 15px;
+      padding: 8px 16px;
       cursor: pointer;
+      margin-left: 5px;
+      font-weight: bold;
     }
-
-    #result {
-      text-align: center;
-      padding: 30px;
-      background-color: #fff8f0;
-      border-radius: 10px;
-      margin-top: 30px;
-    }
-
-    a.button-link {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
+    .hidden { display: none; }
     .book-btn {
       background-color: #c89f6d;
       color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
     }
-
-    .back-btn {
-      border: 2px solid #c89f6d;
-      color: #c89f6d;
-    }
+    .quiz { margin-top: 20px; }
+    .quiz label { display: block; margin-bottom: 10px; }
   </style>
 </head>
 <body>
 
-<header>
-  <div></div>
-  <div class="lang-switch">
-    <a href="#" onclick="switchLanguage('zh')">中文</a> |
-    <a href="#" onclick="switchLanguage('en')">EN</a>
-  </div>
-</header>
-
-<h1 id="title">守護星座女神測驗</h1>
-
-<div class="question" id="question">
-  Q1. 當你情緒低落時，你最想要哪一種安慰？<br>
-  Q1. When you're feeling down, what kind of comfort do you seek?
+<div id="lang-switch">
+  <button onclick="showLang('zh')">中文</button>
+  <button onclick="showLang('en')">English</button>
 </div>
 
-<div class="options" id="options">
-  <button class="option-btn" onclick="selectOption('溫柔傾聽')">🌸 溫柔傾聽</button>
-  <button class="option-btn" onclick="selectOption('理性分析')">🧠 理性分析</button>
-  <button class="option-btn" onclick="selectOption('擁抱支持')">🤗 擁抱支持</button>
-  <button class="option-btn" onclick="selectOption('轉移注意力')">🎨 轉移注意力</button>
-</div>
+<!-- 中文內容 -->
+<div id="content-zh">
+  <h1>守護星座女神測驗</h1>
+  <p>請選擇你最近的情緒狀態：</p>
+  <form id="quizFormZh">
+    <label><input type="radio" name="emotion" value="快樂" /> 快樂</label>
+    <label><input type="radio" name="emotion" value="悲傷" /> 悲傷</label>
+    <label><input type="radio" name="emotion" value="焦慮" /> 焦慮</label>
+    <label><input type="radio" name="emotion" value="平靜" /> 平靜</label>
+    <button type="button" onclick="submitQuiz('zh')">提交答案</button>
+  </form>
 
-<button id="submitBtn" onclick="showResult()">送出 Submit</button>
-
-<div id="result"></div>
-
-<script>
-  let selectedAnswer = null;
-
-  function selectOption(option) {
-    selectedAnswer = option;
-    const buttons = document.querySelectorAll(".option-btn");
-    buttons.forEach(btn => btn.style.backgroundColor = "#fff");
-    event.target.style.backgroundColor = "#f3e9dd";
-  }
-
-  function showResult() {
-    let resultText = '';
-    if (!selectedAnswer) {
-      resultText = "<p>請先選擇一個選項！<br>Please select one option first!</p>";
-    } else {
-      switch (selectedAnswer) {
-        case '溫柔傾聽':
-          resultText = "你適合處女座或巨蟹座的守護神，內斂細膩又有愛心！";
-          break;
-        case '理性分析':
-          resultText = "你擁有天秤座或水瓶座女神的精神，聰明果斷又優雅！";
-          break;
-        case '擁抱支持':
-          resultText = "你與金牛座與雙魚座守護神連結深刻，溫暖又可靠！";
-          break;
-        case '轉移注意力':
-          resultText = "你屬於射手座或雙子座女神的能量，熱情好動又愛冒險！";
-          break;
-      }
-      resultText += `
-        <div style="margin-top: 20px;">
-          <a href="https://lin.ee/166kslla" class="button-link book-btn">💅 立即預約 Book Now</a>
-          <a href="index.html" class="button-link back-btn">🔙 返回首頁 Home</a>
-        </div>`;
-    }
-    document.getElementById('result').innerHTML = resultText;
-  }
-
-  function switchLanguage(lang) {
-    if (lang === 'en') {
-      document.getElementById('title').innerText = "Guardian Zodiac Goddess Quiz";
-      document.getElementById('question').innerHTML = 
-        "Q1. When you're feeling down, what kind of comfort do you seek?<br>Q1. 當你情緒低落時，你最想要哪一種安慰？";
-      document.getElementById('submitBtn').innerText = "Submit";
-    } else {
-      document.getElementById('title').innerText = "守護星座女神測驗";
-      document.getElementById('question').innerHTML = 
-        "Q1. 當你情緒低落時，你最想要哪一種安慰？<br>Q1. When you're feeling down, what kind of comfort do you seek?";
-      document.getElementById('submitBtn').innerText = "送出 Submit";
-    }
-  }
-</script>
-
-</body>
-</html>
+  <div id="result-zh" class="result" style="display:none;">
+    <p id="resultTextZh"></p>
+    <a href="https://line.me/R/ti/p/@166kslla" target="_blank" class="book-btn">立即預約</a><br
