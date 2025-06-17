@@ -1,75 +1,179 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>守護星座女神測驗 | Zodiac Goddess Quiz</title>
-<style>
-  body { font-family: Georgia, serif; background: #fdfaf6; color: #333; padding: 20px; max-width: 600px; margin: auto;}
-  h1, h2 { color: #c89f6d; }
-  label { display: block; margin: 15px 0; cursor: pointer;}
-  input[type="radio"] { margin-right: 10px; }
-  .btn-submit, .btn-book {
-    margin-top: 20px; padding: 12px 24px; font-size: 1.1rem; border-radius: 25px; border: 2px solid #c89f6d;
-    background: transparent; color: #c89f6d; cursor: pointer; transition: background-color 0.3s;
-  }
-  .btn-submit:hover, .btn-book:hover { background-color: #f3e9dd; }
-  .result { margin-top: 30px; font-size: 1.2rem; line-height: 1.5; }
-</style>
+  <meta charset="UTF-8">
+  <title>守護星座女神測驗 | YC Nail Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #fff8f0;
+      font-family: 'Georgia', serif;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lang-switch {
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #c89f6d;
+    }
+
+    .question {
+      text-align: center;
+      font-size: 1.2rem;
+      margin: 30px 0;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .option-btn {
+      padding: 12px 20px;
+      border: 2px solid #c89f6d;
+      background-color: #fff;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .option-btn:hover {
+      background-color: #f3e9dd;
+    }
+
+    #submitBtn {
+      display: block;
+      margin: 30px auto;
+      background-color: #c89f6d;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    #result {
+      text-align: center;
+      padding: 30px;
+      background-color: #fff8f0;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    a.button-link {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .book-btn {
+      background-color: #c89f6d;
+      color: white;
+    }
+
+    .back-btn {
+      border: 2px solid #c89f6d;
+      color: #c89f6d;
+    }
+  </style>
 </head>
 <body>
 
-<h1>守護星座女神測驗<br>Zodiac Goddess Quiz</h1>
+<header>
+  <div></div>
+  <div class="lang-switch">
+    <a href="#" onclick="switchLanguage('zh')">中文</a> |
+    <a href="#" onclick="switchLanguage('en')">EN</a>
+  </div>
+</header>
 
-<form id="quizForm">
-  <h2>1. 你今天感覺如何？<br>How do you feel today?</h2>
-  <label><input type="radio" name="mood" value="happy" required>開心 Happy</label>
-  <label><input type="radio" name="mood" value="calm">平靜 Calm</label>
-  <label><input type="radio" name="mood" value="energetic">充滿活力 Energetic</label>
-  <label><input type="radio" name="mood" value="thoughtful">沉思 Thoughtful</label>
+<h1 id="title">守護星座女神測驗</h1>
 
-  <h2>2. 你喜歡什麼顏色？<br>What color do you like?</h2>
-  <label><input type="radio" name="color" value="gold" required>金色 Gold</label>
-  <label><input type="radio" name="color" value="silver">銀色 Silver</label>
-  <label><input type="radio" name="color" value="rose">玫瑰色 Rose</label>
-  <label><input type="radio" name="color" value="blue">藍色 Blue</label>
+<div class="question" id="question">
+  Q1. 當你情緒低落時，你最想要哪一種安慰？<br>
+  Q1. When you're feeling down, what kind of comfort do you seek?
+</div>
 
-  <button type="submit" class="btn-submit">提交結果 Submit</button>
-</form>
+<div class="options" id="options">
+  <button class="option-btn" onclick="selectOption('溫柔傾聽')">🌸 溫柔傾聽</button>
+  <button class="option-btn" onclick="selectOption('理性分析')">🧠 理性分析</button>
+  <button class="option-btn" onclick="selectOption('擁抱支持')">🤗 擁抱支持</button>
+  <button class="option-btn" onclick="selectOption('轉移注意力')">🎨 轉移注意力</button>
+</div>
 
-<div id="result" class="result" style="display:none;"></div>
+<button id="submitBtn" onclick="showResult()">送出 Submit</button>
 
-<button onclick="location.href='https://line.me/R/ti/p/%40166kslla'" class="btn-book" style="display:none;" id="bookBtn">立即預約 Book Now</button>
+<div id="result"></div>
 
 <script>
-  const form = document.getElementById('quizForm');
-  const resultDiv = document.getElementById('result');
-  const bookBtn = document.getElementById('bookBtn');
+  let selectedAnswer = null;
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const mood = form.mood.value;
-    const color = form.color.value;
+  function selectOption(option) {
+    selectedAnswer = option;
+    const buttons = document.querySelectorAll(".option-btn");
+    buttons.forEach(btn => btn.style.backgroundColor = "#fff");
+    event.target.style.backgroundColor = "#f3e9dd";
+  }
 
-    let message = '';
-
-    if (mood === 'happy' && color === 'gold') {
-      message = '你像耀眼的太陽女神，充滿光與熱！<br>You are like the radiant Sun Goddess, full of light and warmth!';
-    } else if (mood === 'calm' && color === 'silver') {
-      message = '你是寧靜的月亮女神，溫柔又神秘。<br>You are the calm Moon Goddess, gentle and mysterious.';
-    } else if (mood === 'energetic' && color === 'rose') {
-      message = '你是充滿愛與活力的愛神女神。<br>You are the Goddess of Love, full of energy and passion.';
-    } else if (mood === 'thoughtful' && color === 'blue') {
-      message = '你是智慧的海洋女神，深邃又冷靜。<br>You are the wise Ocean Goddess, deep and calm.';
+  function showResult() {
+    let resultText = '';
+    if (!selectedAnswer) {
+      resultText = "<p>請先選擇一個選項！<br>Please select one option first!</p>";
     } else {
-      message = '你擁有獨特的女神能量，展現真實自我！<br>You have a unique goddess energy, showing your true self!';
+      switch (selectedAnswer) {
+        case '溫柔傾聽':
+          resultText = "你適合處女座或巨蟹座的守護神，內斂細膩又有愛心！";
+          break;
+        case '理性分析':
+          resultText = "你擁有天秤座或水瓶座女神的精神，聰明果斷又優雅！";
+          break;
+        case '擁抱支持':
+          resultText = "你與金牛座與雙魚座守護神連結深刻，溫暖又可靠！";
+          break;
+        case '轉移注意力':
+          resultText = "你屬於射手座或雙子座女神的能量，熱情好動又愛冒險！";
+          break;
+      }
+      resultText += `
+        <div style="margin-top: 20px;">
+          <a href="https://lin.ee/166kslla" class="button-link book-btn">💅 立即預約 Book Now</a>
+          <a href="index.html" class="button-link back-btn">🔙 返回首頁 Home</a>
+        </div>`;
     }
+    document.getElementById('result').innerHTML = resultText;
+  }
 
-    resultDiv.innerHTML = message;
-    resultDiv.style.display = 'block';
-    bookBtn.style.display = 'inline-block';
-    form.style.display = 'none';
-  });
+  function switchLanguage(lang) {
+    if (lang === 'en') {
+      document.getElementById('title').innerText = "Guardian Zodiac Goddess Quiz";
+      document.getElementById('question').innerHTML = 
+        "Q1. When you're feeling down, what kind of comfort do you seek?<br>Q1. 當你情緒低落時，你最想要哪一種安慰？";
+      document.getElementById('submitBtn').innerText = "Submit";
+    } else {
+      document.getElementById('title').innerText = "守護星座女神測驗";
+      document.getElementById('question').innerHTML = 
+        "Q1. 當你情緒低落時，你最想要哪一種安慰？<br>Q1. When you're feeling down, what kind of comfort do you seek?";
+      document.getElementById('submitBtn').innerText = "送出 Submit";
+    }
+  }
 </script>
 
 </body>
