@@ -1,28 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YC Nail Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YC Nail Studio | 詠粸麗 美甲工作室</title>
   <style>
     body {
       margin: 0;
       font-family: 'Georgia', serif;
       background-color: #fdfaf6;
       color: #333;
+      transition: background-color 0.3s, color 0.3s;
     }
-
     header {
       text-align: center;
       padding: 80px 20px 40px;
       background-color: #fff8f0;
     }
-
     header h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
     }
-
     .book-btn {
       background-color: #c89f6d;
       color: white;
@@ -31,19 +29,18 @@
       font-size: 1rem;
       border-radius: 30px;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
     }
-
     .image-block {
       text-align: center;
       padding: 40px 20px;
     }
-
     .image-block img {
       max-width: 300px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     .sections {
       display: flex;
       flex-wrap: wrap;
@@ -51,29 +48,24 @@
       padding: 40px 20px;
       background-color: #fff;
     }
-
     .section {
       flex: 1 1 300px;
       max-width: 400px;
       margin: 20px;
       padding: 20px;
     }
-
     .section h2 {
       font-size: 1.5rem;
       margin-bottom: 10px;
     }
-
     ul {
       list-style: none;
       padding-left: 0;
     }
-
     ul li::before {
       content: '• ';
       color: #c89f6d;
     }
-
     .quiz-btn {
       display: block;
       width: 100%;
@@ -89,56 +81,96 @@
       text-decoration: none;
       transition: background-color 0.3s;
     }
-
     .quiz-btn:hover {
       background-color: #f3e9dd;
     }
-
     footer {
       text-align: center;
       font-size: 0.9rem;
       padding: 20px;
       color: #aaa;
     }
-
+    .lang-switch {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #c89f6d;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      z-index: 1000;
+    }
     @media (max-width: 768px) {
       header h1 {
         font-size: 2rem;
+      }
+      .sections {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
 
+  <button class="lang-switch" id="langSwitchBtn">EN</button>
+
   <header>
-    <h1>Enhance Your Beauty<br>with Exquisite Nail Art</h1>
-    <a href="https://lin.ee/xxxxxxx" class="book-btn">BOOK NOW</a>
+    <h1 data-lang-zh="提升你的美麗<br>以精緻美甲藝術" data-lang-en="Enhance Your Beauty<br>with Exquisite Nail Art">提升你的美麗<br>以精緻美甲藝術</h1>
+    <a href="https://lin.ee/xxxxxxx" class="book-btn" target="_blank" rel="noopener" data-lang-zh="立即預約" data-lang-en="BOOK NOW">立即預約</a>
   </header>
 
   <div class="image-block">
-    <img src="https://i.imgur.com/4ZJHc8e.jpg" alt="Nail Design Sample">
+    <img src="https://i.imgur.com/4ZJHc8e.jpg" alt="Nail Design Sample" />
   </div>
 
   <div class="sections">
     <div class="section">
-      <h2>Our Services</h2>
+      <h2 data-lang-zh="服務項目" data-lang-en="Our Services">服務項目</h2>
       <ul>
-        <li>Gradient</li>
-        <li>Cat-Eye</li>
-        <li>Hand-Painted</li>
+        <li data-lang-zh="漸層染色" data-lang-en="Gradient">漸層染色</li>
+        <li data-lang-zh="貓眼凝膠" data-lang-en="Cat-Eye">貓眼凝膠</li>
+        <li data-lang-zh="手繪藝術" data-lang-en="Hand-Painted">手繪藝術</li>
       </ul>
     </div>
     <div class="section">
-      <h2>Interactive Tests</h2>
-      <a href="https://una1103.github.io/yclnailstudio/soulcolor.html" class="quiz-btn">Soul Color Quiz</a>
-      <a href="https://una1103.github.io/yclnailstudio/subconscious.html" class="quiz-btn">Subconscious Color Exam</a>
-      <a href="https://una1103.github.io/yclnailstudio/zodiacgoddess.html" class="quiz-btn">Guardian Zodiac Goddess Quiz</a>
+      <h2 data-lang-zh="互動心理測驗" data-lang-en="Interactive Tests">互動心理測驗</h2>
+      <a href="soulcolor.html" class="quiz-btn" data-lang-zh="靈魂色彩測驗" data-lang-en="Soul Color Quiz">靈魂色彩測驗</a>
+      <a href="subconscious.html" class="quiz-btn" data-lang-zh="潛意識測色測驗" data-lang-en="Subconscious Color Exam">潛意識測色測驗</a>
+      <a href="zodiacgoddess.html" class="quiz-btn" data-lang-zh="守護星座女神測驗" data-lang-en="Guardian Zodiac Goddess Quiz">守護星座女神測驗</a>
     </div>
   </div>
 
   <footer>
-    © 2025 YC Nail Studio｜Taichung, Taiwan
+    <div data-lang-zh="© 2025 詠粸麗 美甲工作室｜台中市" data-lang-en="© 2025 YC Nail Studio｜Taichung, Taiwan">© 2025 詠粸麗 美甲工作室｜台中市</div>
   </footer>
+
+<script>
+  const langSwitchBtn = document.getElementById('langSwitchBtn');
+  let currentLang = 'zh';
+
+  function switchLanguage() {
+    const elements = document.querySelectorAll('[data-lang-zh]');
+    if(currentLang === 'zh') {
+      elements.forEach(el => {
+        el.innerHTML = el.getAttribute('data-lang-en');
+      });
+      langSwitchBtn.textContent = '中文';
+      currentLang = 'en';
+    } else {
+      elements.forEach(el => {
+        el.innerHTML = el.getAttribute('data-lang-zh');
+      });
+      langSwitchBtn.textContent = 'EN';
+      currentLang = 'zh';
+    }
+  }
+
+  langSwitchBtn.addEventListener('click', switchLanguage);
+</script>
 
 </body>
 </html>
