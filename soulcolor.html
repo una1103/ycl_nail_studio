@@ -2,166 +2,87 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>靈魂色彩測驗 | Soul Color Quiz</title>
+  <title>靈魂色彩測驗</title>
   <style>
     body {
-      font-family: 'Georgia', serif;
-      background-color: #fdfaf6;
-      color: #333;
-      margin: 0;
+      background-color: #fffaf4;
+      font-family: "微軟正黑體", sans-serif;
+      color: #5a3e36;
+      text-align: center;
       padding: 20px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
     h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 20px;
+      color: #c19774;
     }
     .question {
-      margin-bottom: 20px;
+      margin: 20px 0;
+      font-size: 1.2em;
     }
-    .options {
-      list-style: none;
-      padding: 0;
-    }
-    .options li {
-      margin: 8px 0;
-    }
-    label {
+    .options button {
+      background-color: #f7e6d5;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
       cursor: pointer;
     }
-    button {
+    .options button:hover {
+      background-color: #ffe5c1;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #8b5e3c;
+    }
+    .nav-btn {
+      margin-top: 30px;
+      display: inline-block;
       background-color: #c89f6d;
       color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      display: block;
-      margin: 30px auto 10px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1em;
     }
-    .result {
-      margin-top: 30px;
-      background-color: #fff8f0;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      font-size: 1.1rem;
-      text-align: center;
-    }
-    .color-swatch {
-      width: 100px;
-      height: 100px;
-      margin: 10px auto;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.15);
-    }
-    .lang-switch {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #c89f6d;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      z-index: 1000;
+    .nav-btn:hover {
+      background-color: #a67c52;
     }
   </style>
 </head>
 <body>
+  <h1>靈魂色彩測驗</h1>
+  <div id="quiz">
+    <div class="question">請選擇你的星座：</div>
+    <div class="options">
+      <button onclick="choose('火象')">牡羊、獅子、射手</button>
+      <button onclick="choose('水象')">巨蟹、天蠍、雙魚</button>
+      <button onclick="choose('風象')">雙子、天秤、水瓶</button>
+      <button onclick="choose('土象')">金牛、處女、魔羯</button>
+    </div>
+  </div>
+  <div id="result"></div>
+  <div id="buttons" style="display: none;">
+    <a href="quizmenu.html" class="nav-btn">🔙 回到測驗選單</a>
+    <a href="https://lin.ee/xxxxxxx" class="nav-btn">💖 立即預約美甲</a>
+  </div>
 
-<button class="lang-switch" id="langSwitchBtn">EN</button>
-
-<h1 data-lang-zh="靈魂色彩測驗" data-lang-en="Soul Color Quiz">靈魂色彩測驗</h1>
-
-<div class="question" data-lang-zh="選擇你最喜歡的顏色：" data-lang-en="Choose your favorite color:">
-  <ul class="options" id="colorOptions">
-    <li><label><input type="radio" name="color" value="red"> <span data-lang-zh="紅色" data-lang-en="Red">紅色</span></label></li>
-    <li><label><input type="radio" name="color" value="blue"> <span data-lang-zh="藍色" data-lang-en="Blue">藍色</span></label></li>
-    <li><label><input type="radio" name="color" value="green"> <span data-lang-zh="綠色" data-lang-en="Green">綠色</span></label></li>
-    <li><label><input type="radio" name="color" value="purple"> <span data-lang-zh="紫色" data-lang-en="Purple">紫色</span></label></li>
-    <li><label><input type="radio" name="color" value="yellow"> <span data-lang-zh="黃色" data-lang-en="Yellow">黃色</span></label></li>
-  </ul>
-</div>
-
-<button id="submitBtn" data-lang-zh="看結果" data-lang-en="See Result">看結果</button>
-
-<div id="result" class="result" style="display:none;"></div>
-
-<script>
-  const langSwitchBtn = document.getElementById('langSwitchBtn');
-  let currentLang = 'zh';
-
-  function switchLanguage() {
-    const elements = document.querySelectorAll('[data-lang-zh]');
-    if(currentLang === 'zh') {
-      elements.forEach(el => el.innerHTML = el.getAttribute('data-lang-en'));
-      langSwitchBtn.textContent = '中文';
-      currentLang = 'en';
-    } else {
-      elements.forEach(el => el.innerHTML = el.getAttribute('data-lang-zh'));
-      langSwitchBtn.textContent = 'EN';
-      currentLang = 'zh';
+  <script>
+    function choose(type) {
+      let message = '';
+      if (type === '火象') {
+        message = "你的靈魂色彩是：<b>暖橘色</b> 🍊<br>熱情、自信、主動，適合充滿活力的跳色設計！";
+      } else if (type === '水象') {
+        message = "你的靈魂色彩是：<b>夢幻紫</b> 💜<br>溫柔、直覺強，適合暈染或星空設計！";
+      } else if (type === '風象') {
+        message = "你的靈魂色彩是：<b>薄荷藍</b> 💎<br>自由、創新，適合簡約幾何或透光感設計！";
+      } else {
+        message = "你的靈魂色彩是：<b>奶茶米</b> 🤎<br>穩重、實在，適合溫柔自然的裸色系！";
+      }
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").innerHTML = message;
+      document.getElementById("buttons").style.display = "block";
     }
-  }
-  langSwitchBtn.addEventListener('click', switchLanguage);
-
-  const submitBtn = document.getElementById('submitBtn');
-  const resultDiv = document.getElementById('result');
-
-  const results = {
-    red: {
-      zh: "你是熱情如火的紅色靈魂，勇敢且充滿活力！建議嘗試鮮豔的紅色系美甲，展現自信魅力。",
-      en: "You are a passionate red soul, brave and full of energy! We suggest vibrant red nail art to showcase your confident charm.",
-      colorCode: "#E74C3C"
-    },
-    blue: {
-      zh: "你是冷靜沉穩的藍色靈魂，內心平和且理智。建議選擇優雅的藍色系美甲，帶來平靜氣息。",
-      en: "You are a calm and steady blue soul, peaceful and rational. We suggest elegant blue nail art to bring tranquility.",
-      colorCode: "#3498DB"
-    },
-    green: {
-      zh: "你是自然清新的綠色靈魂，喜歡和大自然連結。推薦自然系綠色美甲，帶來生機與活力。",
-      en: "You are a natural and fresh green soul, loving connection with nature. We recommend natural green nail art for vitality.",
-      colorCode: "#27AE60"
-    },
-    purple: {
-      zh: "你是神秘優雅的紫色靈魂，富有藝術氣息。適合神秘紫色系美甲，展現獨特品味。",
-      en: "You are a mysterious and elegant purple soul, artistic and refined. Perfect for mysterious purple nail art to show unique taste.",
-      colorCode: "#8E44AD"
-    },
-    yellow: {
-      zh: "你是陽光明媚的黃色靈魂，活潑開朗。推薦明亮的黃色美甲，帶來快樂能量。",
-      en: "You are a sunny yellow soul, lively and cheerful. Bright yellow nail art is recommended to bring joyful energy.",
-      colorCode: "#F1C40F"
-    }
-  };
-
-  submitBtn.addEventListener('click', () => {
-    const selected = document.querySelector('input[name="color"]:checked');
-    if (!selected) {
-      alert(currentLang === 'zh' ? '請先選擇一個顏色！' : 'Please select a color first!');
-      return;
-    }
-    const val = selected.value;
-    const r = results[val];
-    resultDiv.style.display = 'block';
-    resultDiv.innerHTML = `
-      <div style="font-weight:bold; margin-bottom:10px;">
-        ${currentLang === 'zh' ? '結果' : 'Result'}:
-      </div>
-      <div>${r[currentLang]}</div>
-      <div class="color-swatch" style="background-color: ${r.colorCode};"></div>
-    `;
-  });
-</script>
-
+  </script>
 </body>
 </html>
