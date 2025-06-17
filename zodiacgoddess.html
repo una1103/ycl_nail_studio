@@ -103,26 +103,30 @@
   </style>
 </head>
 <body>
+  <div style="margin-top: 20px;">
+    <button onclick="setLang('zh')" style="margin:5px;">中文</button>
+    <button onclick="setLang('en')" style="margin:5px;">EN</button>
+  </div>
 
-  <h1>守護星座女神測驗</h1>
-  <p>選出妳現在最貼近的情緒，找出妳的守護星座女神和推薦造型♡</p>
+  <h1 id="title">守護星座女神測驗</h1>
+  <p id="description">選出妳現在最貼近的情緒，找出妳的守護星座女神和推薦造型♡</p>
 
   <div class="quiz" id="quiz-options">
-    <div class="option-card" data-result="牡羊女神：熱情果敢">
+    <div class="option-card" data-result="牡羊女神：熱情果敢" data-result-en="Aries Goddess: Passionate and Bold">
       <img src="images/imagesoption-a.jpg" alt="充滿幹勁" />
-      <div class="label">我想立刻行動</div>
+      <div class="label" data-label-zh="我想立刻行動" data-label-en="I want to take action now">我想立刻行動</div>
     </div>
-    <div class="option-card" data-result="巨蟹女神：溫柔療癒">
+    <div class="option-card" data-result="巨蟹女神：溫柔療癒" data-result-en="Cancer Goddess: Gentle and Healing">
       <img src="images/imagesoption-b.jpg" alt="需要被關心" />
-      <div class="label">我想被照顧安慰</div>
+      <div class="label" data-label-zh="我想被照顧安慰" data-label-en="I want comfort and care">我想被照顧安慰</div>
     </div>
-    <div class="option-card" data-result="天秤女神：優雅平衡">
+    <div class="option-card" data-result="天秤女神：優雅平衡" data-result-en="Libra Goddess: Graceful and Balanced">
       <img src="images/imagesoption-c.jpg" alt="想要放鬆" />
-      <div class="label">我想美美的出門</div>
+      <div class="label" data-label-zh="我想美美的出門" data-label-en="I want to go out looking fabulous">我想美美的出門</div>
     </div>
-    <div class="option-card" data-result="雙魚女神：夢幻直覺">
+    <div class="option-card" data-result="雙魚女神：夢幻直覺" data-result-en="Pisces Goddess: Dreamy and Intuitive">
       <img src="images/imagesoption-d.jpg" alt="想逃避現實" />
-      <div class="label">我想沉浸在夢境中</div>
+      <div class="label" data-label-zh="我想沉浸在夢境中" data-label-en="I want to escape into a dream">我想沉浸在夢境中</div>
     </div>
   </div>
 
@@ -131,19 +135,36 @@
   <div id="result" class="result" style="display:none;"></div>
 
   <div class="buttons" id="actions" style="display:none;">
-    <a href="index.html">返回首頁</a>
-    <a href="https://line.me/R/ti/p/%40166kslla" target="_blank">立即預約</a>
+    <a href="index.html" id="homeBtn">返回首頁</a>
+    <a href="https://line.me/R/ti/p/%40166kslla" target="_blank" id="bookBtn">立即預約</a>
   </div>
 
   <script>
+    let lang = "zh";
+
+    function setLang(l) {
+      lang = l;
+      document.getElementById("title").innerText = lang === "zh" ? "守護星座女神測驗" : "Zodiac Goddess Quiz";
+      document.getElementById("description").innerText = lang === "zh"
+        ? "選出妳現在最貼近的情緒，找出妳的守護星座女神和推薦造型♡"
+        : "Choose the emotion you feel most, and find your zodiac goddess and nail design ♡";
+      document.getElementById("submit").innerText = lang === "zh" ? "看結果" : "Show Result";
+      document.getElementById("homeBtn").innerText = lang === "zh" ? "返回首頁" : "Back to Home";
+      document.getElementById("bookBtn").innerText = lang === "zh" ? "立即預約" : "Book Now";
+
+      document.querySelectorAll(".label").forEach(el => {
+        el.innerText = lang === "zh" ? el.dataset.labelZh : el.dataset.labelEn;
+      });
+    }
+
     const cards = document.querySelectorAll(".option-card");
-    let selected = null;
+    let selectedCard = null;
 
     cards.forEach(card => {
       card.addEventListener("click", () => {
         cards.forEach(c => c.classList.remove("selected"));
         card.classList.add("selected");
-        selected = card.getAttribute("data-result");
+        selectedCard = card;
       });
     });
 
@@ -151,34 +172,43 @@
       const resultDiv = document.getElementById("result");
       const actions = document.getElementById("actions");
 
-      if (!selected) {
-        resultDiv.innerHTML = "請選擇一個選項喔～";
+      if (!selectedCard) {
+        resultDiv.innerHTML = lang === "zh" ? "請選擇一個選項喔～" : "Please choose one option.";
         resultDiv.style.display = "block";
         actions.style.display = "none";
         return;
       }
 
+      let resultText = selectedCard.dataset.result;
+      let resultTextEn = selectedCard.dataset.resultEn;
       let suggestion = "";
-      switch (selected) {
+      let suggestionEn = "";
+
+      switch (resultText) {
         case "牡羊女神：熱情果敢":
           suggestion = "推薦嘗試亮眼的紅色系美甲，搭配幾何跳色設計，展現妳的幹勁與決心！";
+          suggestionEn = "Try bright red nail designs with bold accents to show your determination!";
           break;
         case "巨蟹女神：溫柔療癒":
           suggestion = "可以試試淡粉、裸色系，帶有珍珠光的柔和款式，妳需要被溫柔包圍♡";
+          suggestionEn = "Go for soft pink or nude tones with a pearly finish for comforting vibes ♡";
           break;
         case "天秤女神：優雅平衡":
           suggestion = "來個法式邊緣線或是優雅暈染，讓妳輕鬆擁有氣質與風格兼具的美感！";
+          suggestionEn = "Try French tips or soft gradients for a classy, balanced look.";
           break;
         case "雙魚女神：夢幻直覺":
           suggestion = "夢幻星空、貝殼光或紫粉跳色都適合現在的妳～療癒又浪漫♡";
+          suggestionEn = "Go for dreamy galaxy, shell shimmer, or lilac accents for a magical vibe ♡";
           break;
       }
 
-      resultDiv.innerHTML = `<strong>${selected}</strong><br>${suggestion}`;
+      resultDiv.innerHTML = lang === "zh"
+        ? <strong>${resultText}</strong><br>${suggestion}
+        : `<strong>${resultTextEn}</strong><br>${suggestionEn}`;
       resultDiv.style.display = "block";
       actions.style.display = "block";
     });
   </script>
-
 </body>
 </html>
