@@ -2,156 +2,189 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>靈魂色彩測驗 | Soul Color Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>靈魂色彩測驗 | YCL Nail Studio</title>
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background:#fdfaf6; color:#333; }
-    #lang-switch { position: fixed; top: 10px; right: 10px; }
-    button {
-      background-color: #c89f6d;
-      color: white;
-      border: none;
-      border-radius: 15px;
-      padding: 8px 16px;
-      cursor: pointer;
-      margin-left: 5px;
-      font-weight: bold;
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #fffaf5;
+      color: #333;
+      text-align: center;
+      padding: 20px;
     }
-    .hidden { display: none; }
-    .book-btn {
-      background-color: #c89f6d;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 30px;
-      border: none;
+    h1 {
+      color: #e88bb3;
+      font-size: 2em;
+    }
+    .question {
+      margin-bottom: 30px;
+    }
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .options label {
+      display: block;
       cursor: pointer;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-block;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 120px;
+    }
+    .options input[type="radio"] {
+      display: none;
+    }
+    .options img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .options input[type="radio"]:checked + img {
+      border: 2px solid #e88bb3;
+    }
+    #result {
+      display: none;
+      margin-top: 30px;
+      background: #fff0f6;
+      padding: 20px;
+      border-radius: 15px;
+      font-size: 1.2em;
+    }
+    button {
+      padding: 10px 20px;
+      background: #e88bb3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background: #d3709c;
+    }
+    .nav-buttons {
       margin-top: 20px;
     }
-    .result, .quiz { margin-top: 20px; }
+    .lang-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
   </style>
 </head>
 <body>
 
-<div id="lang-switch">
-  <button onclick="showLang('zh')">中文</button>
-  <button onclick="showLang('en')">English</button>
-</div>
-
-<!-- 中文內容 -->
-<div id="content-zh">
-  <h1>靈魂色彩測驗</h1>
-  <div class="quiz">
-    <p>請選擇你最喜歡的顏色：</p>
-    <form id="quizFormZh">
-      <label><input type="radio" name="color" value="紅色" /> 紅色</label><br/>
-      <label><input type="radio" name="color" value="藍色" /> 藍色</label><br/>
-      <label><input type="radio" name="color" value="綠色" /> 綠色</label><br/>
-      <label><input type="radio" name="color" value="紫色" /> 紫色</label><br/>
-      <button type="button" onclick="submitQuiz('zh')">提交答案</button>
-    </form>
+  <div class="lang-toggle">
+    <button onclick="toggleLang()">EN/中</button>
   </div>
 
-  <div id="result-zh" class="result" style="display:none;">
-    <p id="resultTextZh"></p>
-    <a href="https://line.me/R/ti/p/@166kslla" target="_blank" class="book-btn">立即預約</a><br/>
-    <a href="index.html">返回主頁</a>
-  </div>
-</div>
+  <h1 id="title">🎨 靈魂色彩測驗</h1>
 
-<!-- English content -->
-<div id="content-en" class="hidden">
-  <h1>Soul Color Quiz</h1>
-  <div class="quiz">
-    <p>Please choose your favorite color:</p>
-    <form id="quizFormEn">
-      <label><input type="radio" name="color" value="Red" /> Red</label><br/>
-      <label><input type="radio" name="color" value="Blue" /> Blue</label><br/>
-      <label><input type="radio" name="color" value="Green" /> Green</label><br/>
-      <label><input type="radio" name="color" value="Purple" /> Purple</label><br/>
-      <button type="button" onclick="submitQuiz('en')">Submit</button>
-    </form>
+  <form id="quizForm">
+    <div class="question" id="q1">
+      <h2 id="q1text">你的星座是？</h2>
+      <select id="zodiac" required>
+        <option value="">請選擇</option>
+        <option value="牡羊座">牡羊座</option>
+        <option value="金牛座">金牛座</option>
+        <option value="雙子座">雙子座</option>
+        <option value="巨蟹座">巨蟹座</option>
+        <option value="獅子座">獅子座</option>
+        <option value="處女座">處女座</option>
+        <option value="天秤座">天秤座</option>
+        <option value="天蠍座">天蠍座</option>
+        <option value="射手座">射手座</option>
+        <option value="魔羯座">魔羯座</option>
+        <option value="水瓶座">水瓶座</option>
+        <option value="雙魚座">雙魚座</option>
+      </select>
+    </div>
+
+    <div class="question" id="q2">
+      <h2 id="q2text">看到以下圖片，哪一張讓你有靈魂被召喚的感覺？</h2>
+      <div class="options">
+        <label><input type="radio" name="color" value="粉紅"><img src="https://i.imgur.com/YLuYEFn.png" alt="粉紅"><div>粉紅</div></label>
+        <label><input type="radio" name="color" value="天空藍"><img src="https://i.imgur.com/AlHhGyD.png" alt="天空藍"><div>天空藍</div></label>
+        <label><input type="radio" name="color" value="橘黃色"><img src="https://i.imgur.com/vkELvlt.png" alt="橘黃色"><div>橘黃色</div></label>
+        <label><input type="radio" name="color" value="夢幻紫"><img src="https://i.imgur.com/4ZaxOaU.png" alt="夢幻紫"><div>夢幻紫</div></label>
+      </div>
+    </div>
+
+    <button type="submit">✨ 查看結果</button>
+  </form>
+
+  <div id="result"></div>
+
+  <div class="nav-buttons">
+    <button onclick="location.href='index.html'">🔙 返回選單</button>
+    <button onclick="location.href='https://lin.ee/abc123'">💅 立即預約</button>
   </div>
 
-  <div id="result-en" class="result" style="display:none;">
-    <p id="resultTextEn"></p>
-    <a href="https://line.me/R/ti/p/@166kslla" target="_blank" class="book-btn">Book Now</a><br/>
-    <a href="index.html">Back to Home</a>
-  </div>
-</div>
+  <script>
+    const resultTexts = {
+      "粉紅": {
+        zh: {
+          color: "你的靈魂色是「甜甜粉紅」",
+          style: "你是一位充滿少女心的小仙女，適合可愛蝴蝶結、美樂蒂風格、粉嫩水鑽款！",
+        },
+        en: {
+          color: "Your soul color is 'Sweet Pink'",
+          style: "You’re a soft and sweet fairy! Try ribbon, My Melody, or pastel rhinestone designs.",
+        }
+      },
+      "天空藍": {
+        zh: {
+          color: "你的靈魂色是「天空藍」",
+          style: "你是自由不羈的風之靈，推薦清新法式、海洋風、藍白撞色美甲！",
+        },
+        en: {
+          color: "Your soul color is 'Sky Blue'",
+          style: "You're a breezy soul! Try French tips, ocean vibes, or blue-white contrasts.",
+        }
+      },
+      "橘黃色": {
+        zh: {
+          color: "你的靈魂色是「活力橘黃」",
+          style: "你活潑又有元氣，適合可愛笑臉、美式塗鴉、太陽系亮片款式！",
+        },
+        en: {
+          color: "Your soul color is 'Energetic Orange-Yellow'",
+          style: "You're full of pep! Try smiley faces, graffiti, or glittery sun-inspired nails.",
+        }
+      },
+      "夢幻紫": {
+        zh: {
+          color: "你的靈魂色是「夢幻紫」",
+          style: "你神秘又浪漫，推薦星空銀河、紫晶寶石、占卜塔羅款美甲～",
+        },
+        en: {
+          color: "Your soul color is 'Mystic Purple'",
+          style: "You're mystical and romantic! Try galaxy glitter, amethyst jewels, or tarot themes.",
+        }
+      }
+    };
 
-<script>
-  function showLang(lang) {
-    if(lang === 'zh'){
-      document.getElementById('content-zh').classList.remove('hidden');
-      document.getElementById('content-en').classList.add('hidden');
-    } else {
-      document.getElementById('content-en').classList.remove('hidden');
-      document.getElementById('content-zh').classList.add('hidden');
+    let isEnglish = false;
+
+    function toggleLang() {
+      isEnglish = !isEnglish;
+      document.getElementById("title").innerText = isEnglish ? "🎨 Soul Color Test" : "🎨 靈魂色彩測驗";
+      document.getElementById("q1text").innerText = isEnglish ? "What’s your zodiac sign?" : "你的星座是？";
+      document.getElementById("q2text").innerText = isEnglish ? "Which image feels like it calls to your soul?" : "看到以下圖片，哪一張讓你有靈魂被召喚的感覺？";
+      document.querySelector('button[type="submit"]').innerText = isEnglish ? "✨ Show Result" : "✨ 查看結果";
     }
-    // Reset results on language switch
-    resetQuiz();
-  }
 
-  function submitQuiz(lang){
-    let selected;
-    if(lang === 'zh'){
-      const radios = document.getElementsByName('color');
-      selected = Array.from(radios).find(r => r.checked);
-      if(!selected){
-        alert('請先選擇一個顏色');
-        return;
-      }
-      let msg = '';
-      switch(selected.value){
-        case '紅色': msg = '你的靈魂充滿熱情與活力！'; break;
-        case '藍色': msg = '你心靈寧靜，喜歡平和的生活。'; break;
-        case '綠色': msg = '你喜歡自然，充滿生命力。'; break;
-        case '紫色': msg = '你神秘且富有創造力。'; break;
-        default: msg = '謝謝你的選擇！';
-      }
-      document.getElementById('resultTextZh').textContent = msg;
-      document.getElementById('result-zh').style.display = 'block';
-      document.querySelector('#quizFormZh').style.display = 'none';
-    } else {
-      const radios = document.getElementsByName('color');
-      selected = Array.from(radios).find(r => r.checked);
-      if(!selected){
-        alert('Please select a color first');
-        return;
-      }
-      let msg = '';
-      switch(selected.value){
-        case 'Red': msg = 'Your soul is full of passion and energy!'; break;
-        case 'Blue': msg = 'You are calm and enjoy peaceful life.'; break;
-        case 'Green': msg = 'You love nature and vitality.'; break;
-        case 'Purple': msg = 'You are mysterious and creative.'; break;
-        default: msg = 'Thank you for your choice!';
-      }
-      document.getElementById('resultTextEn').textContent = msg;
-      document.getElementById('result-en').style.display = 'block';
-      document.querySelector('#quizFormEn').style.display = 'none';
-    }
-  }
-
-  function resetQuiz(){
-    // 中文重置
-    document.getElementById('result-zh').style.display = 'none';
-    document.querySelector('#quizFormZh').style.display = 'block';
-    const zhRadios = document.getElementsByName('color');
-    zhRadios.forEach(r => r.checked = false);
-    // 英文重置
-    document.getElementById('result-en').style.display = 'none';
-    document.querySelector('#quizFormEn').style.display = 'block';
-    const enRadios = document.getElementsByName('color');
-    enRadios.forEach(r => r.checked = false);
-  }
-
-  // 頁面載入預設顯示中文
-  showLang('zh');
-</script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const color = document.querySelector('input[name="color"]:checked')?.value;
+      if (!color) return alert(isEnglish ? "Please choose a picture!" : "請選擇一張圖片！");
+      const resultText = resultTexts[color][isEnglish ? "en" : "zh"];
+      document.getElementById("result").innerHTML = `<h2>${resultText.color}</h2><p>${resultText.style}</p>`;
+      document.getElementById("result").style.display = "block";
+    });
+  </script>
 
 </body>
 </html>
