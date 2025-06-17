@@ -100,12 +100,32 @@
     .buttons a:hover {
       background-color: #f8f1e8;
     }
+
+    .lang-switch {
+      margin-top: 20px;
+    }
+
+    .lang-switch button {
+      margin: 0 5px;
+      padding: 6px 12px;
+      border: 1px solid #c89f6d;
+      background-color: #fff;
+      color: #c89f6d;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .lang-switch button:hover {
+      background-color: #f8f1e8;
+    }
   </style>
 </head>
 <body>
-  <div style="margin-top: 20px;">
-    <button onclick="setLang('zh')" style="margin:5px;">中文</button>
-    <button onclick="setLang('en')" style="margin:5px;">EN</button>
+
+  <div class="lang-switch">
+    <button onclick="setLang('zh')">中文</button>
+    <button onclick="setLang('en')">EN</button>
   </div>
 
   <h1 id="title">守護星座女神測驗</h1>
@@ -210,5 +230,6 @@
       actions.style.display = "block";
     });
   </script>
+
 </body>
 </html>
