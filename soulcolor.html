@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>靈魂色彩測驗 | YCL Nail Studio</title>
+  <title>Soul Color Test | YCL Nail Studio</title>
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -72,12 +72,17 @@
       top: 10px;
       right: 10px;
     }
+    select, .option-label {
+      font-size: 0.95em;
+      margin-top: 5px;
+      display: block;
+    }
   </style>
 </head>
 <body>
 
   <div class="lang-toggle">
-    <button onclick="toggleLang()">EN/中</button>
+    <button onclick="toggleLang()">EN / 中文</button>
   </div>
 
   <h1 id="title">🎨 靈魂色彩測驗</h1>
@@ -85,34 +90,20 @@
   <form id="quizForm">
     <div class="question" id="q1">
       <h2 id="q1text">你的星座是？</h2>
-      <select id="zodiac" required>
-        <option value="">請選擇</option>
-        <option value="牡羊座">牡羊座</option>
-        <option value="金牛座">金牛座</option>
-        <option value="雙子座">雙子座</option>
-        <option value="巨蟹座">巨蟹座</option>
-        <option value="獅子座">獅子座</option>
-        <option value="處女座">處女座</option>
-        <option value="天秤座">天秤座</option>
-        <option value="天蠍座">天蠍座</option>
-        <option value="射手座">射手座</option>
-        <option value="魔羯座">魔羯座</option>
-        <option value="水瓶座">水瓶座</option>
-        <option value="雙魚座">雙魚座</option>
-      </select>
+      <select id="zodiac" required></select>
     </div>
 
     <div class="question" id="q2">
       <h2 id="q2text">看到以下圖片，哪一張讓你有靈魂被召喚的感覺？</h2>
-      <div class="options">
-        <label><input type="radio" name="color" value="風"><img src="images/wind.jpg" alt="風"><div>風</div></label>
-        <label><input type="radio" name="color" value="水"><img src="images/water.jpg" alt="水"><div>水</div></label>
-        <label><input type="radio" name="color" value="火"><img src="images/fire.jpg" alt="火"><div>火</div></label>
-        <label><input type="radio" name="color" value="土"><img src="images/earth.jpg" alt="土"><div>土</div></label>
+      <div class="options" id="imageOptions">
+        <label><input type="radio" name="color" value="粉紅"><img src="images/wind.jpg" alt="Wind"><div class="option-label">風</div></label>
+        <label><input type="radio" name="color" value="天空藍"><img src="images/water.jpg" alt="Water"><div class="option-label">水</div></label>
+        <label><input type="radio" name="color" value="橘黃色"><img src="images/fire.jpg" alt="Fire"><div class="option-label">火</div></label>
+        <label><input type="radio" name="color" value="夢幻紫"><img src="images/earth.jpg" alt="Earth"><div class="option-label">土</div></label>
       </div>
     </div>
 
-    <button type="submit">✨ 查看結果</button>
+    <button type="submit" id="submitBtn">✨ 查看結果</button>
   </form>
 
   <div id="result"></div>
@@ -123,6 +114,16 @@
   </div>
 
   <script>
+    const zodiacOptions = {
+      zh: ["請選擇", "牡羊座", "金牛座", "雙子座", "巨蟹座", "獅子座", "處女座", "天秤座", "天蠍座", "射手座", "魔羯座", "水瓶座", "雙魚座"],
+      en: ["Please choose", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+    };
+
+    const imageLabels = {
+      zh: ["風", "水", "火", "土"],
+      en: ["Wind", "Water", "Fire", "Earth"]
+    };
+
     const resultTexts = {
       "粉紅": {
         zh: {
@@ -170,11 +171,36 @@
 
     function toggleLang() {
       isEnglish = !isEnglish;
+      const lang = isEnglish ? "en" : "zh";
+
       document.getElementById("title").innerText = isEnglish ? "🎨 Soul Color Test" : "🎨 靈魂色彩測驗";
       document.getElementById("q1text").innerText = isEnglish ? "What’s your zodiac sign?" : "你的星座是？";
       document.getElementById("q2text").innerText = isEnglish ? "Which image feels like it calls to your soul?" : "看到以下圖片，哪一張讓你有靈魂被召喚的感覺？";
-      document.querySelector('button[type="submit"]').innerText = isEnglish ? "✨ Show Result" : "✨ 查看結果";
+      document.getElementById("submitBtn").innerText = isEnglish ? "✨ Show Result" : "✨ 查看結果";
+
+      // Update zodiac options
+      const select = document.getElementById("zodiac");
+      select.innerHTML = "";
+      zodiacOptions[lang].forEach(option => {
+        const opt = document.createElement("option");
+        opt.value = option;
+        opt.textContent = option;
+        select.appendChild(opt);
+      });
+
+      // Update image labels
+      const labels = document.querySelectorAll(".option-label");
+      labels.forEach((el, idx) => {
+        el.textContent = imageLabels[lang][idx];
+      });
+
+      // Update nav buttons
+      document.querySelectorAll(".nav-buttons button")[0].innerText = isEnglish ? "🔙 Back to Menu" : "🔙 返回選單";
+      document.querySelectorAll(".nav-buttons button")[1].innerText = isEnglish ? "💅 Book Now" : "💅 立即預約";
     }
+
+    // 預設載入中文選項
+    window.onload = () => toggleLang();  // 預設英文，若想預設中文請刪除這行
 
     document.getElementById("quizForm").addEventListener("submit", function(e) {
       e.preventDefault();
