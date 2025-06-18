@@ -1,30 +1,18 @@
-# 詠粸麗美甲工作室｜YCL Nail Studio 官方網站
+# YCL Nail Studio | 詠稘麗 美甲工作室
 
-這是「詠粸麗美甲工作室（YCL Nail Studio）」的官方網站專案。專為台中在地客群打造的形象官網，透過優雅清新的視覺風格，搭配心理測驗互動與即時預約功能，讓來訪顧客可以輕鬆了解服務項目並快速聯繫我們。
+Official Website for **YCL Nail Studio**, a boutique nail salon based in Taichung, Taiwan.  
+This project presents a bilingual website (Traditional Chinese / English) for online presence, client engagement, and interactive style guidance through psychological quizzes.
 
-## 💅 關於詠粸麗
+---
 
-我們是一家位於 **台中市北區精武路266-7號** 的個人美甲工作室，提供高品質手足保養、美甲設計、凝膠造型等服務。我們相信，每個人都值得擁有專屬於自己的美與風格。
+## 🌟 Overview
 
-📍 地址：404 台中市北區精武路266-7號  
-📱 預約方式：  
-- LINE：[點我預約](https://line.me/R/ti/p/@166kslla)  
-- Instagram：[@ycl_nailstudio](https://www.instagram.com/ycl_nailstudio)  
-- 電話：0919-663-087  
+**YCL Nail Studio（詠稘麗 美甲工作室）** specializes in premium nail care and stylish gel nail art. This website is designed to reflect the studio's elegant and warm aesthetic, while offering practical functions like service overviews, direct booking links, and fun interactive style quizzes.
 
-## 🌸 網站特色
+The website is statically built using modern front-end standards and deployed via **GitHub Pages**, offering fast loading speed and high availability with zero backend dependencies.
 
-- 雙語切換（支援繁體中文 / 英文）
-- 響應式設計，手機與電腦皆可完美瀏覽
-- 互動式心理測驗功能（推薦美甲風格）
-- 預約連結一鍵開啟（LINE / IG / 電話）
-- 嵌入 Google Maps，方便查詢地址
+---
 
-## 🧠 心理測驗互動
+## 📌 Features
 
-本網站提供三款專屬設計的趣味心理測驗，幫助客人從內心探索喜好與風格靈感：
-- 🌈 靈魂色彩測驗
-- 🌙 潛意識選色測驗
-- 💫 守護星座女神測驗
-
-## 📁 專案結構
+- 🌐 **Bilingual Interface** – Seamless language toggle between
