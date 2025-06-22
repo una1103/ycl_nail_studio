@@ -2,37 +2,182 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YCL Nail Studio | 俏皮又溫柔的美甲體驗</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Baloo 2', 'Quicksand', sans-serif;
+      background-color: #fffaf7;
+      color: #444;
+    }
 
-  <title>詠稘麗美甲工作室 YCL Nail Studio｜台中北區凝膠美甲設計推薦｜客製化美甲 & 手足保養</title>
+    marquee {
+      background-color: #fff0f5;
+      color: #e86f94;
+      font-weight: bold;
+      padding: 10px;
+      font-size: 1rem;
+    }
 
-  <!-- ✅ 網站描述（強化搜尋結果摘要 + 社群預覽） -->
-  <meta name="description" content="台中北區美甲推薦｜詠稘麗 YCL Nail Studio 提供客製化凝膠美甲、手足保養、心理測驗色彩設計，打造妳專屬的療癒系指尖美學。預約制服務，2025 全新開幕。" />
+    header {
+      position: relative;
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: linear-gradient(to bottom, #fff0f5, #fffaf7);
+    }
 
-  <!-- ✅ 中英文關鍵字 -->
-  <meta name="keywords" content="
-    台中美甲, 台中北區美甲, 凝膠美甲, 手部保養, 足部保養, 美甲設計, 客製化美甲, 星座美甲, 幸運色美甲, 美甲心理測驗, 延甲, 彩繪設計, 美甲預約, 美甲推薦, 台中女生愛店, 
-    Taichung nail salon, gel nails, manicure, pedicure, nail care, custom nail art, nail extension, zodiac nails, horoscope nail design, subconscious color quiz, nail inspiration, YCL Nail Studio, Taichung nails, Taiwanese nail studio, 2025 nail trends
-  " />
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
 
-  <meta name="author" content="YCL Nail Studio 詠稘麗美甲工作室" />
+    .lang-switch a {
+      margin-left: 10px;
+      text-decoration: none;
+      color: #f09aae;
+      font-weight: bold;
+      border: 2px solid #f09aae;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background-color: white;
+    }
 
-  <!-- ✅ 社群分享：Open Graph (Facebook, LINE) -->
-  <meta property="og:title" content="詠稘麗 YCL Nail Studio｜台中北區客製美甲工作室推薦" />
-  <meta property="og:description" content="提供凝膠美甲、手足保養與創意色彩設計的美甲空間，2025年全新開幕，立即預約療癒妳的指尖。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://una1103.github.io/ycl_nail_studio/" />
-  <meta property="og:image" content="https://una1103.github.io/ycl_nail_studio/images/logo.jpg" />
-  <meta property="og:site_name" content="詠稘麗美甲工作室 YCL Nail Studio" />
+    header h1 {
+      font-size: 2.5rem;
+      color: #e86f94;
+      margin-bottom: 15px;
+    }
 
-  <!-- ✅ Twitter 卡片 -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="YCL Nail Studio｜Taichung Gel Nails & Custom Nail Art" />
-  <meta name="twitter:description" content="Creative nail design, gel art, and personalized color consulting in Taichung. Book now for a magical nail journey." />
-  <meta name="twitter:image" content="https://una1103.github.io/ycl_nail_studio/images/logo.jpg" />
+    header p {
+      font-size: 1.1rem;
+      color: #c97793;
+      margin-bottom: 25px;
+    }
 
-  <!-- ✅ Google Fonts 字體 -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+    .book-btn {
+      background-color: #f09aae;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .book-btn:hover {
+      background-color: #e86f94;
+    }
+
+    .image-block {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .image-block img {
+      max-width: 320px;
+      border-radius: 18px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      background-color: #fff;
+    }
+
+    .section {
+      flex: 1 1 300px;
+      max-width: 400px;
+      margin: 20px;
+      padding: 20px;
+    }
+
+    .section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: #e86f94;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      line-height: 1.8;
+    }
+
+    ul li::before {
+      content: '💅 ';
+    }
+
+    .quiz-btn {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 14px;
+      font-size: 1rem;
+      background-color: #fff0f5;
+      border: 2px solid #f09aae;
+      color: #e86f94;
+      border-radius: 30px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .quiz-btn:hover {
+      background-color: #ffe9f1;
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .contact-buttons a {
+      background-color: #f09aae;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-buttons a:hover {
+      background-color: #e86f94;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      color: #aaa;
+    }
+
+    iframe {
+      border-radius: 12px;
+      border: none;
+      width: 100%;
+      height: 300px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
