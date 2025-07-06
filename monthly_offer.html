@@ -3,27 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>次月優惠款｜YCL Nail Studio</title>
-
-  <!-- SEO -->
-  <meta name="description" content="每月15日揭曉次月優惠款！立即預約，搶先享受專屬設計優惠｜YCL Nail Studio｜詠稘麗美甲工作室 台中太平">
-  <meta name="keywords" content="美甲優惠, 凝膠優惠, 指甲設計特價, 美甲設計推薦, 台中美甲推薦, 台中太平美甲">
-  <meta name="author" content="YCL Nail Studio">
-  <link rel="canonical" href="https://una1103.github.io/ycl_nail_studio/monthly_offer.html">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="次月優惠款｜YCL Nail Studio" />
-  <meta property="og:description" content="每月15日揭曉次月限定優惠款，搶先預約人氣設計！" />
-  <meta property="og:image" content="https://una1103.github.io/ycl_nail_studio/images/offer-cover.jpg" />
-  <meta property="og:url" content="https://una1103.github.io/ycl_nail_studio/monthly_offer.html" />
-  <meta property="og:type" content="website" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://una1103.github.io/ycl_nail_studio/favicon.png" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
+  <title>次月優惠｜YCL Nail Studio</title>
+  <meta name="description" content="每月推出限定優惠款！立即預約體驗專屬妳的指尖魔法。" />
+  <meta name="keywords" content="美甲優惠, 次月主打, 特惠美甲, 台中美甲活動, 限定美甲款" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@400;600&display=swap" />
   <style>
     body {
       margin: 0;
@@ -32,85 +15,117 @@
       color: #444;
     }
     header {
-      text-align: center;
-      padding: 60px 20px 30px;
       background: linear-gradient(to bottom, #fff0f5, #fffaf7);
+      padding: 60px 20px 30px;
+      text-align: center;
     }
-    header h1 {
-      font-size: 2.2rem;
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .lang-switch a {
+      margin-left: 10px;
+      text-decoration: none;
+      color: #f09aae;
+      font-weight: bold;
+      border: 2px solid #f09aae;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background-color: white;
+    }
+    h1 {
       color: #e86f94;
+      font-size: 2rem;
       margin-bottom: 10px;
     }
-    header p {
-      font-size: 1.1rem;
-      color: #c97793;
+    .offer-block {
+      max-width: 720px;
+      margin: auto;
+      padding: 30px 20px;
+      background-color: #fff;
     }
-    .offer-section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .offer-section h2 {
+    .month-title {
+      font-size: 1.6rem;
       color: #e86f94;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-    .offer-section img {
-      max-width: 90%;
-      border-radius: 16px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      margin-top: 30px;
+      margin-bottom: 10px;
     }
     .offer-text {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #c97793;
     }
-    .cta-btn {
-      margin-top: 30px;
-      display: inline-block;
+    .back-link {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .back-link a {
       background-color: #f09aae;
       color: white;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-weight: bold;
+      padding: 12px 24px;
       text-decoration: none;
-      transition: background-color 0.3s ease;
+      border-radius: 30px;
+      font-size: 1rem;
     }
-    .cta-btn:hover {
+    .back-link a:hover {
       background-color: #e86f94;
     }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 30px 20px;
-      color: #aaa;
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>次月優惠款搶先看 💅</h1>
-  <p>每月15日準時更新｜掌握美甲流行趨勢</p>
+  <div class="lang-switch">
+    <a href="#" onclick="switchLang('zh')">中文</a>
+    <a href="#" onclick="switchLang('en')">EN</a>
+  </div>
+  <h1 id="title-zh">次月優惠主打款</h1>
+  <h1 id="title-en" class="hidden">Next Month's Featured Offer</h1>
 </header>
 
-<section class="offer-section">
-  <h2>✨ 2025 年 9 月人氣設計搶先揭曉！</h2>
-  <img src="https://una1103.github.io/ycl_nail_studio/images/monthly-design-sample.jpg" alt="9月美甲優惠款">
-  <div class="offer-text">
-    <p>9 月主題色為「星光豆沙」，結合優雅裸粉與金屬細閃，療癒又顯白 ✨</p>
-    <p><strong>優惠價：</strong>原價 $1250，特價 <span style="color:#e86f94;font-weight:bold;">$980</span>（含基礎保養）</p>
-    <p>限量優惠｜2025/09/01 至 09/30｜名額有限，預約請早！</p>
-    <p>每月15日搶先公開下月熱門款式，讓妳永遠走在流行前線。</p>
-  </div>
-  <a href="https://line.me/R/ti/p/%40166kslla" class="cta-btn">立即預約次月優惠款</a>
-</section>
+<div class="offer-block">
 
-<footer>
-  © 2025 YCL Nail Studio｜地址：411 台中市太平區宜佳街43號
-</footer>
+  <div id="zh-content">
+    <div>
+      <div class="month-title">🎁 2025年 8 月</div>
+      <div class="offer-text">✨ 貓眼 Cat Eye 系列限定優惠 $980（含手部基礎保養）</div>
+    </div>
+
+    <div>
+      <div class="month-title">📅 2025年 9 月</div>
+      <div class="offer-text">八月中即將揭曉，敬請期待！</div>
+    </div>
+  </div>
+
+  <div id="en-content" class="hidden">
+    <div>
+      <div class="month-title">🎁 August 2025</div>
+      <div class="offer-text">✨ Cat Eye Limited Design – Special Price: $980 (includes basic hand care)</div>
+    </div>
+
+    <div>
+      <div class="month-title">📅 September 2025</div>
+      <div class="offer-text">Revealing mid-August – Stay tuned!</div>
+    </div>
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">← 回首頁 / Back to Home</a>
+  </div>
+</div>
+
+<script>
+  function switchLang(lang) {
+    document.getElementById("zh-content").classList.toggle("hidden", lang !== "zh");
+    document.getElementById("en-content").classList.toggle("hidden", lang !== "en");
+    document.getElementById("title-zh").classList.toggle("hidden", lang !== "zh");
+    document.getElementById("title-en").classList.toggle("hidden", lang !== "en");
+  }
+</script>
 
 </body>
 </html>
