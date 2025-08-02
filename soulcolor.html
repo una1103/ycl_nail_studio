@@ -8,13 +8,13 @@
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
-      background-color: #fffaf5;
-      color: #333;
+      background-color: #fdfaf6;
+      color: #4a4a4a;
       text-align: center;
       padding: 20px;
     }
     h1 {
-      color: #e88bb3;
+      color: #4a4a4a;
       font-size: 2em;
     }
     .question {
@@ -33,6 +33,7 @@
       border-radius: 10px;
       overflow: hidden;
       width: 120px;
+      color: #4a4a4a;
     }
     .options input[type="radio"] {
       display: none;
@@ -42,19 +43,20 @@
       border-radius: 10px;
     }
     .options input[type="radio"]:checked + img {
-      border: 2px solid #e88bb3;
+      border: 2px solid #4a4a4a;
     }
     #result {
       display: none;
       margin-top: 30px;
-      background: #fff0f6;
+      background: #f1ece4;
       padding: 20px;
       border-radius: 15px;
       font-size: 1.2em;
+      color: #4a4a4a;
     }
     button {
       padding: 10px 20px;
-      background: #e88bb3;
+      background: #4a4a4a;
       color: white;
       border: none;
       border-radius: 8px;
@@ -63,7 +65,7 @@
       margin: 10px;
     }
     button:hover {
-      background: #d3709c;
+      background: #333333;
     }
     .nav-buttons {
       margin-top: 20px;
@@ -77,6 +79,7 @@
       font-size: 0.95em;
       margin-top: 5px;
       display: block;
+      color: #4a4a4a;
     }
   </style>
 </head>
@@ -168,18 +171,16 @@
       document.getElementById("q2text").innerText = isEnglish ? "Which image feels like it calls to your soul?" : "看到以下圖片，哪一張讓你有靈魂被召喚的感覺？";
       document.getElementById("submitBtn").innerText = isEnglish ? "✨ Show Result" : "✨ 查看結果";
 
-      // 更新圖片選項文字
       const labels = document.querySelectorAll(".option-label");
       labels.forEach((el, idx) => {
         el.textContent = imageLabels[lang][idx];
       });
 
-      // 導覽按鈕
       document.querySelectorAll(".nav-buttons button")[0].innerText = isEnglish ? "🔙 Back to Menu" : "🔙 返回選單";
       document.querySelectorAll(".nav-buttons button")[1].innerText = isEnglish ? "💅 Book Now" : "💅 立即預約";
     }
 
-    window.onload = () => toggleLang();  // 預設載入英文，可改為中文
+    window.onload = () => toggleLang();
 
     document.getElementById("quizForm").addEventListener("submit", function(e) {
       e.preventDefault();
