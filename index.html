@@ -37,15 +37,15 @@
     margin: 0;
     font-family: 'Baloo 2', 'Quicksand', sans-serif;
     background-color: #f7f3e9; /* 米白底 */
-    color: #4a4a4a; /* 主文字顏色：深灰 */
+    color: #4a4a4a;
   }
   marquee {
-    background-color: #f0eae2;
-    color: #a65d5d;
+    background-color: #dcdcdc;
+    color: #333;
     font-weight: bold;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
-    margin-top: 60px;
+    margin-top: 80px;
   }
   header {
     text-align: center;
@@ -69,7 +69,7 @@
   }
   header h1 {
     font-size: 2.5rem;
-    color: #a65d5d;
+    color: #444; /* 鐵灰 */
     margin-bottom: 15px;
   }
   header p {
@@ -78,8 +78,8 @@
     margin-bottom: 25px;
   }
   .book-btn {
-    background-color: #d9cfc0;
-    color: #4a4a4a;
+    background-color: #ccc;
+    color: #444;
     border: none;
     padding: 14px 32px;
     font-size: 1.1rem;
@@ -91,178 +91,73 @@
     display: inline-block;
   }
   .book-btn:hover {
-    background-color: #cfc2ad;
+    background-color: #b0b0b0;
   }
-  .image-block {
+    .section {
+    padding: 60px 20px;
     text-align: center;
-    padding: 40px 20px;
-  }
-  .image-block img {
-    max-width: 320px;
-    border-radius: 18px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  }
-  .sections {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 40px 20px;
-    background-color: #fff;
-  }
-  .section {
-    flex: 1 1 300px;
-    max-width: 400px;
-    margin: 20px;
-    padding: 20px;
   }
   .section h2 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    color: #a65d5d;
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 20px;
   }
-  ul {
-    list-style: none;
-    padding-left: 0;
-    line-height: 1.8;
-  }
-  ul li::before {
-    content: '💅 ';
-  }
-  .quiz-btn {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 14px;
+  .section p {
     font-size: 1rem;
-    background-color: #f0eae2;
-    border: 2px solid #a65d5d;
-    color: #a65d5d;
-    border-radius: 30px;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: bold;
+    color: #5a5a5a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
-  .quiz-btn:hover {
-    background-color: #e4d7c9;
-  }
-  .contact-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
-  }
-  .contact-buttons a {
-    background-color: #d9cfc0;
-    color: #4a4a4a;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    transition: background-color 0.3s ease;
-  }
-  .contact-buttons a:hover {
-    background-color: #cfc2ad;
+  .map-container {
+    margin-top: 40px;
+    max-width: 100%;
+    height: 350px;
   }
   footer {
     text-align: center;
-    font-size: 0.9rem;
     padding: 30px 20px;
-    color: #888;
+    background-color: #e0ddd8;
+    font-size: 0.9rem;
+    color: #333;
   }
-  iframe {
-    border-radius: 12px;
-    border: none;
-    width: 100%;
-    height: 300px;
-  }
-  @media (max-width: 768px) {
-    header h1 {
-      font-size: 2rem;
-    }
-  }
-</style>
+  </style>
 </head>
+
 <body>
-
-<marquee behavior="scroll" direction="left">
-  🎉 詠稘麗 YCL Nail Studio 將於 8/16 盛大開幕！每月15日推出次月優惠款，8月開幕慶到月底期間，來店消費即贈香薰一罐 💅｜行動美甲開放預約中，服務地區：台中太平區、台中西區、嘉義市區｜📍 目前地點：台中太平
-</marquee>
-
-<header>
   <div class="lang-switch">
-    <a href="index.html">中文</a>
-    <a href="en/index.html">EN</a>
-  </div>
-  <h1>YCL Nail Studio</h1>
-  <p>♡ 妳專屬的療癒系指尖魔法 ♡</p>
-  <a href="https://line.me/R/ti/p/%40166kslla" class="book-btn">立即預約</a>
-  <br><br>
-  <a href="monthly_offer.html" class="book-btn" style="background-color:#ffe9f1; color:#e86f94;">🎁 次月優惠</a>
-</header>
-
-<div class="sections">
-  <div class="section">
-    <h2>服務價目表</h2>
-    <ul>
-      <li><strong>手部</strong></li>
-      <li>純基礎保養 500</li>
-      <li>深層保養 1299</li>
-      <li>一般甲油 800（含基礎保養）</li>
-      <li>單色凝膠 1000（含基礎保養）</li>
-      <li>設計款 1250 起</li>
-    </ul>
-    <ul>
-      <li><strong>足部</strong></li>
-      <li>純基礎保養 800</li>
-      <li>一般甲油 1000（含基礎保養）</li>
-      <li>單色凝膠 1200（含基礎保養、可跳一色）</li>
-      <li>設計凝膠 1400 起</li>
-    </ul>
-    <ul>
-      <li><strong>設計</strong></li>
-      <li>延甲（單指）100</li>
-      <li>單指彩繪 30 起</li>
-      <li>飾品/貼紙（單指）10 起</li>
-      <li>鑽（單指）30 起</li>
-    </ul>
-    <ul>
-      <li><strong>卸甲</strong></li>
-      <li>本店卸甲 200（如續作則免）</li>
-      <li>他店卸甲 300</li>
-      <li>水晶卸甲 600</li>
-    </ul>
+    <a href="#">中文</a>
+    <a href="#">EN</a>
   </div>
 
-  <div class="section">
-    <h2>心理測驗趣味一下 🎀</h2>
-    <a href="soulcolor.html" class="quiz-btn">💖 靈魂色彩測驗</a>
-    <a href="subconscious.html" class="quiz-btn">🎨 潛意識選色遊戲</a>
-    <a href="zodiacgoddess.html" class="quiz-btn">🌟 星座女神守護力</a>
-  </div>
-</div>
+  <!-- 跑馬燈往下調整後不擋選單 -->
+  <marquee behavior="scroll" direction="left">🎉 YCL Nail Studio 2025.01.08 盛大開幕！歡迎預約手足保養與凝膠美甲服務 🌸 台中太平區宜佳街43號 🎀</marquee>
 
-<div class="section">
-  <h2>工作室在哪裡？📍</h2>
-  <iframe 
-    src="https://www.google.com/maps?q=台中市太平區宜佳街43號&output=embed" 
-    allowfullscreen 
-    loading="lazy">
-  </iframe>
-</div>
+  <header>
+    <h1>YCL Nail Studio</h1>
+    <p>詠稘麗美甲工作室｜用星座能量與療癒色彩，妝點你的每一根指尖。</p>
+    <a class="book-btn" href="https://www.instagram.com/ycl_nail.studio/" target="_blank">Instagram 預約</a>
+  </header>
 
-<div class="contact-buttons">
-  <a href="https://line.me/R/ti/p/%40166kslla">LINE</a>
-  <a href="https://www.instagram.com/ycl_nail.studio/" target="_blank">Instagram</a>
-  <a href="tel:0922828611">電話</a>
-  <a href="https://www.xiaohongshu.com/user/profile/5fd237d8000000000100bf64" target="_blank">小紅書</a>
-  <a href="https://www.tiktok.com/@ycl_nail.studio" target="_blank">TikTok</a>
-</div>
+  <section class="section">
+    <h2>服務項目</h2>
+    <p>專業凝膠美甲設計｜延甲設計｜手足保養｜星座能量指彩｜命定幸運色美甲<br>
+    使用日本凝膠品牌、預約制安靜空間，讓妳放鬆享受變美的過程。</p>
+  </section>
 
-<footer>
-  © 2025 YCL Nail Studio｜地址：411 台中市太平區宜佳街43號
-</footer>
+  <section class="section" style="background-color: #f0ede6;">
+    <h2>我們在哪裡？</h2>
+    <p>台中市太平區宜佳街43號，鄰近精武路與坪林森林公園，騎車方便，附近好停車。</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps?q=台中市太平區宜佳街43號&output=embed" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 YCL Nail Studio｜詠稘麗美甲工作室<br>
+    台中市太平區宜佳街43號<br>
+    Instagram：@ycl_nail.studio
+  </footer>
 
 </body>
-</html>
+</html>  
