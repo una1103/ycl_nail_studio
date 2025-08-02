@@ -33,156 +33,156 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Baloo 2', 'Quicksand', sans-serif;
-      background-color: #fffaf7;
-      color: #444;
-    }
-    marquee {
-      background-color: #fff0f5;
-      color: #e86f94;
-      font-weight: bold;
-      padding: 10px;
-      font-size: 1rem;
-      margin-top: 60px; /* ✅ 跑馬燈向下移動一點 */
-    }
-    header {
-      text-align: center;
-      padding: 80px 20px 40px;
-      background: linear-gradient(to bottom, #fff0f5, #fffaf7);
-    }
-    .lang-switch {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .lang-switch a {
-      margin-left: 10px;
-      text-decoration: none;
-      color: #f09aae;
-      font-weight: bold;
-      border: 2px solid #f09aae;
-      padding: 6px 12px;
-      border-radius: 20px;
-      background-color: white;
-    }
+  body {
+    margin: 0;
+    font-family: 'Baloo 2', 'Quicksand', sans-serif;
+    background-color: #f7f3e9; /* 米白底 */
+    color: #4a4a4a; /* 主文字顏色：深灰 */
+  }
+  marquee {
+    background-color: #f0eae2;
+    color: #a65d5d;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 60px;
+  }
+  header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    background: linear-gradient(to bottom, #f0eae2, #f7f3e9);
+  }
+  .lang-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  .lang-switch a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #4a4a4a;
+    font-weight: bold;
+    border: 2px solid #4a4a4a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: white;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    color: #a65d5d;
+    margin-bottom: 15px;
+  }
+  header p {
+    font-size: 1.1rem;
+    color: #7a6d66;
+    margin-bottom: 25px;
+  }
+  .book-btn {
+    background-color: #d9cfc0;
+    color: #4a4a4a;
+    border: none;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease;
+    display: inline-block;
+  }
+  .book-btn:hover {
+    background-color: #cfc2ad;
+  }
+  .image-block {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .image-block img {
+    max-width: 320px;
+    border-radius: 18px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  .sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #fff;
+  }
+  .section {
+    flex: 1 1 300px;
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+  }
+  .section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #a65d5d;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1.8;
+  }
+  ul li::before {
+    content: '💅 ';
+  }
+  .quiz-btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 14px;
+    font-size: 1rem;
+    background-color: #f0eae2;
+    border: 2px solid #a65d5d;
+    color: #a65d5d;
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .quiz-btn:hover {
+    background-color: #e4d7c9;
+  }
+  .contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+  }
+  .contact-buttons a {
+    background-color: #d9cfc0;
+    color: #4a4a4a;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+  }
+  .contact-buttons a:hover {
+    background-color: #cfc2ad;
+  }
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 30px 20px;
+    color: #888;
+  }
+  iframe {
+    border-radius: 12px;
+    border: none;
+    width: 100%;
+    height: 300px;
+  }
+  @media (max-width: 768px) {
     header h1 {
-      font-size: 2.5rem;
-      color: #e86f94;
-      margin-bottom: 15px;
+      font-size: 2rem;
     }
-    header p {
-      font-size: 1.1rem;
-      color: #c97793;
-      margin-bottom: 25px;
-    }
-    .book-btn {
-      background-color: #f09aae;
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease;
-      display: inline-block;
-    }
-    .book-btn:hover {
-      background-color: #e86f94;
-    }
-    .image-block {
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .image-block img {
-      max-width: 320px;
-      border-radius: 18px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
-    .sections {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 40px 20px;
-      background-color: #fff;
-    }
-    .section {
-      flex: 1 1 300px;
-      max-width: 400px;
-      margin: 20px;
-      padding: 20px;
-    }
-    .section h2 {
-      font-size: 1.6rem;
-      margin-bottom: 15px;
-      color: #e86f94;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-      line-height: 1.8;
-    }
-    ul li::before {
-      content: '💅 ';
-    }
-    .quiz-btn {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 14px;
-      font-size: 1rem;
-      background-color: #fff0f5;
-      border: 2px solid #f09aae;
-      color: #e86f94;
-      border-radius: 30px;
-      text-align: center;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .quiz-btn:hover {
-      background-color: #ffe9f1;
-    }
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 20px;
-    }
-    .contact-buttons a {
-      background-color: #f09aae;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      transition: background-color 0.3s ease;
-    }
-    .contact-buttons a:hover {
-      background-color: #e86f94;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 30px 20px;
-      color: #aaa;
-    }
-    iframe {
-      border-radius: 12px;
-      border: none;
-      width: 100%;
-      height: 300px;
-    }
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
