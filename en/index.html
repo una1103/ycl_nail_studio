@@ -2,57 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YCL Nail Studio | Playful and Gentle Nail Art</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YCL Nail Studio｜Your Healing Nail Haven</title>
+
+  <!-- SEO -->
+  <meta name="description" content="YCL Nail Studio｜A high-quality nail salon in Taiping District, Taichung. Specializing in gel nails, nail art, hand and foot care, and zodiac-inspired designs." />
+  <meta name="keywords" content="YCL Nail Studio, Taichung nail salon, gel nails Taichung, best nail salon, zodiac nail design, Taiping gel nails, hand care, foot care, astrology nails, manicure Taichung, Taichung beauty" />
+  <meta name="author" content="YCL Nail Studio" />
+  <link rel="canonical" href="https://una1103.github.io/ycl_nail_studio/en/index.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="YCL Nail Studio｜Your Healing Nail Haven" />
+  <meta property="og:description" content="Astrology-inspired nail art & professional care in Taichung. Book your healing nail experience today." />
+  <meta property="og:image" content="https://una1103.github.io/ycl_nail_studio/images/logo.jpg" />
+  <meta property="og:url" content="https://una1103.github.io/ycl_nail_studio/en/index.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="YCL Nail Studio｜Your Healing Nail Haven" />
+  <meta name="twitter:description" content="Professional gel nails & nail art in Taichung." />
+  <meta name="twitter:image" content="https://una1103.github.io/ycl_nail_studio/images/logo.jpg" />
+
+  <link rel="icon" type="image/png" href="https://una1103.github.io/ycl_nail_studio/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    /* 你原本的樣式全保留 */
     body {
       margin: 0;
       font-family: 'Baloo 2', 'Quicksand', sans-serif;
-      background-color: #fffaf7;
-      color: #444;
+      background-color: #f7f3e9;
+      color: #4a4a4a;
     }
-
+    marquee {
+      background-color: #5a5a5a;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 12px;
+      font-size: 1rem;
+      margin-top: 80px;
+    }
     header {
-      position: relative;
       text-align: center;
       padding: 80px 20px 40px;
-      background: linear-gradient(to bottom, #fff0f5, #fffaf7);
+      background: linear-gradient(to bottom, #f0eae2, #f7f3e9);
     }
-
     .lang-switch {
       position: absolute;
       top: 20px;
       right: 20px;
     }
-
     .lang-switch a {
       margin-left: 10px;
       text-decoration: none;
-      color: #f09aae;
+      color: #4a4a4a;
       font-weight: bold;
-      border: 2px solid #f09aae;
+      border: 2px solid #4a4a4a;
       padding: 6px 12px;
       border-radius: 20px;
       background-color: white;
     }
-
     header h1 {
       font-size: 2.5rem;
-      color: #e86f94;
+      color: #5a5a5a;
       margin-bottom: 15px;
     }
-
     header p {
       font-size: 1.1rem;
-      color: #c97793;
+      color: #7a6d66;
       margin-bottom: 25px;
     }
-
     .book-btn {
-      background-color: #f09aae;
-      color: white;
+      background-color: #5a5a5a;
+      color: #ffffff;
       border: none;
       padding: 14px 32px;
       font-size: 1.1rem;
@@ -61,23 +87,20 @@
       text-decoration: none;
       box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
       transition: background-color 0.3s ease;
+      display: inline-block;
     }
-
     .book-btn:hover {
-      background-color: #e86f94;
+      background-color: #4a4a4a;
     }
-
     .image-block {
       text-align: center;
       padding: 40px 20px;
     }
-
     .image-block img {
       max-width: 320px;
       border-radius: 18px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
     }
-
     .sections {
       display: flex;
       flex-wrap: wrap;
@@ -85,50 +108,43 @@
       padding: 40px 20px;
       background-color: #fff;
     }
-
     .section {
       flex: 1 1 300px;
       max-width: 400px;
       margin: 20px;
       padding: 20px;
     }
-
     .section h2 {
       font-size: 1.6rem;
       margin-bottom: 15px;
-      color: #e86f94;
+      color: #a65d5d;
     }
-
     ul {
       list-style: none;
       padding-left: 0;
       line-height: 1.8;
     }
-
     ul li::before {
       content: '💅 ';
     }
-
     .quiz-btn {
       display: block;
       width: 100%;
       margin: 10px 0;
       padding: 14px;
       font-size: 1rem;
-      background-color: #fff0f5;
-      border: 2px solid #f09aae;
-      color: #e86f94;
+      background-color: #f0eae2;
+      border: 2px solid #a65d5d;
+      color: #a65d5d;
       border-radius: 30px;
       text-align: center;
       cursor: pointer;
       text-decoration: none;
       font-weight: bold;
     }
-
     .quiz-btn:hover {
-      background-color: #ffe9f1;
+      background-color: #e4d7c9;
     }
-
     .contact-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -136,35 +152,30 @@
       gap: 15px;
       padding: 20px;
     }
-
     .contact-buttons a {
-      background-color: #f09aae;
-      color: white;
+      background-color: #d9cfc0;
+      color: #4a4a4a;
       padding: 10px 20px;
       text-decoration: none;
       border-radius: 30px;
       font-size: 0.95rem;
       transition: background-color 0.3s ease;
     }
-
     .contact-buttons a:hover {
-      background-color: #e86f94;
+      background-color: #cfc2ad;
     }
-
     footer {
       text-align: center;
       font-size: 0.9rem;
       padding: 30px 20px;
-      color: #aaa;
+      color: #888;
     }
-
     iframe {
       border-radius: 12px;
       border: none;
       width: 100%;
       height: 300px;
     }
-
     @media (max-width: 768px) {
       header h1 {
         font-size: 2rem;
@@ -174,81 +185,83 @@
 </head>
 <body>
 
-  <header>
-    <div class="lang-switch">
-      <a href="../index.html">中文</a>
-      <a href="index.html">EN</a>
-    </div>
-    <h1>YCL Nail Studio</h1>
-    <p>♡ Your Personal Healing Nail Magic ♡</p>
-    <a href="https://line.me/R/ti/p/%40166kslla" class="book-btn">Book Now</a>
-  </header>
+<marquee behavior="scroll" direction="left">
+  🎉 YCL Nail Studio Grand Opening on 8/16! Monthly nail art specials announced on the 15th each month. Celebrate August with us and receive a free scented balm! 💅｜Mobile service available in Taiping, West District Taichung, and Chiayi｜📍 Currently located in Taiping, Taichung.
+</marquee>
 
-  <div class="image-block">
-    <img src="../images/logo.jpg" alt="Cute nail design">
+<header>
+  <div class="lang-switch">
+    <a href="../index.html">中文</a>
+    <a href="index.html">EN</a>
   </div>
+  <h1>YCL Nail Studio</h1>
+  <p>♡ Your Personalized Healing Nail Magic ♡</p>
+  <a href="https://line.me/R/ti/p/%40166kslla" class="book-btn">Book Now</a>
+  <br><br>
+  <a href="../monthly_offer.html" class="book-btn">🎁 Monthly Specials</a>
+</header>
 
-  <div class="sections">
-    <div class="section">
-      <h2>Price List</h2>
-      <ul>
-        <li>💖 <strong>Hands</strong></li>
-        <li>Basic Care Only - $500</li>
-        <li>Deep Care - $1299</li>
-        <li>Regular Polish - $800 (incl. basic care)</li>
-        <li>Gel Color - $1000 (incl. basic care)</li>
-        <li>Design Style - from $1250</li>
-      </ul>
-      <ul>
-        <li>🦶 <strong>Feet</strong></li>
-        <li>Basic Care Only - $800</li>
-        <li>Regular Polish - $1000 (incl. basic care)</li>
-        <li>Gel Color - $1200 (incl. basic care, up to 2 colors)</li>
-        <li>Design Gel - from $1400</li>
-      </ul>
-      <ul>
-        <li>🎨 <strong>Design</strong></li>
-        <li>Extension (per finger) - $100</li>
-        <li>Nail Art (per finger) - from $30</li>
-        <li>Decoration/Sticker (per finger) - from $10</li>
-        <li>Rhinestone (per finger) - from $30</li>
-      </ul>
-      <ul>
-        <li>🧼 <strong>Removal</strong></li>
-        <li>From YCL - $200 (free with new set)</li>
-        <li>From other salons - $300</li>
-        <li>Acrylic Removal - $600</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Fun Personality Quizzes 🎀</h2>
-      <a href="../soulcolor.html" class="quiz-btn">💖 Soul Color Test</a>
-      <a href="../subconscious.html" class="quiz-btn">🎨 Subconscious Color Game</a>
-      <a href="../zodiacgoddess.html" class="quiz-btn">🌟 Zodiac Goddess Quiz</a>
-    </div>
+<div class="sections">
+  <div class="section">
+    <h2>Service Menu</h2>
+    <ul>
+      <li><strong>Hands</strong></li>
+      <li>Basic Care 500</li>
+      <li>Deep Care 1299</li>
+      <li>Regular Polish 800 (includes care)</li>
+      <li>Gel Polish 1000 (includes care)</li>
+      <li>Design Nails from 1250</li>
+    </ul>
+    <ul>
+      <li><strong>Feet</strong></li>
+      <li>Basic Care 800</li>
+      <li>Regular Polish 1000 (includes care)</li>
+      <li>Gel Polish 1200 (includes care, 2 colors)</li>
+      <li>Design Gel from 1400</li>
+    </ul>
+    <ul>
+      <li><strong>Add-ons</strong></li>
+      <li>Extension (per finger) 100</li>
+      <li>Nail Art (per finger) from 30</li>
+      <li>Decals/Jewels (per finger) from 10</li>
+      <li>Diamonds (per finger) from 30</li>
+    </ul>
+    <ul>
+      <li><strong>Removal</strong></li>
+      <li>In-house Gel Removal 200 (free with new set)</li>
+      <li>Other Salons’ Gel Removal 300</li>
+      <li>Acrylic Removal 600</li>
+    </ul>
   </div>
 
   <div class="section">
-    <h2>Where Are We? 📍</h2>
-    <iframe 
-      src="https://www.google.com/maps?q=404台中市北區精武路266-7號&output=embed" 
-      allowfullscreen 
-      loading="lazy">
-    </iframe>
+    <h2>Fun Quizzes 🎀</h2>
+    <a href="../soulcolor.html" class="quiz-btn">💖 Soul Color Test</a>
+    <a href="../subconscious.html" class="quiz-btn">🎨 Subconscious Color Game</a>
+    <a href="../zodiacgoddess.html" class="quiz-btn">🌟 Zodiac Goddess Guide</a>
   </div>
+</div>
 
-  <div class="contact-buttons">
-    <a href="https://line.me/R/ti/p/%40166kslla">LINE</a>
-    <a href="https://www.instagram.com/ycl_nail.studio/" target="_blank">Instagram</a>
-    <a href="tel:0922828611">Call</a>
-    <a href="https://www.xiaohongshu.com/user/profile/5fd237d8000000000100bf64" target="_blank">Xiaohongshu</a>
-    <a href="https://www.tiktok.com/@ycl_nail.studio?_t=ZS-8xI7QkS5OOA&_r=1" target="_blank">TikTok</a>
-  </div>
+<div class="section">
+  <h2>Where Are We? 📍</h2>
+  <iframe 
+    src="https://www.google.com/maps?q=台中市太平區宜佳街43號&output=embed" 
+    allowfullscreen 
+    loading="lazy">
+  </iframe>
+</div>
 
-  <footer>
-    © 2025 YCL Nail Studio | Address: No. 266-7, Jingwu Rd., North District, Taichung City 404, Taiwan
-  </footer>
+<div class="contact-buttons">
+  <a href="https://line.me/R/ti/p/%40166kslla">LINE</a>
+  <a href="https://www.instagram.com/ycl_nail.studio/" target="_blank">Instagram</a>
+  <a href="tel:0922828611">Call</a>
+  <a href="https://www.xiaohongshu.com/user/profile/5fd237d8000000000100bf64" target="_blank">Xiaohongshu</a>
+  <a href="https://www.tiktok.com/@ycl_nail.studio" target="_blank">TikTok</a>
+</div>
+
+<footer>
+  © 2025 YCL Nail Studio｜Address: No. 43, Yijia Street, Taiping Dist., Taichung City, Taiwan
+</footer>
 
 </body>
 </html>
