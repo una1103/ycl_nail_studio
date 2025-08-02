@@ -1,224 +1,132 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>潛意識色彩測驗｜YCL Nail Studio</title>
-  <meta name="keywords" content="詠稘麗美甲工作室, YCL Nail Studio, 台中美甲, 台中北區美甲, 美甲預約, 凝膠美甲, 美甲設計, 高質感美甲, 手部保養, 足部保養, 指甲彩繪, 延甲設計, 客製化美甲, 台中美甲推薦, 凝膠卸甲, 星座美甲, 幸運色美甲, 美甲心理測驗, 台中女生愛店, 台中療癒美甲" />
+  <meta name="description" content="透過色彩測驗探索您的潛意識指尖喜好，打造專屬風格。" />
+  <meta name="keywords" content="潛意識, 色彩測驗, 美甲風格, 指尖心理測驗, 專屬美甲建議, YCL Nail Studio, Taichung nail salon, Taichung nail art, Gel nails Taichung, Nail appointment Taichung, Taichung manicure and pedicure, Taichung gel nail designs, Hand care Taichung, Foot care Taichung, Nail extension Taichung, Astrology nail art, Lucky color nails, Best nail salon in Taichung, Popular nail salon for girls in Taichung, Taiwan nail studio, Zodiac nails, Aesthetic nail salon Taichung, Nail art in Taiping District, Taiping gel nails, Manicure Yijia Street, Pedicure Yijia Street, Nail extension in Taiping, Foot care in Taiping, Hand care in Taiping, Jingwu Road nail salon, Taiping Instagrammable nail salon, Forest Park Taiping nail art, Taichung girls’ favorite nail spot, Yichung shopping district nail salon, Trendy nail designs in Taichung" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@400;600&display=swap" />
   <style>
     body {
-      font-family: 'Microsoft JhengHei', sans-serif;
-      background-color: #fffaf6;
-      color: #333;
-      text-align: center;
       margin: 0;
-      padding: 0;
+      font-family: 'Baloo 2', 'Quicksand', sans-serif;
+      background-color: #fdf7f0; /* 米白背景 */
+      color: #444444; /* 鐵灰色文字 */
+    }
+
+    header {
+      background: linear-gradient(to bottom, #fcefe8, #fdf7f0);
+      padding: 60px 20px 30px;
+      text-align: center;
     }
 
     h1 {
+      color: #704e4e;
       font-size: 2rem;
-      color: #c89f6d;
-      margin-top: 30px;
+      margin-bottom: 10px;
     }
 
-    p {
-      font-size: 1.1rem;
-      margin: 10px 20px 30px;
-    }
-
-    .images {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 0 20px;
-    }
-
-    .image-card {
-      width: 140px;
-      cursor: pointer;
-      border: 3px solid transparent;
+    .test-container {
+      max-width: 720px;
+      margin: auto;
+      padding: 30px 20px;
+      background-color: #ffffff;
       border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s, border-color 0.3s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
-    .image-card:hover {
-      transform: scale(1.05);
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #704e4e;
     }
 
-    .image-card.selected {
-      border-color: #c89f6d;
-    }
-
-    .image-card img {
-      width: 100%;
-      height: auto;
+    .options button {
       display: block;
-    }
-
-    .label {
-      padding: 8px;
-      background-color: #fff8ee;
-      font-weight: bold;
-    }
-
-    .submit-btn {
-      margin-top: 30px;
-      padding: 12px 24px;
+      width: 100%;
+      margin: 10px 0;
+      padding: 14px;
+      background-color: #ffffff;
+      color: #704e4e;
+      border: 2px solid #c5a69f;
+      border-radius: 8px;
       font-size: 1rem;
-      background-color: #c89f6d;
-      color: white;
-      border: none;
-      border-radius: 30px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #f6eae3;
     }
 
     .result {
+      font-size: 1.1rem;
+      margin-top: 30px;
+      color: #88645f;
+    }
+
+    .back-link {
+      text-align: center;
       margin-top: 40px;
-      font-size: 1.2rem;
-      color: #444;
-      padding: 0 20px;
     }
 
-    .buttons {
-      margin-top: 20px;
-    }
-
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      border-radius: 24px;
-      border: 2px solid #c89f6d;
+    .back-link a {
+      background-color: #c5a69f;
+      color: white;
+      padding: 12px 24px;
       text-decoration: none;
-      color: #c89f6d;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      border-radius: 30px;
+      font-size: 1rem;
     }
 
-    .buttons a:hover {
-      background-color: #f8f1e8;
-    }
-
-    .lang-toggle {
-      position: fixed;
-      top: 10px;
-      right: 10px;
+    .back-link a:hover {
+      background-color: #a9837c;
     }
   </style>
 </head>
 <body>
 
-  <div class="lang-toggle">
-    <button onclick="toggleLang()">EN / 中</button>
+<header>
+  <h1>潛意識色彩測驗</h1>
+</header>
+
+<div class="test-container">
+  <div class="question" id="question">如果你今天的心情是一種顏色，你覺得是？</div>
+  <div class="options">
+    <button onclick="showResult('pink')">粉嫩粉紅</button>
+    <button onclick="showResult('blue')">靜謐藍色</button>
+    <button onclick="showResult('green')">療癒綠色</button>
+    <button onclick="showResult('black')">沉穩黑色</button>
   </div>
 
-  <h1 id="title">潛意識色彩測驗</h1>
-  <p id="desc">憑直覺選一張圖片，看看妳的內心正在呼喚什麼顏色～</p>
+  <div class="result" id="result"></div>
 
-  <div class="images" id="image-options">
-    <div class="image-card" data-color="red">
-      <img src="images/red.jpg" alt="紅色選擇" />
-      <div class="label" data-zh="火焰裡閃爍的金屬" data-en="Metal glimmering in fire">火焰裡閃爍的金屬</div>
-    </div>
-    <div class="image-card" data-color="blue">
-      <img src="images/blue.jpg" alt="藍色選擇" />
-      <div class="label" data-zh="深海裡的光點" data-en="Gleam in the deep sea">深海裡的光點</div>
-    </div>
-    <div class="image-card" data-color="green">
-      <img src="images/green.jpg" alt="綠色選擇" />
-      <div class="label" data-zh="雨後濕潤的森林" data-en="Forest after rain">雨後濕潤的森林</div>
-    </div>
-    <div class="image-card" data-color="purple">
-      <img src="images/purple.jpg" alt="紫色選擇" />
-      <div class="label" data-zh="紫水晶寶石" data-en="Amethyst crystal">紫水晶寶石</div>
-    </div>
+  <div class="back-link">
+    <a href="index.html">← 回首頁</a>
   </div>
+</div>
 
-  <button class="submit-btn" id="submit">看結果</button>
-
-  <div id="result" class="result" style="display:none;"></div>
-
-  <div class="buttons" id="actions" style="display:none;">
-    <a href="index.html" id="homeBtn">返回首頁</a>
-    <a href="https://line.me/R/ti/p/%40166kslla" target="_blank" id="bookBtn">立即預約</a>
-  </div>
-
-  <script>
-    let isEnglish = false;
-
-    const cards = document.querySelectorAll(".image-card");
-    let selectedCard = null;
-
-    const resultTexts = {
-      red: {
-        zh: "妳內心渴望熱情與力量！推薦【紅色貓眼設計】，展現妳的自信與魅力♡",
-        en: "You crave passion and power! Try red cat-eye nails to show your confidence and charm ♡"
-      },
-      blue: {
-        zh: "妳需要的是安定與沉靜，試試【深海藍暈染款】，讓心平靜又優雅～",
-        en: "You seek calm and peace. Try deep blue gradient designs for a serene, elegant vibe."
-      },
-      green: {
-        zh: "妳想要自然療癒的能量，【抹茶綠簡約風】就是妳的心靈spa！",
-        en: "You long for healing nature. Matcha green minimalist nails are your soul's spa!"
-      },
-      purple: {
-        zh: "妳現在正處於轉換期，【紫光璀璨設計】能為妳帶來靈感與守護！",
-        en: "You’re in a time of change. Sparkling violet nails will bring you inspiration and protection!"
-      }
-    };
-
-    cards.forEach(card => {
-      card.addEventListener("click", () => {
-        cards.forEach(c => c.classList.remove("selected"));
-        card.classList.add("selected");
-        selectedCard = card.getAttribute("data-color");
-      });
-    });
-
-    document.getElementById("submit").addEventListener("click", () => {
-      const resultDiv = document.getElementById("result");
-      const actions = document.getElementById("actions");
-
-      if (!selectedCard) {
-        resultDiv.innerHTML = isEnglish ? "Please select a picture!" : "請選擇一張圖片喔～";
-        resultDiv.style.display = "block";
-        actions.style.display = "none";
-        return;
-      }
-
-      const resultText = resultTexts[selectedCard][isEnglish ? "en" : "zh"];
-      resultDiv.innerHTML = resultText;
-      resultDiv.style.display = "block";
-      actions.style.display = "block";
-    });
-
-    function toggleLang() {
-      isEnglish = !isEnglish;
-
-      document.getElementById("title").innerText = isEnglish ? "Subconscious Color Test" : "潛意識色彩測驗";
-      document.getElementById("desc").innerText = isEnglish
-        ? "Choose the image that calls to your subconscious!"
-        : "憑直覺選一張圖片，看看妳的內心正在呼喚什麼顏色～";
-      document.getElementById("submit").innerText = isEnglish ? "Show Result" : "看結果";
-      document.getElementById("homeBtn").innerText = isEnglish ? "Back to Menu" : "返回首頁";
-      document.getElementById("bookBtn").innerText = isEnglish ? "Book Now" : "立即預約";
-
-      document.querySelectorAll(".label").forEach(label => {
-        label.innerText = isEnglish ? label.getAttribute("data-en") : label.getAttribute("data-zh");
-      });
-
-      const resultDiv = document.getElementById("result");
-      if (resultDiv.innerText) {
-        if (selectedCard) {
-          resultDiv.innerText = resultTexts[selectedCard][isEnglish ? "en" : "zh"];
-        }
-      }
+<script>
+  function showResult(color) {
+    let message = '';
+    switch(color) {
+      case 'pink':
+        message = '你渴望溫柔和被關愛，適合甜美系粉嫩系指彩。';
+        break;
+      case 'blue':
+        message = '你追求內心平靜，推薦霧感藍灰或簡約冷色系。';
+        break;
+      case 'green':
+        message = '你注重身心療癒，適合自然系、植感綠色調。';
+        break;
+      case 'black':
+        message = '你散發穩重與神秘，適合經典黑或高冷金屬色系。';
+        break;
     }
-  </script>
+    document.getElementById("result").textContent = message;
+  }
+</script>
 
 </body>
 </html>
