@@ -1,211 +1,256 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>YCL Nails — 專屬美甲心理測驗</title>
-<meta name="description" content="掃QR線上做測驗，得到專屬美甲款式、顏色與暖心祝福。適合第一次不知道要做什麼款式的客人。" />
-<style>
-:root{
-  --bg: #f0ebe8;
-  --card: #fdfcf9;
-  --accent: #9aa5b1;
-  --muted: #5a5f6a;
-  --glass: rgba(255,255,255,0.6);
-  --progress-start: #c5c8cd;
-  --progress-end: #a0a9b3;
-}
-*{box-sizing:border-box;font-family:-apple-system, BlinkMacSystemFont,'Noto Sans TC','Microsoft JhengHei','Helvetica Neue',Arial;}
-html,body{height:100%;margin:0;background:linear-gradient(180deg,#f0ebe8 0%,#e2e6eb 100%);color:#222;}
-.wrap{max-width:880px;margin:28px auto;padding:20px;}
-header{display:flex;align-items:center;gap:16px;padding:10px 0;}
-.logo{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,#d8d3cb,#c9d0d8);display:flex;align-items:center;justify-content:center;font-weight:700;color:#47525c;}
-h1{font-size:20px;margin:0;}
-p.lead{margin:6px 0 18px;color:var(--muted);}
-.card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 6px 30px rgba(8,12,20,0.06);}
-.question{margin-bottom:18px;}
-.q-number{font-weight:700;color:var(--accent);}
-.q-text{margin:6px 0 12px;font-size:16px;}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-label.option{display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:10px;border:1px solid #dcdcdc;background:linear-gradient(180deg,#fdfcf9,#f7f6f4);cursor:pointer;transition:0.3s;}
-label.option:hover{background:linear-gradient(180deg,#ece8e5,#e2e6eb);}
-label.option input{margin-top:4px;}
-.controls{display:flex;justify-content:space-between;align-items:center;margin-top:18px;}
-button{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;}
-button.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(154,165,177,0.45);}
-.progress{height:8px;background:#e1e1e1;border-radius:8px;overflow:hidden;}
-.progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--progress-start),var(--progress-end));width:0%;}
-.result{padding:16px;border-radius:12px;position:relative;overflow:hidden;}
-.result h2{margin:0 0 8px;}
-.share-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
-.small{font-size:13px;color:var(--muted);}
-footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px;}
-@media (max-width:600px){.options{grid-template-columns:1fr}.logo{width:58px;height:58px}}
-canvas#fireworks{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YCL Nails — 專屬美甲心理測驗</title>
+  <meta name="description" content="掃QR線上做測驗，得到專屬美甲款式、顏色與暖心祝福。適合第一次不知道要做什麼款式的客人。" />
+  <style>
+    :root{
+      --bg: #f2f0eb;
+      --card:#ffffff;
+      --accent:#8c94a0;
+      --muted:#6b6b6b;
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box;font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Arial;}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#f2f0eb 0%,#d8dbe0 100%);color:#222;overflow-x:hidden;}
+    .wrap{max-width:880px;margin:28px auto;padding:20px;position:relative;z-index:1}
+    header{display:flex;align-items:center;gap:16px;padding:10px 0}
+    .logo{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,#c7c5bd,#d2d0c8);display:flex;align-items:center;justify-content:center;font-weight:700;color:#555}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 6px 30px rgba(8,12,20,0.06);}
+    .question{margin-bottom:18px}
+    .q-number{font-weight:700;color:var(--accent)}
+    .q-text{margin:6px 0 12px;font-size:16px}
+    .options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    label.option{display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:10px;border:1px solid #e0dee3;background:linear-gradient(180deg,#fdfdfd,#f7f7f7);cursor:pointer}
+    label.option input{margin-top:4px}
+    .controls{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+    button{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+    button.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(140,148,160,0.45)}
+    .progress{height:8px;background:#e8e8e8;border-radius:8px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,#a0a0b0,#d0cfd5);width:0%}
+    .result{padding:16px;border-radius:12px}
+    .result h2{margin:0 0 8px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:20px;background:rgba(0,0,0,0.06);font-size:13px;margin-right:8px}
+    .share-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+    canvas#fireworks{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+    @media (max-width:600px){.options{grid-template-columns:1fr}.logo{width:58px;height:58px}}
+  </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <div class="logo">YCL</div>
-  <div>
-    <h1>YCL Nails — 專屬美甲心理測驗</h1>
-    <p class="lead">誠實回答 5 題，我們會像閨蜜一樣溫柔告訴妳：妳的【命定美甲款式】、幸運色與暖心祝福 ✨</p>
-  </div>
-</header>
-
-<section class="card" id="quizCard">
-  <div id="contentArea"></div>
-  <div class="controls" id="controls">
-    <div style="flex:1">
-      <div class="progress" aria-hidden><i id="progBar"></i></div>
-    </div>
-    <div style="width:8px"></div>
-    <button id="prevBtn" class="ghost" style="visibility:hidden">上一步</button>
-    <button id="nextBtn">下一步</button>
-  </div>
-</section>
-
-<footer>
-  <div class="small">完成後可重新測驗或分享給朋友，讓她們也被寵愛 💅</div>
-</footer>
-</div>
-
-<canvas id="fireworks"></canvas>
-
-<script>
-// 問題列表（5題）
-const questions = [
-  {id:1, text:"如果週末妳終於有一天屬於自己，可以做最想做的事，妳會選：", choices:[
-    {key:'pink', text:'賴在床上耍廢、追劇、喝奶茶'},
-    {key:'yellow', text:'和好姐妹出去逛街、下午茶'},
-    {key:'blue', text:'去戶外散步、感受大自然'},
-    {key:'purple', text:'嘗試新事物，例如手作、課程或挑戰新菜色'}
-  ]},
-  {id:2, text:"當妳遇到壓力時，最想要什麼樣的力量支持？", choices:[
-    {key:'nude', text:'溫柔的擁抱和安慰'},
-    {key:'yellow', text:'開心的笑聲和陪伴'},
-    {key:'blue', text:'平靜和安定的能量'},
-    {key:'red', text:'自信與勇氣，能果斷前進'}
-  ]},
-  {id:3, text:"如果有人送妳花，妳最希望收到哪一種？", choices:[
-    {key:'pink', text:'粉色玫瑰（浪漫甜美）'},
-    {key:'yellow', text:'向日葵（陽光活力）'},
-    {key:'white', text:'白百合（純淨優雅）'},
-    {key:'purple', text:'紫色鬱金香（神秘高貴）'}
-  ]},
-  {id:4, text:"妳心中的「完美假期」是：", choices:[
-    {key:'blue', text:'海邊吹風、腳踩沙灘'},
-    {key:'nude', text:'在咖啡廳裡讀書或聊天'},
-    {key:'green', text:'到山林小木屋靜靜休息'},
-    {key:'red', text:'參加一場熱鬧派對'}
-  ]},
-  {id:5, text:"妳覺得朋友們最常誇妳什麼？", choices:[
-    {key:'pink', text:'溫柔體貼，像小太陽一樣溫暖'},
-    {key:'yellow', text:'活潑有趣，大家都喜歡跟妳在一起'},
-    {key:'green', text:'穩重可靠，讓人安心信任'},
-    {key:'black', text:'有氣場又有魅力，走到哪都發光'}
-  ]}
-];
-
-const answers = {
-  pink: "🌸 妳適合 **粉嫩浪漫風美甲**！<br><br> 這個顏色是妳近期的幸運色，能帶來愛與溫柔的能量，讓妳在關係裡更容易被呵護與珍惜。<br> 妳散發的氣場會讓身邊的人都想守護妳，妳值得被愛、被誇讚，因為妳真的很特別！💖",
-  nude: "✨ 妳適合 **高級裸色氣質美甲**！<br><br> 這個顏色象徵穩定與智慧，能幫助妳在工作與生活中展現沉著大方。<br> 妳給人一種安心感，讓人忍不住信任妳。妳就像一杯溫熱拿鐵，讓人覺得溫柔又高雅。☕",
-  red: "🔥 妳適合 **亮眼紅色魅力美甲**！<br><br> 紅色是妳的能量補給站，能帶來勇氣與自信，讓妳在眾人面前閃閃發光。<br> 妳的存在就是舞台的焦點，妳的笑容能點亮整個空間，妳比自己想像中還要耀眼！💃",
-  green: "🍃 妳適合 **清新綠色自然美甲**！<br><br> 這個顏色能幫助妳保持平衡，帶來放鬆的力量。<br> 妳就像春天的微風，讓人感到自在舒服。和妳在一起的時光，總是讓人覺得幸福又放鬆。🌿",
-  black: "🖤 妳適合 **神秘黑色酷感美甲**！<br><br> 黑色象徵力量與獨立，能讓妳展現無懼的氣場。<br> 妳就像夜空裡最亮的星，低調卻難以忽視，帶著一種深邃又高冷的魅力，讓人忍不住想更靠近妳。🌌",
-  white: "🤍 妳適合 **純淨白色極簡美甲**！<br><br> 白色代表純粹與希望，能讓妳散發清新脫俗的氛圍。<br> 妳就像初雪般乾淨美好，帶給身邊的人一種平靜與安心。妳的單純笑容就是最溫暖的力量。❄️",
-  blue: "💙 妳適合 **夢幻藍色沉靜美甲**！<br><br> 藍色帶來冷靜與思緒的清晰，讓妳在混亂中依然保持自我。<br> 妳就像海洋般廣闊而自由，給人無限的想像空間。妳的存在，是大家心中最安心的避風港。🌊",
-  purple: "💜 妳適合 **優雅紫色神秘美甲**！<br><br> 紫色象徵靈性與高貴，能提升妳的直覺與魅力。<br> 妳就像一首動人的詩，帶著一點浪漫與神秘，讓人忍不住想探索妳的內心世界。✨",
-  yellow: "💛 妳適合 **陽光黃色活力美甲**！<br><br> 黃色是快樂與希望的顏色，能讓妳展現滿滿的正能量。<br> 妳就像夏日的太陽，明亮又溫暖，妳的開朗笑容總能感染身邊的人，讓大家都覺得幸福。☀️"
-};
-
-// state
-let step = 0;
-const userAnswers = {};
-const contentArea = document.getElementById('contentArea');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const progBar = document.getElementById('progBar');
-const canvas = document.getElementById('fireworks');
-const ctx = canvas.getContext('2d');
-let fireworksActive = false;
-let particles=[];
-
-function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-window.addEventListener('resize',resizeCanvas);
-resizeCanvas();
-
-// fireworks
-function createFireworks(){
-  for(let i=0;i<150;i++){
-    const p={x:Math.random()*canvas.width,y:Math.random()*canvas.height/2,r:Math.random()*2+1,dx:(Math.random()-0.5)*6,dy:(Math.random()-0.5)*6,color:`hsl(${Math.random()*360},80%,70%)`,alpha:1};
-    particles.push(p);
-  }
-  fireworksActive=true; animateFireworks();
-}
-function animateFireworks(){
-  ctx.fillStyle='rgba(0,0,0,0.1)';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    p.x+=p.dx; p.y+=p.dy; p.alpha*=0.97;
-    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
-    ctx.fillStyle=`hsla(${p.color},${p.alpha})`;
-    ctx.fill();
-  });
-  particles=particles.filter(p=>p.alpha>0.02);
-  if(particles.length>0) requestAnimationFrame(animateFireworks);
-}
-
-// render step
-function renderStep(){
-  if(step>=questions.length){
-    // 結果
-    const counts={};
-    Object.values(userAnswers).forEach(a=>{counts[a]=(counts[a]||0)+1;});
-    const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
-    const topAnswer=sorted[0][0];
-    contentArea.innerHTML=`<div class="result">
-      <h2>🎉 測驗完成！妳的命定美甲款式是：</h2>
-      <p>${answers[topAnswer]}</p>
-      <div class="share-row">
-        <button onclick="restartQuiz()">重新測驗</button>
+  <canvas id="fireworks"></canvas>
+  <div class="wrap">
+    <header>
+      <div class="logo">YCL</div>
+      <div>
+        <h1>YCL Nails — 專屬美甲心理測驗</h1>
+        <p class="lead">誠實回答 5 題，我們會像閨蜜一樣溫柔告訴妳：妳的【命定美甲款式】、幸運色與暖心祝福 ✨</p>
       </div>
-    </div>`;
-    prevBtn.style.visibility='hidden';
-    nextBtn.style.visibility='hidden';
-    createFireworks();
-    return;
-  }
-  const q=questions[step];
-  let html=`<div class="question"><div class="q-number">第 ${step+1} 題 / ${questions.length} 題</div><div class="q-text">${q.text}</div><div class="options">`;
-  q.choices.forEach(c=>{
-    const checked=userAnswers[q.id]===c.key?'checked':'';
-    html+=`<label class="option"><input type="radio" name="q${q.id}" value="${c.key}" ${checked}>${c.text}</label>`;
-  });
-  html+='</div></div>';
-  contentArea.innerHTML=html;
-  prevBtn.style.visibility=step>0?'visible':'hidden';
-  nextBtn.innerText=step<questions.length-1?'下一步':'完成';
-  updateProgress();
-}
+    </header>
 
-// progress
-function updateProgress(){progBar.style.width=((step)/questions.length*100)+'%';}
+    <section class="card" id="quizCard">
+      <div id="contentArea"></div>
+      <div class="controls" id="controls">
+        <div style="flex:1">
+          <div class="progress" aria-hidden><i id="progBar"></i></div>
+        </div>
+        <div style="width:8px"></div>
+        <button id="prevBtn" class="ghost" style="visibility:hidden">上一步</button>
+        <button id="nextBtn">下一步</button>
+      </div>
+    </section>
 
-// buttons
-prevBtn.onclick=()=>{step--; renderStep();}
-nextBtn.onclick=()=>{
-  const sel=document.querySelector(`input[name="q${questions[step].id}"]:checked`);
-  if(!sel){alert('請選擇一個答案');return;}
-  userAnswers[questions[step].id]=sel.value;
-  step++; renderStep();
-}
+    <footer>
+      <div class="small">做完可以截圖分享給朋友 → 讓她們也被寵愛</div>
+    </footer>
+  </div>
 
-// restart
-function restartQuiz(){step=0;for(k in userAnswers)delete userAnswers[k];renderStep();fireworksActive=false;particles=[];ctx.clearRect(0,0,canvas.width,canvas.height);}
+  <script>
+    const questions = [
+      {id:1, text:"如果週末妳終於有一天屬於自己，可以做最想做的事，妳會選：", choices:[
+        {key:'pink', text:'賴在床上耍廢、追劇、喝奶茶'},
+        {key:'nude', text:'和好姐妹出去逛街、下午茶'},
+        {key:'blue', text:'去戶外散步、感受大自然'},
+        {key:'purple', text:'嘗試新事物，例如手作、課程或挑戰新菜色'},
+        {key:'yellow', text:'參加一場熱鬧派對'},
+        {key:'black', text:'想靜靜獨處思考或創作'},
+        {key:'white', text:'喜歡極簡、乾淨的休閒時光'},
+        {key:'red', text:'激烈運動或挑戰自我，充滿能量'}
+      ]},
+      {id:2, text:"當妳遇到壓力時，最想要什麼樣的力量支持？", choices:[
+        {key:'pink', text:'溫柔的擁抱和安慰'},
+        {key:'yellow', text:'開心的笑聲和陪伴'},
+        {key:'blue', text:'平靜和安定的能量'},
+        {key:'red', text:'自信與勇氣，能果斷前進'},
+        {key:'black', text:'冷靜與理智的建議'},
+        {key:'white', text:'純粹支持與理解'},
+        {key:'purple', text:'靈感與直覺指引'},
+        {key:'nude', text:'穩定沉著的陪伴'}
+      ]},
+      {id:3, text:"如果有人送妳花，妳最希望收到哪一種？", choices:[
+        {key:'pink', text:'粉色玫瑰（浪漫甜美）'},
+        {key:'yellow', text:'向日葵（陽光活力）'},
+        {key:'white', text:'百合（純淨優雅）'},
+        {key:'purple', text:'紫色鬱金香（神秘高貴）'},
+        {key:'blue', text:'藍色繡球花（沉靜夢幻）'},
+        {key:'black', text:'黑玫瑰（酷感神秘）'},
+        {key:'red', text:'紅玫瑰（熱情魅力）'},
+        {key:'nude', text:'米色小花（氣質優雅）'}
+      ]},
+      {id:4, text:"妳心中的「完美假期」是：", choices:[
+        {key:'pink', text:'在家放鬆休息'},
+        {key:'yellow', text:'熱鬧海邊沙灘'},
+        {key:'blue', text:'登山或湖邊漫步'},
+        {key:'purple', text:'文藝城市探索'},
+        {key:'red', text:'刺激運動冒險'},
+        {key:'black', text:'靜謐山林沉思'},
+        {key:'white', text:'簡單極簡小屋度假'},
+        {key:'nude', text:'悠閒咖啡廳下午茶'}
+      ]},
+      {id:5, text:"妳覺得朋友們最常誇妳什麼？", choices:[
+        {key:'pink', text:'溫柔體貼，像小太陽一樣'},
+        {key:'yellow', text:'活潑有趣，大家都喜歡'},
+        {key:'blue', text:'穩重可靠，讓人安心'},
+        {key:'red', text:'有氣場又有魅力，走到哪都發光'},
+        {key:'black', text:'神秘有深度，令人著迷'},
+        {key:'white', text:'純淨清新，給人舒服感'},
+        {key:'purple', text:'優雅神秘，散發魅力'},
+        {key:'nude', text:'氣質沉穩，令人信任'}
+      ]}
+    ];
 
-renderStep();
-</script>
+    const resultMap = {
+      pink: "🌸 妳適合 **粉嫩浪漫風美甲**！<br><br> 這個顏色是妳近期的幸運色，能帶來愛與溫柔的能量，讓妳在關係裡更容易被呵護與珍惜。<br> 妳散發的氣場會讓身邊的人都想守護妳，妳值得被愛、被誇讚，因為妳真的很特別！💖",
+      nude: "✨ 妳適合 **高級裸色氣質美甲**！<br><br> 這個顏色象徵穩定與智慧，能幫助妳在工作與生活中展現沉著大方。<br> 妳給人一種安心感，讓人忍不住信任妳。妳就像一杯溫熱拿鐵，讓人覺得溫柔又高雅。☕",
+      red: "🔥 妳適合 **亮眼紅色魅力美甲**！<br><br> 紅色是妳的能量補給站，能帶來勇氣與自信，讓妳在眾人面前閃閃發光。<br> 妳的存在就是舞台的焦點，妳的笑容能點亮整個空間，妳比自己想像中還要耀眼！💃",
+      green: "🍃 妳適合 **清新綠色自然美甲**！<br><br> 這個顏色能幫助妳保持平衡，帶來放鬆的力量。<br> 妳就像春天的微風，讓人感到自在舒服。和妳在一起的時光，總是讓人覺得幸福又放鬆。🌿",
+      black: "🖤 妳適合 **神秘黑色酷感美甲**！<br><br> 黑色象徵力量與獨立，能讓妳展現無懼的氣場。<br> 妳就像夜空裡最亮的星，低調卻難以忽視，帶著一種深邃又高冷的魅力，讓人忍不住想更靠近妳。🌌",
+      white: "🤍 妳適合 **純淨白色極簡美甲**！<br><br> 白色代表純粹與希望，能讓妳散發清新脫俗的氛圍。<br> 妳就像初雪般乾淨美好，帶給身邊的人一種平靜與安心。妳的單純笑容就是最溫暖的力量。❄️",
+      blue: "💙 妳適合 **夢幻藍色沉靜美甲**！<br><br> 藍色帶來冷靜與思緒的清晰，讓妳在混亂中依然保持自我。<br> 妳就像海洋般廣闊而自由，給人無限的想像空間。妳的存在，是大家心中最安心的避風港。🌊",
+      purple: "💜 妳適合 **優雅紫色神秘美甲**！<br><br> 紫色象徵靈性與高貴，能提升妳的直覺與魅力。<br> 妳就像一首動人的詩，帶著一點浪漫與神秘，讓人忍不住想探索妳的內心世界。✨",
+      yellow: "💛 妳適合 **陽光黃色活力美甲**！<br><br> 黃色是快樂與希望的顏色，能讓妳展現滿滿的正能量。<br> 妳就像夏日的太陽，明亮又溫暖，妳的開朗笑容總能感染身邊的人，讓大家都覺得幸福。☀️"
+    };
+
+    let step = 0;
+    const answers = {};
+    const contentArea = document.getElementById('contentArea');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progBar = document.getElementById('progBar');
+
+    function renderStep() {
+      progBar.style.width = Math.round((step / questions.length) * 100) + '%';
+      if(step < questions.length){
+        const q = questions[step];
+        contentArea.innerHTML = `
+          <div class="question">
+            <div class="q-number">問題 ${step+1} / ${questions.length}</div>
+            <div class="q-text">${q.text}</div>
+            <div class="options">
+              ${q.choices.map(c=>`<label class="option"><input type="radio" name="q${q.id}" value="${c.key}" ${answers[q.id]===c.key? 'checked':''}/> <div>${c.text}</div></label>`).join('')}
+            </div>
+          </div>
+          <div class="small">每題請擇一最符合直覺的答案，沒有對錯，像閨蜜一樣我們會給妳最暖的建議 ❤️</div>
+        `;
+        prevBtn.style.visibility = step===0?'hidden':'visible';
+        nextBtn.textContent='下一步';
+      } else {
+        showResult();
+      }
+    }
+
+    function collectAnswer(){
+      const q = questions[step];
+      const sel = document.querySelector(`input[name="q${q.id}"]:checked`);
+      if(sel){ answers[q.id]=sel.value; return true;}
+      return false;
+    }
+
+    nextBtn.addEventListener('click', ()=>{
+      if(step<questions.length){
+        if(!collectAnswer()){ alert('請選擇一個答案，讓我們更了解妳 😊'); return;}
+        step++; renderStep();
+      } else { location.reload(); }
+    });
+
+    prevBtn.addEventListener('click', ()=>{ if(step>0) step--; renderStep(); });
+
+    function showResult(){
+      // 統計最多選項
+      const tally={};
+      Object.values(answers).forEach(a=>tally[a]=(tally[a]||0)+1);
+      let maxKey=Object.keys(tally).reduce((a,b)=>tally[a]>=tally[b]?a:b);
+      const r = resultMap[maxKey];
+
+      contentArea.innerHTML=`
+        <div class="result">
+          <div>${r}</div>
+          <div class="share-row">
+            <button id="restartBtn" class="ghost">重新測驗</button>
+          </div>
+        </div>
+      `;
+      step=questions.length;
+      progBar.style.width='100%';
+      prevBtn.style.visibility='hidden';
+      nextBtn.style.visibility='hidden';
+      // 觸發煙火
+      startFireworks();
+      document.getElementById('restartBtn').addEventListener('click', ()=>{ location.reload(); });
+    }
+
+    renderStep();
+
+    // --------- 煙火動畫 ---------
+    const canvas = document.getElementById('fireworks');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    let particles = [];
+
+    function random(min,max){ return Math.random()*(max-min)+min; }
+
+    function createFirework(){
+      const x=random(100,canvas.width-100);
+      const y=random(100,canvas.height/2);
+      const count=random(30,60)|0;
+      for(let i=0;i<count;i++){
+        particles.push({
+          x:x,
+          y:y,
+          dx:random(-4,4),
+          dy:random(-4,4),
+          r:random(2,4),
+          alpha:1,
+          color:random(0,360)
+        });
+      }
+    }
+
+    function animateFireworks(){
+      ctx.fillStyle='rgba(242,240,235,0.2)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p=>{
+        p.x+=p.dx; p.y+=p.dy; p.alpha*=0.96;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+        ctx.fillStyle=`hsla(${p.color},100%,50%,${p.alpha})`;
+        ctx.fill();
+      });
+      particles = particles.filter(p=>p.alpha>0.02);
+      if(particles.length>0) requestAnimationFrame(animateFireworks);
+    }
+
+    function startFireworks(){
+      for(let i=0;i<5;i++){ setTimeout(createFirework,i*400); }
+      animateFireworks();
+    }
+
+    window.addEventListener('resize',()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
+  </script>
 </body>
 </html>
