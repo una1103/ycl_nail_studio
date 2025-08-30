@@ -1,139 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>YCL Nails — 專屬美甲心理測驗</title>
-  <meta name="description" content="掃QR線上做測驗，得到專屬美甲款式、顏色與暖心祝福。適合第一次不知道要做什麼款式的客人。" />
+  <meta charset="UTF-8">
+  <title>YCL Nail Studio 心理測驗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root {
-      --bg:#f2f1ef;         /* 背景米灰 */
-      --bg2:#e0e4e7;        /* 背景灰藍 */
-      --card:#ffffff;       /* 卡片白 */
-      --accent:#8a9ba8;     /* 主色：灰藍莫蘭迪 */
-      --accent2:#b8a9a0;    /* 次色：灰米莫蘭迪 */
-      --muted:#666666;      /* 文字次要 */
-      --glass: rgba(255,255,255,0.6);
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #f4f1ee;
+      color: #4b4b4b;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
     }
-    *{box-sizing:border-box;font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Arial;}
-    html,body{
-      height:100%;
-      margin:0;
-      background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
-      color:#333;
+    .container {
+      background: #ffffff;
+      margin: 40px;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 600px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     }
-    .wrap{max-width:880px;margin:28px auto;padding:20px}
-    header{display:flex;align-items:center;gap:16px;padding:10px 0}
-    .logo{
-      width:72px;height:72px;border-radius:12px;
-      background:linear-gradient(135deg,#cfd4d8,#e8e6e1);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:700;color:#4b545c;
+    h1 {
+      text-align: center;
+      color: #6c5b7b;
     }
-    h1{font-size:20px;margin:0;color:#444}
-    p.lead{margin:6px 0 18px;color:var(--muted)}
-    .card{
-      background:var(--card);
-      border-radius:14px;
-      padding:20px;
-      box-shadow:0 6px 30px rgba(8,12,20,0.06);
+    .question {
+      margin: 20px 0;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #355c7d;
     }
-    .question{margin-bottom:18px}
-    .q-number{font-weight:700;color:var(--accent)}
-    .q-text{margin:6px 0 12px;font-size:16px}
-    .options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    label.option{
-      display:flex;align-items:flex-start;gap:10px;
-      padding:12px;border-radius:10px;
-      border:1px solid #d6d6d6;
-      background:linear-gradient(180deg,#fdfdfd,#f8f8f8);
-      cursor:pointer;
-      transition:all 0.2s;
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-    label.option:hover{
-      border-color:var(--accent);
-      background:#f2f5f7;
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      background-color: #c8c6c6;
+      transition: background-color 0.3s ease;
     }
-    label.option input{margin-top:4px}
-    .controls{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
-    button{
-      background:var(--accent);
-      color:#fff;
-      border:0;padding:10px 16px;
-      border-radius:10px;
-      font-weight:700;
-      cursor:pointer;
-      transition:background 0.3s;
+    button:hover {
+      background-color: #a9a7a7;
     }
-    button:hover{background:#7a8a96}
-    button.ghost{
-      background:transparent;
-      color:var(--accent);
-      border:1px dashed rgba(138,155,168,0.6)
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 12px;
+      background-color: #eae7dc;
+      text-align: center;
+      font-size: 1.1em;
+      line-height: 1.6;
     }
-    .progress{
-      height:8px;background:#dfe5ea;border-radius:8px;overflow:hidden
-    }
-    .progress > i{
-      display:block;height:100%;
-      background:linear-gradient(90deg,#8a9ba8,#b8a9a0);
-      width:0%
-    }
-    .result{padding:16px;border-radius:12px}
-    .result h2{margin:0 0 8px;color:#444}
-    .pill{
-      display:inline-block;padding:6px 10px;border-radius:20px;
-      background:rgba(0,0,0,0.06);font-size:13px;margin-right:8px
-    }
-    .share-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .small{font-size:13px;color:var(--muted)}
-    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
-    @media (max-width:600px){
-      .options{grid-template-columns:1fr}
-      .logo{width:58px;height:58px}
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">YCL</div>
-      <div>
-        <h1>YCL Nails — 專屬美甲心理測驗</h1>
-        <p class="lead">誠實回答 5 題，我們會像閨蜜一樣溫柔告訴妳：妳的【命定美甲款式】、幸運色與暖心祝福 ✨</p>
-      </div>
-    </header>
-
-    <section class="card" id="quizCard">
-      <div id="contentArea"></div>
-      <div class="controls" id="controls">
-        <div style="flex:1">
-          <div class="progress" aria-hidden><i id="progBar"></i></div>
-        </div>
-        <div style="width:8px"></div>
-        <button id="prevBtn" class="ghost" style="visibility:hidden">上一步</button>
-        <button id="nextBtn">下一步</button>
-      </div>
-    </section>
-
-    <footer>
-      <div class="small">做完可以點「複製預約ID」或截圖分享給朋友 → 讓她們也被寵愛</div>
-    </footer>
+  <div class="container">
+    <h1>✨ 找出專屬妳的美甲幸運色 ✨</h1>
+    <div id="quiz"></div>
+    <div id="result" class="result hidden"></div>
   </div>
 
   <script>
-    // 問題列表（5題）
-    const questions = [
-      {id:1, text:"如果週末妳終於有一天屬於自己，可以做最想做的事，妳會選：", choices:[
-        {key:'A', text:'賴在床上耍廢、追劇、喝奶茶'},
-        {key:'B', text:'和好姐妹出去逛街、下午茶'},
-        {key:'C', text:'去戶外散步、感受大自然'},
-        {key:'D', text:'嘗試新事物，例如手作、課程或挑戰新菜色'}
-      ]},
-      {id:2, text:"當妳遇到壓力時，最想要什麼樣的力量支持？", choices:[
-        {key:'A', text:'溫柔的擁抱和安慰'},
-        {key:'B', text:'開心的笑聲和陪伴'},
-        {key:'C', text:'平靜和安定的能量'},
-        {key:'D', text:'自信與勇氣，能果斷前進'}
-      ]},
-      {id:3, text:"如果有人送妳花，妳
+    const quizData = [
+      {
+        question: "1. 今天的妳，最想要什麼樣的生活氛圍？",
+        options: [
+          { text: "溫暖、安心，被愛包圍", value: "pink" },
+          { text: "清新自在，像風吹過的午後", value: "green" },
+          { text: "優雅有氣質，讓人想多看一眼", value: "nude" },
+          { text: "活潑有活力，能吸引大家目光", value: "red" }
+        ]
+      },
+      {
+        question: "2. 如果週末只有一天假期，妳最想做什麼？",
+        options: [
+          { text: "窩在家裡看劇或追小說", value: "nude" },
+          { text: "去戶外散步，接近大自然", value: "green" },
+          { text: "和閨蜜聚會大聊特聊", value: "pink" },
+          { text: "打扮美美的出門約會或逛街", value: "red" }
+        ]
+      },
+      {
+        question: "3. 最近的妳，最需要哪種力量？",
+        options: [
+          { text: "愛與療癒，讓心柔軟起來", value: "pink" },
+          { text: "穩定與踏實，心情不再浮躁", value: "nude" },
+          { text: "勇氣與自信，敢於表現自己", value: "red" },
+          { text: "清新能量，重新整理人生步調", value: "green" }
+        ]
+      },
+      {
+        question: "4. 妳理想中的自己，最想被人形容成…？",
+        options: [
+          { text: "可愛又惹人疼愛", value: "pink" },
+          { text: "獨立又知性", value: "nude" },
+          { text: "活潑又有魅力", value: "red" },
+          { text: "隨和又自在", value: "green" }
+        ]
+      },
+      {
+        question: "5. 如果給妳一個幸運禮物，妳最希望是？",
+        options: [
+          { text: "一束粉嫩的花束，充滿愛", value: "pink" },
+          { text: "一本質感書籍，帶來智慧", value: "nude" },
+          { text: "一個紅色的小禮物，象徵好運", value: "red" },
+          { text: "一株綠色小盆栽，帶來清新能量", value: "green" }
+        ]
+      }
+    ];
+
+    const results = {
+      pink: "🌸 妳適合 **粉嫩浪漫風美甲**！<br><br> 這個顏色是妳近期的幸運色，能帶來愛與溫柔的能量，讓妳在關係裡更容易被呵護與珍惜。<br> 妳散發的氣場會讓身邊的人都想守護妳，妳值得被愛、被誇讚，因為妳真的很特別！💖",
+      nude: "✨ 妳適合 **高級裸色氣質美甲**！<br><br> 這個顏色象徵穩定與智慧，能幫助妳在工作與生活中展現沉著大方。<br> 妳給人一種安心感，讓人忍不住信任妳。妳就像一杯溫熱拿鐵，讓人覺得溫柔又高雅。☕",
+      red: "🔥 妳適合 **亮眼紅色魅力美甲**！<br><br> 紅色是妳的能量補給站，能帶來勇氣與自信，讓妳在眾人面前閃閃發光。<br> 妳的存在就是舞台的焦點，妳的笑容能點亮整個空間，妳比自己想像中還要耀眼！💃",
+      green: "🍃 妳適合 **清新綠色自然美甲**！<br><br> 這個顏色能幫助妳保持平衡，帶來放鬆的力量。<br> 妳就像春天的微風，讓人感到自在舒服。和妳在一起的時光，總是讓人覺得幸福又放鬆。🌿"
+    };
+
+    let currentQuestion = 0;
+    let answers = [];
+
+    function loadQuestion() {
+      if (currentQuestion < quizData.length) {
+        const q = quizData[currentQuestion];
+        const quizDiv = document.getElementById("quiz");
+        quizDiv.innerHTML = `
+          <div class="question">${q.question}</div>
+          <div class="options">
+            ${q.options.map((opt, i) => `<button onclick="selectOption('${opt.value}')">${opt.text}</button>`).join("")}
+          </div>
+        `;
+      } else {
+        showResult();
+      }
+    }
+
+    function selectOption(value) {
+      answers.push(value);
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    function showResult() {
+      let count = { pink:0, nude:0, red:0, green:0 };
+      answers.forEach(a => count[a]++);
+      let final = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
+      document.getElementById("quiz").classList.add("hidden");
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = results[final];
+      resultDiv.classList.remove("hidden");
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
