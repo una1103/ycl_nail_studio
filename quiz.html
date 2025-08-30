@@ -1,0 +1,81 @@
+<!doctype html>
+<div style="font-size:12px;color:var(--muted);">YCL Nails 為妳的心情加分</div>
+<div style="margin-top:8px"><button id="copyBtn">複製預約ID</button></div>
+</div>
+</div>
+
+
+<hr style="border:none;border-top:1px solid #f4e9f2;margin:12px 0">
+
+
+<div style="margin-top:6px;font-size:15px;line-height:1.6">🍀 <strong>我們這樣推薦給妳的原因：</strong><br>${r.blessing}</div>
+
+
+<div style="margin-top:12px;font-size:15px;line-height:1.6;color:#5a5a5a">💬 我們想對妳說：<br><em style="color:#222;font-weight:700">${r.praise}</em></div>
+
+
+<div class="share-row">
+<button id="shareBtn">把結果分享給朋友</button>
+<button id="bookBtn" class="ghost">我要預約 / 洽詢</button>
+<button id="restartBtn" class="ghost">重新測驗</button>
+</div>
+
+
+</div>
+`;
+
+
+// copy ID: use LINE ID from memory
+const copyBtn = document.getElementById('copyBtn');
+copyBtn.addEventListener('click', ()=>{
+const lineId = '@122pntjd'; // 店家 LINE ID（可修改）
+navigator.clipboard && navigator.clipboard.writeText(lineId).then(()=>{
+copyBtn.textContent = '已複製 LINE ID';
+setTimeout(()=>copyBtn.textContent = '複製預約ID',2000);
+}).catch(()=>{alert('請手動複製：' + lineId)});
+});
+
+
+document.getElementById('shareBtn').addEventListener('click', ()=>{
+const text = `我剛在 YCL Nails 做了心理測驗，得到「${r.title}」👉 ${r.style}，專屬色：${r.color}，妳也來試試看吧！`;
+if (navigator.share) {
+navigator.share({title:'YCL 美甲測驗',text})
+.catch(()=>{alert('分享失敗，請手動複製文字。')});
+} else {
+prompt('複製以下文字去分享給朋友：', text);
+}
+});
+
+
+document.getElementById('bookBtn').addEventListener('click', ()=>{
+// open LINE web? we just open a prompt with contact
+const lineId = '@122pntjd';
+const msg = `想預約 YCL Nails，測驗結果：${r.title} - ${r.style}（專屬色：${r.color}）`;
+if (confirm('我們會把你的結果帶到 LINE 聯絡，現在複製 LINE ID 並打開 LINE 嗎？')){
+navigator.clipboard && navigator.clipboard.writeText(lineId);
+alert('已複製 LINE ID，請在 LINE 搜尋並貼上預約訊息：\n' + msg);
+}
+});
+
+
+document.getElementById('restartBtn').addEventListener('click', ()=>{
+location.reload();
+});
+
+
+// progress full
+progBar.style.width = '100%';
+
+
+// hide prev/next
+prevBtn.style.visibility = 'hidden';
+nextBtn.textContent = '重新開始';
+step = questions.length; // set end
+}
+
+
+// initial
+renderStep();
+</script>
+</body>
+</html>
