@@ -37,7 +37,6 @@ button.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(1
 .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--progress-start),var(--progress-end));width:0%;}
 .result{padding:16px;border-radius:12px;position:relative;overflow:hidden;}
 .result h2{margin:0 0 8px;}
-.pill{display:inline-block;padding:6px 10px;border-radius:20px;background:rgba(0,0,0,0.06);font-size:13px;margin-right:8px;}
 .share-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
 .small{font-size:13px;color:var(--muted);}
 footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px;}
@@ -68,7 +67,7 @@ canvas#fireworks{position:absolute;top:0;left:0;width:100%;height:100%;pointer-e
 </section>
 
 <footer>
-  <div class="small">做完可以點「複製預約ID」或截圖分享給朋友 → 讓她們也被寵愛</div>
+  <div class="small">完成後可重新測驗或分享給朋友，讓她們也被寵愛 💅</div>
 </footer>
 </div>
 
@@ -131,29 +130,31 @@ const progBar = document.getElementById('progBar');
 const canvas = document.getElementById('fireworks');
 const ctx = canvas.getContext('2d');
 let fireworksActive = false;
+let particles=[];
 
 function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
 window.addEventListener('resize',resizeCanvas);
 resizeCanvas();
 
 // fireworks
-let particles=[];
 function createFireworks(){
-  for(let i=0;i<80;i++){
-    const p={x:Math.random()*canvas.width,y:Math.random()*canvas.height/2,r:Math.random()*3+1,dx:(Math.random()-0.5)*4,dy:(Math.random()-0.5)*4,color:`hsl(${Math.random()*360},80%,70%)`};
+  for(let i=0;i<150;i++){
+    const p={x:Math.random()*canvas.width,y:Math.random()*canvas.height/2,r:Math.random()*2+1,dx:(Math.random()-0.5)*6,dy:(Math.random()-0.5)*6,color:`hsl(${Math.random()*360},80%,70%)`,alpha:1};
     particles.push(p);
   }
+  fireworksActive=true; animateFireworks();
 }
-function updateFireworks(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+function animateFireworks(){
+  ctx.fillStyle='rgba(0,0,0,0.1)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
   particles.forEach(p=>{
-    p.x+=p.dx; p.y+=p.dy; p.r*=0.96;
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
-    ctx.fillStyle=p.color; ctx.fill();
+    p.x+=p.dx; p.y+=p.dy; p.alpha*=0.97;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+    ctx.fillStyle=`hsla(${p.color},${p.alpha})`;
+    ctx.fill();
   });
-  particles=particles.filter(p=>p.r>0.3);
-  if(fireworksActive && particles.length>0) requestAnimationFrame(updateFireworks);
+  particles=particles.filter(p=>p.alpha>0.02);
+  if(particles.length>0) requestAnimationFrame(animateFireworks);
 }
 
 // render step
@@ -168,13 +169,12 @@ function renderStep(){
       <h2>🎉 測驗完成！妳的命定美甲款式是：</h2>
       <p>${answers[topAnswer]}</p>
       <div class="share-row">
-        <button onclick="copyID()">複製預約ID</button>
         <button onclick="restartQuiz()">重新測驗</button>
       </div>
     </div>`;
     prevBtn.style.visibility='hidden';
     nextBtn.style.visibility='hidden';
-    fireworksActive=true; createFireworks(); updateFireworks();
+    createFireworks();
     return;
   }
   const q=questions[step];
@@ -204,7 +204,6 @@ nextBtn.onclick=()=>{
 
 // restart
 function restartQuiz(){step=0;for(k in userAnswers)delete userAnswers[k];renderStep();fireworksActive=false;particles=[];ctx.clearRect(0,0,canvas.width,canvas.height);}
-function copyID(){navigator.clipboard.writeText('YCL-QUIZ-2025');alert('已複製預約ID YCL-QUIZ-2025');}
 
 renderStep();
 </script>
