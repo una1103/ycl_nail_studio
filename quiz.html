@@ -148,3 +148,65 @@ function updateFireworks(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   particles.forEach(p=>{
     p.x+=p.dx; p.y+=p.dy; p.r*=0.96;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+    ctx.fillStyle=p.color; ctx.fill();
+  });
+  particles=particles.filter(p=>p.r>0.3);
+  if(fireworksActive && particles.length>0) requestAnimationFrame(updateFireworks);
+}
+
+// render step
+function renderStep(){
+  if(step>=questions.length){
+    // 結果
+    const counts={};
+    Object.values(userAnswers).forEach(a=>{counts[a]=(counts[a]||0)+1;});
+    const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+    const topAnswer=sorted[0][0];
+    contentArea.innerHTML=`<div class="result">
+      <h2>🎉 測驗完成！妳的命定美甲款式是：</h2>
+      <p>${answers[topAnswer]}</p>
+      <div class="share-row">
+        <button onclick="copyID()">複製預約ID</button>
+        <button onclick="restartQuiz()">重新測驗</button>
+      </div>
+    </div>`;
+    prevBtn.style.visibility='hidden';
+    nextBtn.style.visibility='hidden';
+    fireworksActive=true; createFireworks(); updateFireworks();
+    return;
+  }
+  const q=questions[step];
+  let html=`<div class="question"><div class="q-number">第 ${step+1} 題 / ${questions.length} 題</div><div class="q-text">${q.text}</div><div class="options">`;
+  q.choices.forEach(c=>{
+    const checked=userAnswers[q.id]===c.key?'checked':'';
+    html+=`<label class="option"><input type="radio" name="q${q.id}" value="${c.key}" ${checked}>${c.text}</label>`;
+  });
+  html+='</div></div>';
+  contentArea.innerHTML=html;
+  prevBtn.style.visibility=step>0?'visible':'hidden';
+  nextBtn.innerText=step<questions.length-1?'下一步':'完成';
+  updateProgress();
+}
+
+// progress
+function updateProgress(){progBar.style.width=((step)/questions.length*100)+'%';}
+
+// buttons
+prevBtn.onclick=()=>{step--; renderStep();}
+nextBtn.onclick=()=>{
+  const sel=document.querySelector(`input[name="q${questions[step].id}"]:checked`);
+  if(!sel){alert('請選擇一個答案');return;}
+  userAnswers[questions[step].id]=sel.value;
+  step++; renderStep();
+}
+
+// restart
+function restartQuiz(){step=0;for(k in userAnswers)delete userAnswers[k];renderStep();fireworksActive=false;particles=[];ctx.clearRect(0,0,canvas.width,canvas.height);}
+function copyID(){navigator.clipboard.writeText('YCL-QUIZ-2025');alert('已複製預約ID YCL-QUIZ-2025');}
+
+renderStep();
+</script>
+</body>
+</html>
