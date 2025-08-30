@@ -1,81 +1,139 @@
 <!doctype html>
-<div style="font-size:12px;color:var(--muted);">YCL Nails 為妳的心情加分</div>
-<div style="margin-top:8px"><button id="copyBtn">複製預約ID</button></div>
-</div>
-</div>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YCL Nails — 專屬美甲心理測驗</title>
+  <meta name="description" content="掃QR線上做測驗，得到專屬美甲款式、顏色與暖心祝福。適合第一次不知道要做什麼款式的客人。" />
+  <style>
+    :root {
+      --bg:#f2f1ef;         /* 背景米灰 */
+      --bg2:#e0e4e7;        /* 背景灰藍 */
+      --card:#ffffff;       /* 卡片白 */
+      --accent:#8a9ba8;     /* 主色：灰藍莫蘭迪 */
+      --accent2:#b8a9a0;    /* 次色：灰米莫蘭迪 */
+      --muted:#666666;      /* 文字次要 */
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box;font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Arial;}
+    html,body{
+      height:100%;
+      margin:0;
+      background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+      color:#333;
+    }
+    .wrap{max-width:880px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px;padding:10px 0}
+    .logo{
+      width:72px;height:72px;border-radius:12px;
+      background:linear-gradient(135deg,#cfd4d8,#e8e6e1);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#4b545c;
+    }
+    h1{font-size:20px;margin:0;color:#444}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .card{
+      background:var(--card);
+      border-radius:14px;
+      padding:20px;
+      box-shadow:0 6px 30px rgba(8,12,20,0.06);
+    }
+    .question{margin-bottom:18px}
+    .q-number{font-weight:700;color:var(--accent)}
+    .q-text{margin:6px 0 12px;font-size:16px}
+    .options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    label.option{
+      display:flex;align-items:flex-start;gap:10px;
+      padding:12px;border-radius:10px;
+      border:1px solid #d6d6d6;
+      background:linear-gradient(180deg,#fdfdfd,#f8f8f8);
+      cursor:pointer;
+      transition:all 0.2s;
+    }
+    label.option:hover{
+      border-color:var(--accent);
+      background:#f2f5f7;
+    }
+    label.option input{margin-top:4px}
+    .controls{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+    button{
+      background:var(--accent);
+      color:#fff;
+      border:0;padding:10px 16px;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      transition:background 0.3s;
+    }
+    button:hover{background:#7a8a96}
+    button.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px dashed rgba(138,155,168,0.6)
+    }
+    .progress{
+      height:8px;background:#dfe5ea;border-radius:8px;overflow:hidden
+    }
+    .progress > i{
+      display:block;height:100%;
+      background:linear-gradient(90deg,#8a9ba8,#b8a9a0);
+      width:0%
+    }
+    .result{padding:16px;border-radius:12px}
+    .result h2{margin:0 0 8px;color:#444}
+    .pill{
+      display:inline-block;padding:6px 10px;border-radius:20px;
+      background:rgba(0,0,0,0.06);font-size:13px;margin-right:8px
+    }
+    .share-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:600px){
+      .options{grid-template-columns:1fr}
+      .logo{width:58px;height:58px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">YCL</div>
+      <div>
+        <h1>YCL Nails — 專屬美甲心理測驗</h1>
+        <p class="lead">誠實回答 5 題，我們會像閨蜜一樣溫柔告訴妳：妳的【命定美甲款式】、幸運色與暖心祝福 ✨</p>
+      </div>
+    </header>
 
+    <section class="card" id="quizCard">
+      <div id="contentArea"></div>
+      <div class="controls" id="controls">
+        <div style="flex:1">
+          <div class="progress" aria-hidden><i id="progBar"></i></div>
+        </div>
+        <div style="width:8px"></div>
+        <button id="prevBtn" class="ghost" style="visibility:hidden">上一步</button>
+        <button id="nextBtn">下一步</button>
+      </div>
+    </section>
 
-<hr style="border:none;border-top:1px solid #f4e9f2;margin:12px 0">
+    <footer>
+      <div class="small">做完可以點「複製預約ID」或截圖分享給朋友 → 讓她們也被寵愛</div>
+    </footer>
+  </div>
 
-
-<div style="margin-top:6px;font-size:15px;line-height:1.6">🍀 <strong>我們這樣推薦給妳的原因：</strong><br>${r.blessing}</div>
-
-
-<div style="margin-top:12px;font-size:15px;line-height:1.6;color:#5a5a5a">💬 我們想對妳說：<br><em style="color:#222;font-weight:700">${r.praise}</em></div>
-
-
-<div class="share-row">
-<button id="shareBtn">把結果分享給朋友</button>
-<button id="bookBtn" class="ghost">我要預約 / 洽詢</button>
-<button id="restartBtn" class="ghost">重新測驗</button>
-</div>
-
-
-</div>
-`;
-
-
-// copy ID: use LINE ID from memory
-const copyBtn = document.getElementById('copyBtn');
-copyBtn.addEventListener('click', ()=>{
-const lineId = '@122pntjd'; // 店家 LINE ID（可修改）
-navigator.clipboard && navigator.clipboard.writeText(lineId).then(()=>{
-copyBtn.textContent = '已複製 LINE ID';
-setTimeout(()=>copyBtn.textContent = '複製預約ID',2000);
-}).catch(()=>{alert('請手動複製：' + lineId)});
-});
-
-
-document.getElementById('shareBtn').addEventListener('click', ()=>{
-const text = `我剛在 YCL Nails 做了心理測驗，得到「${r.title}」👉 ${r.style}，專屬色：${r.color}，妳也來試試看吧！`;
-if (navigator.share) {
-navigator.share({title:'YCL 美甲測驗',text})
-.catch(()=>{alert('分享失敗，請手動複製文字。')});
-} else {
-prompt('複製以下文字去分享給朋友：', text);
-}
-});
-
-
-document.getElementById('bookBtn').addEventListener('click', ()=>{
-// open LINE web? we just open a prompt with contact
-const lineId = '@122pntjd';
-const msg = `想預約 YCL Nails，測驗結果：${r.title} - ${r.style}（專屬色：${r.color}）`;
-if (confirm('我們會把你的結果帶到 LINE 聯絡，現在複製 LINE ID 並打開 LINE 嗎？')){
-navigator.clipboard && navigator.clipboard.writeText(lineId);
-alert('已複製 LINE ID，請在 LINE 搜尋並貼上預約訊息：\n' + msg);
-}
-});
-
-
-document.getElementById('restartBtn').addEventListener('click', ()=>{
-location.reload();
-});
-
-
-// progress full
-progBar.style.width = '100%';
-
-
-// hide prev/next
-prevBtn.style.visibility = 'hidden';
-nextBtn.textContent = '重新開始';
-step = questions.length; // set end
-}
-
-
-// initial
-renderStep();
-</script>
-</body>
-</html>
+  <script>
+    // 問題列表（5題）
+    const questions = [
+      {id:1, text:"如果週末妳終於有一天屬於自己，可以做最想做的事，妳會選：", choices:[
+        {key:'A', text:'賴在床上耍廢、追劇、喝奶茶'},
+        {key:'B', text:'和好姐妹出去逛街、下午茶'},
+        {key:'C', text:'去戶外散步、感受大自然'},
+        {key:'D', text:'嘗試新事物，例如手作、課程或挑戰新菜色'}
+      ]},
+      {id:2, text:"當妳遇到壓力時，最想要什麼樣的力量支持？", choices:[
+        {key:'A', text:'溫柔的擁抱和安慰'},
+        {key:'B', text:'開心的笑聲和陪伴'},
+        {key:'C', text:'平靜和安定的能量'},
+        {key:'D', text:'自信與勇氣，能果斷前進'}
+      ]},
+      {id:3, text:"如果有人送妳花，妳
