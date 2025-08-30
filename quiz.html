@@ -1,168 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>YCL Nail Studio 心理測驗</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YCL Nails — 專屬美甲心理測驗</title>
+  <meta name="description" content="掃QR線上做測驗，得到專屬美甲款式、顏色與暖心祝福。適合第一次不知道要做什麼款式的客人。" />
   <style>
-    body {
-      font-family: "Noto Sans TC", sans-serif;
-      background-color: #f4f1ee;
-      color: #4b4b4b;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
+    :root{
+      --bg:#f2f0ed; 
+      --card:#ffffff;
+      --accent:#6b7c93; 
+      --muted:#6b6b6b;
+      --glass: rgba(255,255,255,0.6);
     }
-    .container {
-      background: #ffffff;
-      margin: 40px;
-      padding: 30px;
-      border-radius: 16px;
-      max-width: 600px;
-      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #6c5b7b;
-    }
-    .question {
-      margin: 20px 0;
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #355c7d;
-    }
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    button {
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1em;
-      background-color: #c8c6c6;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #a9a7a7;
-    }
-    .result {
-      margin-top: 30px;
-      padding: 20px;
-      border-radius: 12px;
-      background-color: #eae7dc;
-      text-align: center;
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-    .hidden {
-      display: none;
-    }
+    *{box-sizing:border-box;font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Arial;}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#f2f0ed 0%,#d9e2ea 100%);color:#222;overflow-x:hidden}
+    .wrap{max-width:880px;margin:28px auto;padding:20px;position:relative;z-index:10}
+    header{display:flex;align-items:center;gap:16px;padding:10px 0}
+    .logo{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,#c5c3bf,#a6b1c2);display:flex;align-items:center;justify-content:center;font-weight:700;color:#444}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 6px 30px rgba(8,12,20,0.06);}
+    .question{margin-bottom:18px}
+    .q-number{font-weight:700;color:var(--accent)}
+    .q-text{margin:6px 0 12px;font-size:16px}
+    .options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    label.option{display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:10px;border:1px solid #d7d8db;background:linear-gradient(180deg,#fff,#f0f0f0);cursor:pointer}
+    label.option input{margin-top:4px}
+    .controls{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+    button{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+    button.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(107,124,147,0.45)}
+    .progress{height:8px;background:#e0e0e0;border-radius:8px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,#6b7c93,#a6b1c2);width:0%}
+    .result{padding:16px;border-radius:12px;position:relative;z-index:10}
+    .result h2{margin:0 0 8px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:20px;background:rgba(0,0,0,0.06);font-size:13px;margin-right:8px}
+    .share-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13;position:relative;z-index:10}
+    @media (max-width:600px){.options{grid-template-columns:1fr}.logo{width:58px;height:58px}}
+    canvas#fireworks{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>✨ 找出專屬妳的美甲幸運色 ✨</h1>
-    <div id="quiz"></div>
-    <div id="result" class="result hidden"></div>
+  <canvas id="fireworks"></canvas>
+  <div class="wrap">
+    <header>
+      <div class="logo">YCL</div>
+      <div>
+        <h1>YCL Nails — 專屬美甲心理測驗</h1>
+        <p class="lead">誠實回答 5 題，我們會像閨蜜一樣溫柔告訴妳：妳的【命定美甲款式】、幸運色與暖心祝福 ✨</p>
+      </div>
+    </header>
+
+    <section class="card" id="quizCard">
+      <div id="contentArea"></div>
+      <div class="controls" id="controls">
+        <div style="flex:1">
+          <div class="progress" aria-hidden><i id="progBar"></i></div>
+        </div>
+        <div style="width:8px"></div>
+        <button id="prevBtn" class="ghost" style="visibility:hidden">上一步</button>
+        <button id="nextBtn">下一步</button>
+      </div>
+    </section>
+
+    <footer>
+      <div class="small">做完可以點「複製預約ID」或截圖分享給朋友 → 讓她們也被寵愛</div>
+    </footer>
   </div>
 
   <script>
-    const quizData = [
-      {
-        question: "1. 今天的妳，最想要什麼樣的生活氛圍？",
-        options: [
-          { text: "溫暖、安心，被愛包圍", value: "pink" },
-          { text: "清新自在，像風吹過的午後", value: "green" },
-          { text: "優雅有氣質，讓人想多看一眼", value: "nude" },
-          { text: "活潑有活力，能吸引大家目光", value: "red" }
-        ]
-      },
-      {
-        question: "2. 如果週末只有一天假期，妳最想做什麼？",
-        options: [
-          { text: "窩在家裡看劇或追小說", value: "nude" },
-          { text: "去戶外散步，接近大自然", value: "green" },
-          { text: "和閨蜜聚會大聊特聊", value: "pink" },
-          { text: "打扮美美的出門約會或逛街", value: "red" }
-        ]
-      },
-      {
-        question: "3. 最近的妳，最需要哪種力量？",
-        options: [
-          { text: "愛與療癒，讓心柔軟起來", value: "pink" },
-          { text: "穩定與踏實，心情不再浮躁", value: "nude" },
-          { text: "勇氣與自信，敢於表現自己", value: "red" },
-          { text: "清新能量，重新整理人生步調", value: "green" }
-        ]
-      },
-      {
-        question: "4. 妳理想中的自己，最想被人形容成…？",
-        options: [
-          { text: "可愛又惹人疼愛", value: "pink" },
-          { text: "獨立又知性", value: "nude" },
-          { text: "活潑又有魅力", value: "red" },
-          { text: "隨和又自在", value: "green" }
-        ]
-      },
-      {
-        question: "5. 如果給妳一個幸運禮物，妳最希望是？",
-        options: [
-          { text: "一束粉嫩的花束，充滿愛", value: "pink" },
-          { text: "一本質感書籍，帶來智慧", value: "nude" },
-          { text: "一個紅色的小禮物，象徵好運", value: "red" },
-          { text: "一株綠色小盆栽，帶來清新能量", value: "green" }
-        ]
-      }
+    // 問題列表（5題）
+    const questions = [
+      {id:1, text:"如果週末妳終於有一天屬於自己，可以做最想做的事，妳會選：", choices:[
+        {key:'A', text:'賴在床上耍廢、追劇、喝奶茶'},
+        {key:'B', text:'和好姐妹出去逛街、下午茶'},
+        {key:'C', text:'去戶外散步、感受大自然'},
+        {key:'D', text:'嘗試新事物，例如手作、課程或挑戰新菜色'}
+      ]},
+      {id:2, text:"當妳遇到壓力時，最想要什麼樣的力量支持？", choices:[
+        {key:'A', text:'溫柔的擁抱和安慰'},
+        {key:'B', text:'開心的笑聲和陪伴'},
+        {key:'C', text:'平靜和安定的能量'},
+        {key:'D', text:'自信與勇氣，能果斷前進'}
+      ]},
+      {id:3, text:"如果有人送妳花，妳最希望收到哪一種？", choices:[
+        {key:'A', text:'粉色玫瑰（浪漫甜美）'},
+        {key:'B', text:'向日葵（陽光活力）'},
+        {key:'C', text:'白百合（純淨優雅）'},
+        {key:'D', text:'紫色鬱金香（神秘高貴)'}
+      ]},
+      {id:4, text:"妳心中的「完美假期」是：", choices:[
+        {key:'A', text:'海邊吹風、腳踩沙灘'},
+        {key:'B', text:'在咖啡廳裡讀書或聊天'},
+        {key:'C', text:'到山林小木屋靜靜休息'},
+        {key:'D', text:'參加一場熱鬧派對'}
+      ]},
+      {id:5, text:"妳覺得朋友們最常誇妳什麼？", choices:[
+        {key:'A', text:'溫柔體貼，像小太陽一樣溫暖'},
+        {key:'B', text:'活潑有趣，大家都喜歡跟妳在一起'},
+        {key:'C', text:'穩重可靠，讓人安心信任'},
+        {key:'D', text:'有氣場又有魅力，走到哪都發光'}
+      ]}
     ];
 
-    const results = {
+    const resultMap = {
       pink: "🌸 妳適合 **粉嫩浪漫風美甲**！<br><br> 這個顏色是妳近期的幸運色，能帶來愛與溫柔的能量，讓妳在關係裡更容易被呵護與珍惜。<br> 妳散發的氣場會讓身邊的人都想守護妳，妳值得被愛、被誇讚，因為妳真的很特別！💖",
-      nude: "✨ 妳適合 **高級裸色氣質美甲**！<br><br> 這個顏色象徵穩定與智慧，能幫助妳在工作與生活中展現沉著大方。<br> 妳給人一種安心感，讓人忍不住信任妳。妳就像一杯溫熱拿鐵，讓人覺得溫柔又高雅。☕",
-      red: "🔥 妳適合 **亮眼紅色魅力美甲**！<br><br> 紅色是妳的能量補給站，能帶來勇氣與自信，讓妳在眾人面前閃閃發光。<br> 妳的存在就是舞台的焦點，妳的笑容能點亮整個空間，妳比自己想像中還要耀眼！💃",
-      green: "🍃 妳適合 **清新綠色自然美甲**！<br><br> 這個顏色能幫助妳保持平衡，帶來放鬆的力量。<br> 妳就像春天的微風，讓人感到自在舒服。和妳在一起的時光，總是讓人覺得幸福又放鬆。🌿"
-    };
+  nude: "✨ 妳適合 **高級裸色氣質美甲**！<br><br> 這個顏色象徵穩定與智慧，能幫助妳在工作與生活中展現沉著大方。<br> 妳給人一種安心感，讓人忍不住信任妳。妳就像一杯溫熱拿鐵，讓人覺得溫柔又高雅。☕",
+  red: "🔥 妳適合 **亮眼紅色魅力美甲**！<br><br> 紅色是妳的能量補給站，能帶來勇氣與自信，讓妳在眾人面前閃閃發光。<br> 妳的存在就是舞台的焦點，妳的笑容能點亮整個空間，妳比自己想像中還要耀眼！💃",
+  green: "🍃 妳適合 **清新綠色自然美甲**！<br><br> 這個顏色能幫助妳保持平衡，帶來放鬆的力量。<br> 妳就像春天的微風，讓人感到自在舒服。和妳在一起的時光，總是讓人覺得幸福又放鬆。🌿",
+  black: "🖤 妳適合 **神秘黑色酷感美甲**！<br><br> 黑色象徵力量與獨立，能讓妳展現無懼的氣場。<br> 妳就像夜空裡最亮的星，低調卻難以忽視，帶著一種深邃又高冷的魅力，讓人忍不住想更靠近妳。🌌",
+  white: "🤍 妳適合 **純淨白色極簡美甲**！<br><br> 白色代表純粹與希望，能讓妳散發清新脫俗的氛圍。<br> 妳就像初雪般乾淨美好，帶給身邊的人一種平靜與安心。妳的單純笑容就是最溫暖的力量。❄️",
+  blue: "💙 妳適合 **夢幻藍色沉靜美甲**！<br><br> 藍色帶來冷靜與思緒的清晰，讓妳在混亂中依然保持自我。<br> 妳就像海洋般廣闊而自由，給人無限的想像空間。妳的存在，是大家心中最安心的避風港。🌊",
+  purple: "💜 妳適合 **優雅紫色神秘美甲**！<br><br> 紫色象徵靈性與高貴，能提升妳的直覺與魅力。<br> 妳就像一首動人的詩，帶著一點浪漫與神秘，讓人忍不住想探索妳的內心世界。✨",
+  yellow: "💛 妳適合 **陽光黃色活力美甲**！<br><br> 黃色是快樂與希望的顏色，能讓妳展現滿滿的正能量。<br> 妳就像夏日的太陽，明亮又溫暖，妳的開朗笑容總能感染身邊的人，讓大家都覺得幸福。☀️"
+};
 
-    let currentQuestion = 0;
-    let answers = [];
+    let step = 0;
+    const answers = {};
+    const contentArea = document.getElementById('contentArea');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progBar = document.getElementById('progBar');
 
-    function loadQuestion() {
-      if (currentQuestion < quizData.length) {
-        const q = quizData[currentQuestion];
-        const quizDiv = document.getElementById("quiz");
-        quizDiv.innerHTML = `
-          <div class="question">${q.question}</div>
-          <div class="options">
-            ${q.options.map((opt, i) => `<button onclick="selectOption('${opt.value}')">${opt.text}</button>`).join("")}
+    function renderStep() {
+      progBar.style.width = Math.round((step / questions.length) * 100) + '%';
+      if (step < questions.length) {
+        const q = questions[step];
+        contentArea.innerHTML = `
+          <div class="question">
+            <div class="q-number">問題 ${step+1} / ${questions.length}</div>
+            <div class="q-text">${q.text}</div>
+            <div class="options">
+              ${q.choices.map(c => `<label class="option"><input type="radio" name="q${q.id}" value="${c.key}" ${answers[q.id]===c.key? 'checked' : ''}/> <div>${c.text}</div></label>`).join('')}
+            </div>
           </div>
+          <div class="small">每題請擇一最符合直覺的答案，沒有對錯，像閨蜜一樣我們會給妳最暖的建議 ❤️</div>
         `;
+        prevBtn.style.visibility = step===0? 'hidden' : 'visible';
+        nextBtn.textContent = '下一步';
       } else {
         showResult();
       }
     }
 
-    function selectOption(value) {
-      answers.push(value);
-      currentQuestion++;
-      loadQuestion();
+    function collectAnswer() {
+      const q = questions[step];
+      const sel = document.querySelector(`input[name="q${q.id}"]:checked`);
+      if (sel) { answers[q.id] = sel.value; return true; }
+      return false;
     }
 
-    function showResult() {
-      let count = { pink:0, nude:0, red:0, green:0 };
-      answers.forEach(a => count[a]++);
-      let final = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
-      document.getElementById("quiz").classList.add("hidden");
-      const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = results[final];
-      resultDiv.classList.remove("hidden");
-    }
+    nextBtn.addEventListener('click', ()=>{
+      if (step < questions.length) {
+        if (!collectAnswer()) { alert('請選擇一個答案，讓我們更了解妳 😊'); return; }
+        step++;
+        renderStep();
+      } else { location.reload(); }
+    });
 
-    loadQuestion();
-  </script>
-</body>
-</html>
+    prevBtn.addEventListener('click', ()=>{ if (step>0) step--; renderStep(); });
+
+    function showResult(){
+      // 計算最多答案
+      const tally = {A:0,B:0,C:0,D:0};
+      for (let i=1;i<=questions.length;i++){ const v = answers[i]; if(v) tally[v]++; }
+      const order = ['D','C','B','A'];
+      let maxKey = 'A', maxVal = -1;
+      for (const k of Object.keys(tally)){ if(tally[k]>maxVal||(tally[k]===maxVal&&order.indexOf(k)<order.indexOf(maxKey))){maxVal=tally[k]; maxKey=k;} }
+      const r = resultMap[maxKey];
+
+      contentArea.innerHTML = `
+        <div class="result">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+            <div>
+              <div class="pill">命定款：${r.title}</div>
+              <
